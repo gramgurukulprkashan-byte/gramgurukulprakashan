@@ -1,26 +1,457 @@
 @import "tailwindcss";
 
+/* ═══════════════════════════════════════════════════════
+   ग्राम गुरुकुल प्रकाशन — Design System
+   "आँगन" — warm, earthy, culturally rooted
+   ═══════════════════════════════════════════════════════ */
+/* ─── CSS Custom Properties ─────────────────────────── */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand Colours */
+  --color-mustard: #E3B023;
+  --color-orange: #C8661E;
+  --color-charcoal: #1A1A1A;
+  --color-cream: #FBF5E6;
+  --color-clay: #7A4A2B;
+  --color-green: #3F5B2E;
+  --color-sand: #F0E4C8;
+  --color-sand-dark: #D9C9A3;
+
+  /* Typography */
+  --font-body: 'Noto Sans Devanagari', 'Noto Sans', sans-serif;
+  --font-heading: 'Tiro Devanagari Hindi', 'Noto Sans Devanagari', serif;
+
+  /* Spacing */
+  --section-gap: clamp(3rem, 6vw, 5rem);
+
+  /* Border Radius */
+  --radius-card: 1.25rem;
+  --radius-btn: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ─── Tailwind Theme Tokens ─────────────────────────── */
+@theme {
+  --color-mustard: var(--color-mustard);
+  --color-orange: var(--color-orange);
+  --color-charcoal: var(--color-charcoal);
+  --color-cream: var(--color-cream);
+  --color-clay: var(--color-clay);
+  --color-green: var(--color-green);
+  --color-sand: var(--color-sand);
+  --color-sand-dark: var(--color-sand-dark);
+
+  --font-body: var(--font-body);
+  --font-heading: var(--font-heading);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ───────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 17px;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-cream);
+  color: var(--color-charcoal);
+  font-family: var(--font-body);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  line-height: 1.35;
+  font-weight: 700;
+  color: var(--color-charcoal);
+}
+
+/* Prevent matra/conjunct clipping in Devanagari */
+h1, h2, h3, h4, h5, h6,
+p, li, a, button, label, span {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* ─── Focus Rings ───────────────────────────────────── */
+:focus-visible {
+  outline: 3px solid var(--color-orange);
+  outline-offset: 3px;
+}
+
+/* ─── Skip Link ─────────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-charcoal);
+  color: white;
+  font-weight: 700;
+  z-index: 9999;
+  border-radius: 0 0 0.5rem 0;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ─── Bhil Dot Pattern (SVG texture) ───────────────── */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(200, 102, 30, 0.12) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.dot-pattern-light {
+  background-image: radial-gradient(circle, rgba(200, 102, 30, 0.07) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+.dot-pattern-mustard {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-sand);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-clay);
+  border-radius: 4px;
+}
+
+/* ─── Reduced Motion ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─── Animations ────────────────────────────────────── */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes countUp {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-fade-in-up-delay-1 {
+  animation: fadeInUp 0.6s ease-out 0.15s forwards;
+  opacity: 0;
+}
+.animate-fade-in-up-delay-2 {
+  animation: fadeInUp 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+.animate-fade-in-up-delay-3 {
+  animation: fadeInUp 0.6s ease-out 0.45s forwards;
+  opacity: 0;
+}
+
+/* ─── Utility Classes ───────────────────────────────── */
+.container-main {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-main {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-main {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ─── Components ────────────────────────────────────── */
+@layer components {
+  .card-base {
+    background: white;
+    border-radius: var(--radius-card);
+    border: 2px solid var(--color-sand);
+    box-shadow: 0 2px 16px rgba(122, 74, 43, 0.08);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+
+  .card-base:hover {
+    box-shadow: 0 8px 32px rgba(122, 74, 43, 0.16);
+    transform: translateY(-2px);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: var(--color-orange);
+    color: white;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--color-orange);
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.15s;
+    white-space: nowrap;
+  }
+
+  .btn-primary:hover {
+    background-color: #a85318;
+    border-color: #a85318;
+    box-shadow: 0 4px 16px rgba(200, 102, 30, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: transparent;
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--color-charcoal);
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+    text-decoration: none;
+    transition: background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-secondary:hover {
+    background-color: var(--color-charcoal);
+    color: white;
+  }
+
+  .btn-mustard {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: var(--color-mustard);
+    color: var(--color-charcoal);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--color-mustard);
+    cursor: pointer;
+    min-height: 48px;
+    min-width: 48px;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-mustard:hover {
+    background-color: #cfa01f;
+    border-color: #cfa01f;
+    box-shadow: 0 4px 16px rgba(227, 176, 35, 0.4);
+  }
+
+  .btn-disabled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    background-color: var(--color-sand);
+    color: var(--color-clay);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: var(--radius-btn);
+    border: 2px solid var(--color-sand-dark);
+    cursor: not-allowed;
+    min-height: 48px;
+    min-width: 48px;
+    text-decoration: none;
+    opacity: 0.7;
+  }
+
+  .badge-published {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+
+  .badge-wip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffc107;
+  }
+
+  .badge-important {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    background-color: #ffe0cc;
+    color: #a85318;
+    border: 1px solid var(--color-orange);
+  }
+
+  .input-base {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-charcoal);
+    background-color: white;
+    border: 2px solid var(--color-sand-dark);
+    border-radius: 0.5rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 48px;
+  }
+
+  .input-base:focus {
+    border-color: var(--color-orange);
+    box-shadow: 0 0 0 3px rgba(200, 102, 30, 0.15);
+    outline: none;
+  }
+
+  .input-base::placeholder {
+    color: var(--color-clay);
+    opacity: 0.6;
+  }
+
+  .input-error {
+    border-color: #dc3545 !important;
+    box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.15) !important;
+  }
+}
+
+/* ─── Section Backgrounds ───────────────────────────── */
+.section-cream { background-color: var(--color-cream); }
+.section-sand  { background-color: var(--color-sand); }
+.section-mustard { background-color: var(--color-mustard); }
+.section-charcoal { background-color: var(--color-charcoal); color: white; }
+.section-white { background-color: white; }
+
+/* ─── Divider ───────────────────────────────────────── */
+.divider-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 2rem auto;
+  width: fit-content;
+}
+.divider-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-clay);
+  opacity: 0.4;
+}
+.divider-dots span:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
+  background-color: var(--color-orange);
+}
+.divider-dots span:nth-child(4) {
+  width: 10px;
+  height: 10px;
+  opacity: 0.5;
+  background-color: var(--color-mustard);
+}
+
+/* ─── Prose / Rich Text ─────────────────────────────── */
+.prose-hindi h2 { font-size: 1.6rem; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--color-charcoal); }
+.prose-hindi h3 { font-size: 1.3rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--color-clay); }
+.prose-hindi p  { margin-bottom: 1.25rem; }
+.prose-hindi ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose-hindi ol { list-style: decimal; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose-hindi li { margin-bottom: 0.5rem; }
+.prose-hindi blockquote {
+  border-left: 4px solid var(--color-mustard);
+  padding-left: 1rem;
+  color: var(--color-clay);
+  font-style: italic;
+  margin: 1.5rem 0;
+}
+.prose-hindi strong { color: var(--color-orange); font-weight: 700; }
+
+/* ─── Hero Section ──────────────────────────────────── */
+.hero-gradient {
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-sand) 60%, rgba(227, 176, 35, 0.2) 100%);
+}
+
+/* ─── Stat Counter Circle ───────────────────────────── */
+.stat-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  border: 3px solid var(--color-mustard);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 24px rgba(227, 176, 35, 0.2);
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ─── Print Styles ──────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+  body { background: white; color: black; }
 }

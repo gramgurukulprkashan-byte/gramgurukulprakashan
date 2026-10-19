@@ -1,0 +1,190 @@
+import Link from 'next/link';
+import { NAV_ITEMS, SOCIAL_LINKS } from '@/lib/utils';
+import { Mail, Link as LinkIcon } from 'lucide-react';
+import { FacebookIcon, InstagramIcon } from '@/components/Icons';
+
+export default function Footer() {
+  const year = new Date().getFullYear();
+
+  return (
+    <footer role="contentinfo" style={{ backgroundColor: 'var(--color-charcoal)', color: 'var(--color-sand)' }}>
+      <div className="container-main py-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+          <div className="lg:col-span-1">
+            <div className="flex items-center gap-3 mb-4">
+              <div
+                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
+                style={{ backgroundColor: 'white' }}
+                aria-hidden="true"
+              >
+                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
+                  <circle cx="20" cy="20" r="18" fill="#1A1A1A" />
+                  <path d="M20 8 L30 17 L30 30 L10 30 L10 17 Z" stroke="#C8661E" strokeWidth="1.5" fill="none" />
+                  <path d="M15 30 L15 22 L20 22 L20 30" stroke="#C8661E" strokeWidth="1.5" fill="none" />
+                  <path d="M8 17 L20 7 L32 17" stroke="#E3B023" strokeWidth="2" fill="none" />
+                  <path d="M12 20 L18 20 M12 23 L18 23" stroke="#C8661E" strokeWidth="1" />
+                  <path d="M22 20 L28 20 M22 23 L28 23" stroke="#C8661E" strokeWidth="1" />
+                </svg>
+              </div>
+              <div>
+                <div
+                  className="font-bold text-sm leading-none"
+                  style={{ color: 'var(--color-mustard)', fontFamily: 'var(--font-heading)' }}
+                >
+                  ग्रामगुरुकुल प्रकाशन
+                </div>
+              </div>
+            </div>
+            <blockquote
+              className="text-lg font-semibold mb-4 italic"
+              style={{ color: 'var(--color-mustard)', fontFamily: 'var(--font-heading)' }}
+            >
+              "जो बांचेगा वही बचेगा"
+            </blockquote>
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(240, 228, 200, 0.7)' }}>
+              गाँव का परंपरागत ज्ञान और शहरों का आधुनिक विज्ञान — इन दोनों के बीच आदान-प्रदान के लिए।
+            </p>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--color-mustard)' }}>
+              मुख्य पृष्ठ
+            </h3>
+            <ul className="space-y-2 list-none m-0 p-0">
+              {NAV_ITEMS[0].items.map(item => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm hover:text-white transition-colors"
+                    style={{ color: 'var(--color-sand)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              {NAV_ITEMS[3].items.map(item => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm hover:text-white transition-colors"
+                    style={{ color: 'var(--color-sand)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--color-mustard)' }}>
+              ज्ञान
+            </h3>
+            <ul className="space-y-2 list-none m-0 p-0">
+              {NAV_ITEMS[1].items.map(item => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm hover:text-white transition-colors"
+                    style={{ color: 'var(--color-sand)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+              {NAV_ITEMS[2].items.map(item => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="text-sm hover:text-white transition-colors"
+                    style={{ color: 'var(--color-sand)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--color-mustard)' }}>
+              संपर्क और सोशल
+            </h3>
+            <ul className="space-y-3 list-none m-0 p-0">
+              <li>
+                <a
+                  href={`mailto:${SOCIAL_LINKS.email}`}
+                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+                  style={{ color: 'var(--color-sand)' }}
+                  aria-label="ईमेल"
+                >
+                  <Mail size={16} aria-hidden="true" />
+                  {SOCIAL_LINKS.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SOCIAL_LINKS.instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+                  style={{ color: 'var(--color-sand)' }}
+                  aria-label="इंस्टाग्राम (नया टैब में खुलेगा)"
+                >
+                  <InstagramIcon size={16} aria-hidden="true" />
+                  इंस्टाग्राम
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SOCIAL_LINKS.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+                  style={{ color: 'var(--color-sand)' }}
+                  aria-label="फेसबुक (नया टैब में खुलेगा)"
+                >
+                  <FacebookIcon size={16} aria-hidden="true" />
+                  फेसबुक
+                </a>
+              </li>
+              <li>
+                <a
+                  href={SOCIAL_LINKS.linktree}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+                  style={{ color: 'var(--color-sand)' }}
+                  aria-label="लिंकट्री (नया टैब में खुलेगा)"
+                >
+                  <LinkIcon size={16} aria-hidden="true" />
+                  लिंकट्री
+                </a>
+              </li>
+            </ul>
+
+            <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              <p className="text-xs font-semibold mb-1" style={{ color: 'var(--color-mustard)' }}>
+                📍 पता और फोन
+              </p>
+              <p className="text-xs" style={{ color: 'rgba(240, 228, 200, 0.5)' }}>
+                TODO: वास्तविक पता और फोन नम्बर जोड़ें
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs"
+          style={{ borderTop: '1px solid rgba(255,255,255,0.1)', color: 'rgba(240, 228, 200, 0.5)' }}
+        >
+          <p>© {year} ग्राम गुरुकुल प्रकाशन। सभी अधिकार सुरक्षित।</p>
+          <p>
+            आपकी जानकारी सुरक्षित है। हम आपका डेटा तीसरे पक्ष के साथ साझा नहीं करते।
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+}
