@@ -19,22 +19,22 @@ const STATS = [
 
 const GURUKUL_REPORTS = [
   {
-    image: '/content-media/28.jpeg',
+    image: '/content-media/semalpada-gurukul-varg.webp',
     title: 'ग्राम गुरुकुल वर्ग — सेमलपाड़ा (थांदला)',
     desc: 'व्यक्तित्व विकास, खेल और गाँव के उत्थान पर विचार-विमर्श। युवाओं में नेतृत्व क्षमता जगाने का सत्र।',
   },
   {
-    image: '/content-media/31.jpeg',
+    image: '/content-media/salarpada-gurukul-varg.webp',
     title: 'ग्राम गुरुकुल वर्ग — सालारपाड़ा',
     desc: '3 फलियों के 49 युवा शामिल हुए। खेल, सामूहिक संवाद और ग्राम-सेवा के संकल्प लिए गए।',
   },
   {
-    image: '/content-media/33.jpeg',
+    image: '/content-media/halma-youth-group.webp',
     title: 'हलमा — भील समाज की सामूहिक शक्ति',
     desc: 'जल-संरक्षण और पहाड़ पर कंटूर ट्रेंच बनाने के लिए हलमा टी-शर्ट पहने एकजुट युवा।',
   },
   {
-    image: '/content-media/26.jpeg',
+    image: '/content-media/udaypuria-dharampuri-launch.webp',
     title: 'वाचनालय वितरण — उदयपुरिया और धरमपुरी',
     desc: '27 अक्टूबर 2023 को ग्राम वाचनालय की पेटियों का औपचारिक वितरण एवं शुभारंभ।',
   },

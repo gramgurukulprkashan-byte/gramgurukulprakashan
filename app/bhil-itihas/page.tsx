@@ -15,7 +15,7 @@ const FREEDOM_HEROES = [
     name: 'वीर शिरोमणि कोटिया भील',
     title: 'कोटा राज्य के संस्थापक व अमर योद्धा',
     desc: 'सिर धड़ से अलग होने पर भी वीरता से लड़ते रहे कोटिया भील। कोटा नगर का नामकरण इन्हीं के शौर्य पर हुआ।',
-    image: '/content-media/22.jpeg',
+    image: '/content-media/veer-kotia-bhil.webp',
   },
   {
     name: 'राणा पूंजा भील',
@@ -39,17 +39,17 @@ const FREEDOM_HEROES = [
 
 const HERITAGE_PHOTOS = [
   {
-    src: '/content-media/11.jpeg',
+    src: '/content-media/malvai-ancient-temple.webp',
     title: 'मालवई प्राचीन मंदिर — 10वीं/11वीं सदी',
     desc: 'झाबुआ के मालवई में स्थित परमार कालीन ऐतिहासिक शिव मंदिर का अध्ययन दल द्वारा निरीक्षण।',
   },
   {
-    src: '/content-media/img7.jpeg',
+    src: '/content-media/temple-sculpture.webp',
     title: 'प्राचीन पाषाण शिल्पकला',
     desc: 'देवझीरी व मालवई क्षेत्र के प्राचीन मंदिरों में उकेरी गई सूक्ष्म भारतीय मूर्तिकला।',
   },
   {
-    src: '/content-media/10.jpeg',
+    src: '/content-media/deojhiri-temple.webp',
     title: 'देवझीरी पुरातात्विक धरोहर',
     desc: 'प्राचीन जलकुंड और सदियों पुराने आस्था स्थल की वास्तुकला।',
   },
@@ -98,7 +98,7 @@ export default function BhilItihasPage() {
                   }}
                 >
                   <Image
-                    src="/content-media/22.jpeg"
+                    src="/content-media/veer-kotia-bhil.webp"
                     alt="वीर कोटिया भील — सिर धड़ से अलग होने पर भी लड़ता रहा कोटिया भील"
                     fill
                     className="object-cover"

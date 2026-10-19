@@ -52,7 +52,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'गिरीश प्रभुणे (अनुवाद: डॉ. मोहन ब. बांडे)',
     subject: 'जल-संरक्षण एवं सामाजिक पुनर्जागरण',
     status: 'प्रकाशित',
-    coverImage: '/content-media/WhatsApp Image 2026-10-19 at 4.17.27 PM.jpeg',
+    coverImage: '/content-media/nav-bhagirath-book.webp',
     description:
       'पद्मश्री महेश शर्मा जी के मार्गदर्शन में शिवगंगा द्वारा झाबुआ की माटी में हलमा परंपरा के माध्यम से किए गए जल-संरक्षण, पर्यावरण-संरक्षण और सामाजिक समरसता की ऐतिहासिक गाथा।',
     pages: '220 पृष्ठ',
@@ -66,7 +66,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'ग्रामगुरुकुल प्रकाशन मण्डल',
     subject: 'ग्राम चेतना एवं संस्कृति',
     status: 'प्रकाशित',
-    coverImage: '/content-media/25.jpeg',
+    coverImage: '/content-media/bhilanchal-ki-aawaz.webp',
     description:
       'अंक 01 (जनवरी 2024), धर्मभूमि झाबुआ। ध्येय वाक्य: "चलो जलायें दीप वहाँ, जहाँ अभी भी अंधेरा है"। झाबुआ के 900 गाँवों में ग्राम वाचनालय, हलमा, स्थानीय ज्ञान और ग्राम विकास की ताज़ा गतिविधियों की मासिक पत्रिका।',
     pages: '32 पृष्ठ',
@@ -80,7 +80,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'ग्राम गुरुकुल प्रकाशन मण्डल',
     subject: 'सामाजिक विज्ञान (कक्षा 6)',
     status: 'निर्माणाधीन',
-    coverImage: '/content-media/37.jpeg',
+    coverImage: '/content-media/vachanalay-125-books.webp',
     pdfUrl: '/content-media/Front - Back.pdf',
     description:
       'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, बड़वा, तड़वी, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
@@ -95,7 +95,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'ग्राम गुरुकुल शोध दल',
     subject: 'इतिहास, भूगोल एवं सर्वेक्षण',
     status: 'प्रकाशित',
-    coverImage: '/content-media/29.jpeg',
+    coverImage: '/content-media/chhagola-village-school.webp',
     pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     description:
       'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। 13.4 MB के इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
@@ -110,7 +110,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'शिवगंगा एवं ग्राम गुरुकुल प्रकाशन',
     subject: 'सामुदायिक पुस्तकालय संचयन',
     status: 'प्रकाशित',
-    coverImage: '/content-media/37.jpeg',
+    coverImage: '/content-media/vachanalay-125-books.webp',
     description:
       'हर ग्राम वाचनालय की विशेष पेटी में रखी जाने वाली 125 चुनिंदा प्रेरणादायी पुस्तकें — सम्पूर्ण रामायण, चन्द्रशेखर आज़ाद, भगत सिंह, छत्रपति शिवाजी, महाराणा प्रताप, स्वामी विवेकानन्द, पंचतंत्र, बाल साहित्य एवं कृषि-स्वास्थ्य ज्ञान।',
     pages: '125 पुस्तकों का सेट',
@@ -126,7 +126,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'chhagola' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/29.jpeg',
+    thumbnail: '/content-media/chhagola-village-school.webp',
     pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     nameStory:
       'छागोला गाँव का नामकरण यहाँ की ऐतिहासिक घाटी और छांवदार वनों के आधार पर माना जाता है। बुजुर्गों के अनुसार पुराने समय में यह क्षेत्र सघन पेड़ों और शीतल जलस्रोतों से समृद्ध था।',
@@ -150,7 +150,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'silkhodari' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/35.jpeg',
+    thumbnail: '/content-media/silkhodari-vachanalay.webp',
     nameStory:
       'गाँव की प्राकृतिक शिलाओं और जलधाराओं से सिलखोदरी नाम पड़ा। यहाँ शिवगंगा ग्राम वाचनालय सक्रिय रूप से संचालित है और दीवार पर ध्येय वाक्य अंकित है: "जो बांचेगा वही बचेगा"।',
     settlementHistory:
@@ -168,7 +168,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'udaypuria' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/26.jpeg',
+    thumbnail: '/content-media/udaypuria-dharampuri-launch.webp',
     nameStory:
       'उदयपुरिया गाँव में 27 अक्टूबर 2023 को ग्राम वाचनालय की 125 पुस्तकों की पेटी का वितरण और औपचारिक शुरूआत की गई।',
     settlementHistory:
@@ -185,7 +185,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'bhamarda' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/27.jpeg',
+    thumbnail: '/content-media/bhamarda-launch.webp',
     nameStory:
       'भमरदा गाँव में 27 अक्टूबर 2023 को ग्राम वाचनालय की पेटी का वितरण हुआ। गाँव के फलियों तक पठन संस्कृति पहुँची।',
     settlementHistory:
@@ -202,7 +202,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'semalpada' },
     district: 'झाबुआ',
     block: 'थांदला',
-    thumbnail: '/content-media/28.jpeg',
+    thumbnail: '/content-media/semalpada-gurukul-varg.webp',
     nameStory:
       'सेमल (शाल्मली) के घने वृक्षों की उपस्थिति के कारण गाँव का नाम सेमलपाड़ा पड़ा।',
     settlementHistory:
@@ -219,7 +219,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'salarpada' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/31.jpeg',
+    thumbnail: '/content-media/salarpada-gurukul-varg.webp',
     nameStory:
       'सालार वृक्षों की बहुतायत से इस गाँव का नाम सालारपाड़ा पड़ा।',
     settlementHistory:
@@ -250,6 +250,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'dharampuri' },
     district: 'झाबुआ',
     block: 'झाबुआ',
+    thumbnail: '/content-media/udaypuria-dharampuri-launch.webp',
     nameStory:
       'धरमपुरी गाँव में 27/10/2023 को ग्राम वाचनालय की शुरूआत हुई। यहाँ शिवगंगा गुरुकुल का मुख्य केंद्र स्थित है।',
     settlementHistory:
@@ -273,7 +274,7 @@ export const REAL_NOTICES: NoticeItem[] = [
     important: true,
     hasImage: true,
     hasPdf: false,
-    image: '/content-media/25.jpeg',
+    image: '/content-media/bhilanchal-ki-aawaz.webp',
   },
   {
     _id: 'notice-nav-bhagirath',
@@ -285,7 +286,7 @@ export const REAL_NOTICES: NoticeItem[] = [
     important: true,
     hasImage: true,
     hasPdf: false,
-    image: '/content-media/WhatsApp Image 2026-10-19 at 4.17.27 PM.jpeg',
+    image: '/content-media/nav-bhagirath-book.webp',
   },
   {
     _id: 'notice-chhagola-atlas',
@@ -297,7 +298,7 @@ export const REAL_NOTICES: NoticeItem[] = [
     important: false,
     hasImage: true,
     hasPdf: true,
-    image: '/content-media/29.jpeg',
+    image: '/content-media/chhagola-village-school.webp',
     pdf: '/content-media/छागोला गांव एटलस.pdf',
   },
   {
@@ -310,6 +311,6 @@ export const REAL_NOTICES: NoticeItem[] = [
     important: false,
     hasImage: true,
     hasPdf: false,
-    image: '/content-media/26.jpeg',
+    image: '/content-media/udaypuria-dharampuri-launch.webp',
   },
 ];

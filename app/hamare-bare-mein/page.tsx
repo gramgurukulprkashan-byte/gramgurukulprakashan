@@ -65,7 +65,7 @@ export default function HamareBareMain() {
                 }}
               >
                 <Image
-                  src="/content-media/23.jpeg"
+                  src="/content-media/mahesh-sharma-elder.webp"
                   alt="पद्मश्री महेश शर्मा जी ग्रामीण बुजुर्ग के साथ आत्मीय संवाद करते हुए"
                   fill
                   className="object-cover"

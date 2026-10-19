@@ -44,32 +44,32 @@ const SEED_VACHANALAY = [
 
 const FIELD_GALLERY = [
   {
-    image: '/content-media/35.jpeg',
+    image: '/content-media/silkhodari-vachanalay.webp',
     title: 'शिवगंगा ग्राम वाचनालय — सिलखोदरी',
     desc: 'गाँव की दीवार पर लिखा नारा: "जो बांचेगा, वही बचेगा"। ग्रामीण बुजुर्ग और बच्चे पेटी के साथ।',
   },
   {
-    image: '/content-media/37.jpeg',
+    image: '/content-media/vachanalay-125-books.webp',
     title: '125 पुस्तकों का विशेष संचयन',
     desc: 'सम्पूर्ण रामायण, चन्द्रशेखर आज़ाद, भगत सिंह, शिवाजी, विवेकानन्द, पंचतंत्र से सजी वाचनालय पेटी।',
   },
   {
-    image: '/content-media/36.jpeg',
+    image: '/content-media/children-reading-circle.webp',
     title: 'गाँव के बच्चों का पठन चक्र',
     desc: 'सफेद धातु पेटी के चारों ओर बैठकर उत्साह से कहानियाँ और महापुरुषों की जीवनी पढ़ते बच्चे।',
   },
   {
-    image: '/content-media/26.jpeg',
+    image: '/content-media/udaypuria-dharampuri-launch.webp',
     title: 'वितरण एवं शुरूआत — उदयपुरिया व धरमपुरी',
     desc: '27 अक्टूबर 2023 को उदयपुरिया और धरमपुरी में ग्राम वाचनालय की औपचारिक स्थापना।',
   },
   {
-    image: '/content-media/27.jpeg',
+    image: '/content-media/bhamarda-launch.webp',
     title: 'वितरण — ग्राम भमरदा',
     desc: '27 अक्टूबर 2023 को ग्राम भमरदा में वाचनालय पेटी सौंपते हुए शिवगंगा कार्यकर्ता।',
   },
   {
-    image: '/content-media/25.jpeg',
+    image: '/content-media/bhilanchal-ki-aawaz.webp',
     title: 'गाँव-गाँव तक ज्ञान का सफर',
     desc: 'मोटरसाइकिल पर पेटी लादकर ग्राम-चुही पहुँचाते युवा कार्यकर्ता ("भीलांचल की आवाज")।',
   },
@@ -159,7 +159,7 @@ export default async function GramVachanalaPage() {
                 }}
               >
                 <Image
-                  src="/content-media/35.jpeg"
+                  src="/content-media/silkhodari-vachanalay.webp"
                   alt="शिवगंगा ग्राम वाचनालय सिलखोदरी — जो बांचेगा वही बचेगा"
                   fill
                   className="object-cover"
@@ -218,7 +218,7 @@ export default async function GramVachanalaPage() {
                 style={{ aspectRatio: '4/3', border: '4px solid var(--color-orange)' }}
               >
                 <Image
-                  src="/content-media/37.jpeg"
+                  src="/content-media/vachanalay-125-books.webp"
                   alt="ग्राम वाचनालय में रखी 125 पुस्तकों का वास्तविक संचयन"
                   fill
                   className="object-cover"

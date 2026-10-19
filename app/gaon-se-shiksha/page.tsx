@@ -67,7 +67,7 @@ export default function GaonSeShikshaPage() {
                 }}
               >
                 <Image
-                  src="/content-media/20.jpeg"
+                  src="/content-media/child-gopan-slingshot.webp"
                   alt="झाबुआ का बालक पारंपरिक गोपण के साथ — प्रकृति से सीखने की सहज कला"
                   fill
                   className="object-cover"

@@ -10,45 +10,14 @@ export const metadata: Metadata = {
   description: 'ग्राम गुरुकुल प्रकाशन की सभी सूचनाएँ, कार्यक्रम और जानकारी।',
 };
 
-const SEED_NOTICES = [
-  {
-    _id: 'seed-1',
-    title: 'ग्राम वाचनालय की नई पुस्तकें उपलब्ध',
-    slug: { current: 'gram-vachanalay-nayi-pustakein' },
-    description: 'झाबुआ ज़िले के ग्राम वाचनालयों में नई पुस्तकें पहुँचाई जा रही हैं।',
-    publishDate: '2026-10-15',
-    important: true,
-    hasPdf: false,
-    hasImage: true,
-  },
-  {
-    _id: 'seed-2',
-    title: 'सशक्तिकरण वर्ग — अगला सत्र',
-    slug: { current: 'sashaktikaran-varg-agla-satra' },
-    description: 'अगले सशक्तिकरण वर्ग में भाग लेने के इच्छुक लोग अभी आवेदन कर सकते हैं।',
-    publishDate: '2026-10-10',
-    important: false,
-    hasPdf: true,
-    hasImage: false,
-  },
-  {
-    _id: 'seed-3',
-    title: '"मेरा जिला" पुस्तक में सहयोग करें',
-    slug: { current: 'mera-jila-sahyog' },
-    description: 'कक्षा 6 सामाजिक विज्ञान के लिए "मेरा जिला" पुस्तक के निर्माण में आपका सहयोग आमंत्रित है।',
-    publishDate: '2026-10-01',
-    important: false,
-    hasPdf: false,
-    hasImage: false,
-  },
-];
+import { REAL_NOTICES } from '@/lib/seedData';
 
 export default async function SoochnaPage() {
-  let notices: typeof SEED_NOTICES = [];
+  let notices: any[] = [];
   try {
     notices = await getAllNotices() || [];
   } catch { /* empty */ }
-  if (!notices || notices.length === 0) notices = SEED_NOTICES;
+  if (!notices || notices.length === 0) notices = REAL_NOTICES;
 
   const pinned = notices.filter((n) => n.important);
   const regular = notices.filter((n) => !n.important);

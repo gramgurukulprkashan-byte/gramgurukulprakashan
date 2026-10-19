@@ -94,32 +94,32 @@ const WORK_CARDS = [
 
 const STORY_PHOTOS = [
   {
-    src: '/content-media/23.jpeg',
+    src: '/content-media/mahesh-sharma-elder.webp',
     caption: 'पद्मश्री महेश शर्मा जी ग्रामीण बुजुर्ग के साथ',
     tag: 'आत्मीय संवाद',
   },
   {
-    src: '/content-media/35.jpeg',
+    src: '/content-media/silkhodari-vachanalay.webp',
     caption: 'ग्राम सिलखोदरी में शिवगंगा वाचनालय की शुरूआत',
     tag: 'जो बांचेगा वही बचेगा',
   },
   {
-    src: '/content-media/36.jpeg',
+    src: '/content-media/children-reading-circle.webp',
     caption: 'वाचनालय पेटी के चारों ओर पठन चक्र में बच्चे',
     tag: 'बाल पठन संस्कृति',
   },
   {
-    src: '/content-media/33.jpeg',
+    src: '/content-media/halma-youth-group.webp',
     caption: 'हलमा अभियान में जुटे भीलांचल के उत्साही युवा',
     tag: 'सामूहिक शक्ति',
   },
   {
-    src: '/content-media/28.jpeg',
+    src: '/content-media/semalpada-gurukul-varg.webp',
     caption: 'ग्राम गुरुकुल वर्ग — सेमलपाड़ा (थांदला)',
     tag: 'व्यक्तित्व विकास',
   },
   {
-    src: '/content-media/11.jpeg',
+    src: '/content-media/malvai-ancient-temple.webp',
     caption: 'मालवई के 10वीं सदी के प्राचीन मंदिर में अध्ययन दल',
     tag: 'ऐतिहासिक धरोहर',
   },
@@ -224,7 +224,7 @@ export default async function HomePage() {
                   }}
                 >
                   <Image
-                    src="/content-media/35.jpeg"
+                    src="/content-media/silkhodari-vachanalay.webp"
                     alt="शिवगंगा ग्राम वाचनालय सिलखोदरी — जो बांचेगा वही बचेगा"
                     fill
                     className="object-cover"
@@ -296,7 +296,7 @@ export default async function HomePage() {
                 }}
               >
                 <Image
-                  src="/content-media/25.jpeg"
+                  src="/content-media/bhilanchal-ki-aawaz.webp"
                   alt="भीलांचल की आवाज — मासिक पत्रिका, झाबुआ"
                   fill
                   className="object-cover"
