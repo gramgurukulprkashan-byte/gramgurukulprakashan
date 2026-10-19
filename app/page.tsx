@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   BookOpen, MapPin, Music, History, Sprout, Library,
-  ChevronRight, Users, GraduationCap, Pen
+  ChevronRight, Users, GraduationCap, Pen, Download, Sparkles
 } from 'lucide-react';
 import StatsGrid from '@/components/StatsGrid';
 import NoticeCard from '@/components/NoticeCard';
@@ -11,75 +11,19 @@ import BookCard from '@/components/BookCard';
 import DotDivider from '@/components/DotDivider';
 import EmptyState from '@/components/EmptyState';
 import { getLatestNotices, getFeaturedBooks } from '@/lib/queries';
+import { REAL_BOOKS, REAL_NOTICES } from '@/lib/seedData';
 
 export const metadata: Metadata = {
-  title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
+  title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | शिवगंगा झाबुआ',
   description:
-    'गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष लाने का संकल्प। झाबुआ, मध्य प्रदेश।',
+    'झाबुआ के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश-दुनिया तक ले जाने और 900+ गाँवों में ग्राम वाचनालय स्थापित करने का संकल्प।',
 };
-
-// ─── Seed data for dev / fallback ─────────────────────────
-const SEED_NOTICES = [
-  {
-    _id: 'seed-1',
-    title: 'ग्राम वाचनालय की नई पुस्तकें उपलब्ध',
-    slug: { current: 'gram-vachanalay-nayi-pustakein' },
-    description: 'झाबुआ ज़िले के ग्राम वाचनालयों में नई पुस्तकें पहुँचाई जा रही हैं। जानें किन गाँवों को पुस्तकें मिलेंगी।',
-    publishDate: '2026-10-15',
-    important: true,
-    hasPdf: false,
-    hasImage: true,
-  },
-  {
-    _id: 'seed-2',
-    title: 'सशक्तिकरण वर्ग — अगला सत्र',
-    slug: { current: 'sashaktikaran-varg-agla-satra' },
-    description: 'अगले सशक्तिकरण वर्ग में भाग लेने के इच्छुक लोग अभी आवेदन कर सकते हैं।',
-    publishDate: '2026-10-10',
-    important: false,
-    hasPdf: true,
-    hasImage: false,
-  },
-  {
-    _id: 'seed-3',
-    title: '"मेरा जिला" पुस्तक निर्माण में सहयोग करें',
-    slug: { current: 'mera-jila-sahyog' },
-    description: 'कक्षा 6 सामाजिक विज्ञान के लिए "मेरा जिला" पुस्तक के निर्माण में आपका सहयोग आमंत्रित है।',
-    publishDate: '2026-10-01',
-    important: false,
-    hasPdf: false,
-    hasImage: false,
-  },
-];
-
-const SEED_BOOKS = [
-  {
-    _id: 'book-1',
-    title: 'मेरा जिला — भाग 1',
-    slug: { current: 'mera-jila-bhag-1' },
-    author: 'ग्राम गुरुकुल प्रकाशन',
-    cover: null,
-    subject: 'सामाजिक विज्ञान',
-    status: 'निर्माणाधीन' as const,
-    description: 'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक।',
-  },
-  {
-    _id: 'book-2',
-    title: 'ग्राम एटलस — झाबुआ',
-    slug: { current: 'gram-atlas-jhabua' },
-    author: 'ग्राम गुरुकुल प्रकाशन',
-    cover: null,
-    subject: 'इतिहास एवं भूगोल',
-    status: 'निर्माणाधीन' as const,
-    description: 'झाबुआ ज़िले के हर गाँव की कहानी, इतिहास और संस्कृति का दस्तावेज़।',
-  },
-];
 
 const STATS = [
   { value: 900, suffix: '+', label: 'गाँवों में ग्राम वाचनालय', sublabel: 'झाबुआ ज़िला' },
   { value: 125, label: 'पुस्तकें प्रति वाचनालय', sublabel: 'हर पेटी में' },
   { value: 14, label: 'विषय', sublabel: 'विविध ज्ञान' },
-  { value: 2009, label: 'से सक्रिय', sublabel: 'वर्ष' },
+  { value: 2009, label: 'से सक्रिय', sublabel: 'अविरल अभियान' },
 ];
 
 const KNOWLEDGE_LINKS = [
@@ -93,116 +37,144 @@ const KNOWLEDGE_LINKS = [
     href: '/gram-atlas',
     icon: <MapPin size={28} />,
     title: 'ग्राम एटलस',
-    desc: 'हर गाँव की कहानी',
+    desc: 'हर गाँव की कहानी व नक्शा',
   },
   {
     href: '/sanskriti-parampara',
     icon: <Music size={28} />,
     title: 'संस्कृति और परंपराएँ',
-    desc: 'भील समाज की विरासत',
+    desc: 'भील समाज की समृद्ध धरोहर',
   },
   {
     href: '/bhil-itihas',
     icon: <History size={28} />,
     title: 'भील समाज का इतिहास',
-    desc: 'इतिहास और स्वतंत्रता संग्राम',
+    desc: 'कोटिया भील व स्वतंत्रता संग्राम',
   },
   {
     href: '/parampragat-gyan',
     icon: <Sprout size={28} />,
     title: 'परंपरागत ज्ञान',
-    desc: 'पारंपरिक और आधुनिक विज्ञान',
+    desc: 'देसी बीज, खेती और आयुर्वेद',
   },
   {
     href: '/pustakein',
     icon: <BookOpen size={28} />,
     title: 'पुस्तकें एवं प्रकाशन',
-    desc: 'हमारी प्रकाशित पुस्तकें',
+    desc: 'नवभगीरथ व मौलिक पुस्तकें',
   },
 ];
 
 const WORK_CARDS = [
   {
     icon: <Library size={32} />,
-    title: 'ग्राम वाचनालय',
-    desc: '900+ गाँवों में पुस्तकालय स्थापित किए गए हैं, जहाँ 125 पुस्तकें की एक पेटी हर गाँव में उपलब्ध है।',
+    title: 'शिवगंगा ग्राम वाचनालय',
+    desc: '900+ गाँवों में पुस्तकों की पेटी स्थापित, जहाँ 125 पुस्तकों के माध्यम से पठन संस्कृति घर-घर पहुँच रही है।',
     href: '/gram-vachanalay',
   },
   {
     icon: <Users size={32} />,
-    title: 'सशक्तिकरण वर्ग',
-    desc: 'गाँव के युवाओं और महिलाओं के लिए ज्ञान, कौशल और जागरूकता के वर्ग आयोजित किए जाते हैं।',
+    title: 'ग्राम गुरुकुल वर्ग',
+    desc: 'गाँव के युवाओं, किशोरों और महिलाओं के लिए स्वावलंबन, व्यक्तित्व विकास और सामाजिक दायित्व के वर्ग।',
     href: '/karya',
   },
   {
     icon: <BookOpen size={32} />,
-    title: 'ज्ञान का संकलन',
-    desc: 'गाँव के अद्वितीय परंपरागत ज्ञान को सही रूप में एकत्रित कर प्रकाशित किया जाता है।',
+    title: 'स्थानीय ज्ञान का संकलन',
+    desc: 'गाँव के अद्वितीय परंपरागत ज्ञान, देशी बीजों, जल-संरक्षण और लोक इतिहास को प्रामाणिक रूप से लिपिबद्ध करना।',
     href: '/pustakein',
   },
   {
     icon: <Pen size={32} />,
     title: 'सरल भाषा में प्रकाशन',
-    desc: 'नये ज्ञान को सरल हिंदी में लिखकर गाँव के पाठकों तक पहुँचाया जाता है।',
+    desc: 'शहरों के आधुनिक विज्ञान और तकनीक को गाँव के पाठकों के लिए अत्यंत सरल हिंदी व स्थानीय बोली में प्रकाशित करना।',
     href: '/pustakein',
   },
 ];
 
+const STORY_PHOTOS = [
+  {
+    src: '/content-media/23.jpeg',
+    caption: 'पद्मश्री महेश शर्मा जी ग्रामीण बुजुर्ग के साथ',
+    tag: 'आत्मीय संवाद',
+  },
+  {
+    src: '/content-media/35.jpeg',
+    caption: 'ग्राम सिलखोदरी में शिवगंगा वाचनालय की शुरूआत',
+    tag: 'जो बांचेगा वही बचेगा',
+  },
+  {
+    src: '/content-media/36.jpeg',
+    caption: 'वाचनालय पेटी के चारों ओर पठन चक्र में बच्चे',
+    tag: 'बाल पठन संस्कृति',
+  },
+  {
+    src: '/content-media/33.jpeg',
+    caption: 'हलमा अभियान में जुटे भीलांचल के उत्साही युवा',
+    tag: 'सामूहिक शक्ति',
+  },
+  {
+    src: '/content-media/28.jpeg',
+    caption: 'ग्राम गुरुकुल वर्ग — सेमलपाड़ा (थांदला)',
+    tag: 'व्यक्तित्व विकास',
+  },
+  {
+    src: '/content-media/11.jpeg',
+    caption: 'मालवई के 10वीं सदी के प्राचीन मंदिर में अध्ययन दल',
+    tag: 'ऐतिहासिक धरोहर',
+  },
+];
+
 export default async function HomePage() {
-  // Fetch data from CMS (with fallback to seed data)
-  let notices: typeof SEED_NOTICES = [];
-  let books: typeof SEED_BOOKS = [];
+  let notices: any[] = [];
+  let books: any[] = [];
 
   try {
-    notices = await getLatestNotices(5) || [];
-  } catch {
-    notices = SEED_NOTICES;
-  }
-  if (!notices || notices.length === 0) notices = SEED_NOTICES;
+    notices = await getLatestNotices(4) || [];
+  } catch { /* empty */ }
+  if (!notices || notices.length === 0) notices = REAL_NOTICES;
 
   try {
     books = await getFeaturedBooks(4) || [];
-  } catch {
-    books = SEED_BOOKS;
-  }
-  if (!books || books.length === 0) books = SEED_BOOKS;
+  } catch { /* empty */ }
+  if (!books || books.length === 0) books = REAL_BOOKS.slice(0, 4);
 
   return (
     <>
-      {/* ── 1. HERO ─────────────────────────────────────── */}
+      {/* ── 1. HERO (Inspired by Shivganga Visual Depth) ── */}
       <section
-        className="relative overflow-hidden min-h-screen flex items-center hero-gradient dot-pattern"
+        className="relative overflow-hidden min-h-[90vh] flex items-center hero-gradient dot-pattern pt-20 md:pt-28"
         aria-label="मुख्य परिचय"
-        style={{ paddingTop: '5rem' }}
       >
-        {/* Decorative circle ring (top right) */}
         <div
-          className="absolute top-8 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
+          className="absolute top-10 right-0 w-96 h-96 rounded-full opacity-10 pointer-events-none"
           style={{ border: '40px solid var(--color-mustard)', transform: 'translate(40%, -20%)' }}
           aria-hidden="true"
         />
-        {/* Decorative circle ring (bottom left) */}
         <div
           className="absolute bottom-0 left-0 w-72 h-72 rounded-full opacity-8 pointer-events-none"
           style={{ border: '30px solid var(--color-orange)', transform: 'translate(-40%, 40%)' }}
           aria-hidden="true"
         />
 
-        <div className="container-main relative z-10 py-16 md:py-24">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* Text */}
-            <div className="animate-fade-in-up">
-              {/* Badge */}
+        <div className="container-main relative z-10 py-12 md:py-20">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7 animate-fade-in-up">
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6 text-sm font-semibold"
-                style={{ backgroundColor: 'rgba(200, 102, 30, 0.12)', color: 'var(--color-orange)', border: '1px solid rgba(200, 102, 30, 0.3)' }}
+                className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 text-sm font-semibold"
+                style={{
+                  backgroundColor: 'rgba(200, 102, 30, 0.12)',
+                  color: 'var(--color-orange)',
+                  border: '1px solid rgba(200, 102, 30, 0.3)',
+                }}
               >
-                <span>📚</span>
-                <span>सांस्कृतिक केंद्र, झाबुआ</span>
+                <span>🌿</span>
+                <span>शिवगंगा समग्र ग्रामविकास परिषद — झाबुआ</span>
               </div>
 
               <h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.15]"
                 style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
               >
                 "जो बांचेगा
@@ -210,109 +182,200 @@ export default async function HomePage() {
                 <span style={{ color: 'var(--color-orange)' }}>वही बचेगा"</span>
               </h1>
 
-              <p className="text-lg md:text-xl mb-8 leading-relaxed max-w-xl" style={{ color: 'var(--color-clay)' }}>
-                झाबुआ के ज्ञान को देश व दुनिया में सही रूप में ले जाना और नये ज्ञान को झाबुआ के गाँवों में सरल भाषा में पहुँचाना।
+              <p
+                className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
+                style={{ color: 'var(--color-clay)' }}
+              >
+                झाबुआ के परंपरागत ज्ञान-विज्ञान और भील संस्कृति को देश-दुनिया में सही रूप में ले जाना, और आधुनिक ज्ञान को झाबुआ के <strong>900+ गाँवों</strong> में सरल हिंदी भाषा में पहुँचाना।
               </p>
 
-              <div className="flex flex-wrap gap-4">
-                <Link href="/gram-vachanalay" className="btn-primary">
+              <div className="flex flex-wrap gap-4 items-center">
+                <Link href="/gram-vachanalay" className="btn-primary text-base px-6 py-3">
                   ग्राम वाचनालय देखें
                   <ChevronRight size={18} aria-hidden="true" />
                 </Link>
-                <Link href="/hamse-judein" className="btn-secondary">
-                  हमसे जुड़ें
+                <Link href="/pustakein" className="btn-secondary text-base px-6 py-3">
+                  पुस्तकें एवं प्रकाशन
                 </Link>
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-[var(--color-sand-dark)] flex items-center gap-6 text-xs md:text-sm font-medium" style={{ color: 'var(--color-clay)' }}>
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+                  <span>900+ सक्रिय ग्राम वाचनालय</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                  <span>125 पुस्तकें प्रति पेटी</span>
+                </div>
               </div>
             </div>
 
-            {/* Real Gram Vachanalay Photo */}
-            <div className="animate-fade-in-up-delay-1 flex justify-center">
-              <div
-                className="relative rounded-3xl md:rounded-full overflow-hidden shadow-2xl transition-transform hover:scale-102 duration-300"
-                style={{
-                  width: 'min(380px, 90vw)',
-                  height: 'min(380px, 90vw)',
-                  border: '6px solid var(--color-mustard)',
-                  boxShadow: '0 16px 48px rgba(122, 74, 43, 0.25)',
-                }}
-              >
-                <Image
-                  src="/images/gram-vachanalay-hero.jpg"
-                  alt="ग्राम वाचनालय, झाबुआ — बच्चे और बुजुर्ग साथ मिलकर पुस्तकें पढ़ते हुए"
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 90vw, 380px"
-                />
+            {/* Right: Featured Photo Showcase */}
+            <div className="lg:col-span-5 animate-fade-in-up-delay-1 flex justify-center">
+              <div className="relative w-full max-w-md">
+                {/* Main Card */}
+                <div
+                  className="relative rounded-3xl overflow-hidden shadow-2xl"
+                  style={{
+                    aspectRatio: '4/3',
+                    border: '5px solid var(--color-mustard)',
+                    boxShadow: '0 20px 50px rgba(122, 74, 43, 0.25)',
+                  }}
+                >
+                  <Image
+                    src="/content-media/35.jpeg"
+                    alt="शिवगंगा ग्राम वाचनालय सिलखोदरी — जो बांचेगा वही बचेगा"
+                    fill
+                    className="object-cover"
+                    priority
+                    sizes="(max-width: 768px) 100vw, 450px"
+                  />
+                  <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white">
+                    <p className="text-xs font-semibold text-amber-300">ग्राम सिलखोदरी — झाबुआ</p>
+                    <p className="text-sm font-bold">शिवगंगा ग्राम वाचनालय: "जो बांचेगा, वही बचेगा"</p>
+                  </div>
+                </div>
+
+                {/* Overlapping Floating Badge */}
+                <div
+                  className="absolute -bottom-6 -left-4 md:-left-8 bg-white p-4 rounded-2xl shadow-xl flex items-center gap-3"
+                  style={{ border: '2px solid var(--color-mustard)', maxWidth: '280px' }}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 font-bold text-lg"
+                    style={{ backgroundColor: 'var(--color-mustard)', color: 'var(--color-charcoal)' }}
+                  >
+                    125
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold leading-tight" style={{ color: 'var(--color-charcoal)' }}>
+                      पुस्तकों का संचयन
+                    </p>
+                    <p className="text-[11px] leading-tight mt-0.5" style={{ color: 'var(--color-clay)' }}>
+                      रामायण, आज़ाद, शिवाजी व पंचतंत्र
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ── 2. IMPACT COUNTERS ──────────────────────────── */}
-      <section
-        className="py-16 section-sand"
-        aria-label="हमारे प्रभाव के आँकड़े"
-      >
+      {/* ── 2. IMPACT STATS ─────────────────────────────── */}
+      <section className="py-16 section-sand" aria-label="हमारे प्रभाव के आँकड़े">
         <div className="container-main">
           <h2
             className="text-center text-2xl font-bold mb-12"
             style={{ color: 'var(--color-clay)', fontFamily: 'var(--font-heading)' }}
           >
-            हमारा काम, अब तक
+            झाबुआ की माटी में ज्ञान-क्रांति
           </h2>
           <StatsGrid counters={STATS} />
         </div>
       </section>
 
-      {/* ── 3. ABOUT TEASER ─────────────────────────────── */}
-      <section className="py-16 section-cream" aria-label="हमारे बारे में संक्षिप्त जानकारी">
-        <div className="container-main">
-          <div className="max-w-3xl mx-auto text-center">
-            <DotDivider />
-            <h2
-              className="text-3xl md:text-4xl font-bold mb-6"
-              style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-            >
-              हमारे बारे में
-            </h2>
-            <p className="text-lg leading-relaxed mb-8" style={{ color: 'var(--color-clay)' }}>
-              ग्राम गुरुकुल प्रकाशन का उद्देश्य गाँव के अद्वितीय पारंपरिक ज्ञान-विज्ञान और भील समाज की समृद्ध सांस्कृतिक धरोहर को देश और दुनिया के समक्ष सही रूप में लाने और शहर के नये ज्ञान को गाँव में सरल भाषा में प्रस्तुत करने के लिए प्रतिबद्ध है।
-            </p>
-            <Link href="/hamare-bare-mein" className="btn-primary">
-              और जानें
-              <ChevronRight size={18} aria-hidden="true" />
-            </Link>
+      {/* ── 3. BHILANCHAL KI AAWAZ FEATURE ──────────────── */}
+      <section
+        className="py-16 relative overflow-hidden"
+        style={{ backgroundColor: '#211812' }}
+        aria-label="भीलांचल की आवाज मासिक पत्रिका"
+      >
+        <div className="container-main relative z-10">
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+            {/* Magazine Cover */}
+            <div className="lg:col-span-4 flex justify-center">
+              <div
+                className="relative rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-105 duration-300"
+                style={{
+                  width: '280px',
+                  aspectRatio: '3/4',
+                  border: '4px solid var(--color-mustard)',
+                  boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
+                }}
+              >
+                <Image
+                  src="/content-media/25.jpeg"
+                  alt="भीलांचल की आवाज — मासिक पत्रिका, झाबुआ"
+                  fill
+                  className="object-cover"
+                  sizes="280px"
+                />
+              </div>
+            </div>
+
+            {/* Magazine Text */}
+            <div className="lg:col-span-8 text-white">
+              <div
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4"
+                style={{ backgroundColor: 'rgba(227, 176, 35, 0.2)', color: 'var(--color-mustard)' }}
+              >
+                <Sparkles size={14} />
+                <span>नियमित मासिक पत्रिका</span>
+              </div>
+
+              <h2
+                className="text-3xl md:text-4xl font-bold mb-3 text-white"
+                style={{ fontFamily: 'var(--font-heading)' }}
+              >
+                भीलांचल की आवाज
+              </h2>
+
+              <blockquote
+                className="text-lg md:text-xl font-semibold mb-4 italic"
+                style={{ color: 'var(--color-mustard)' }}
+              >
+                "चलो जलायें दीप वहाँ, जहाँ अभी भी अंधेरा है"
+              </blockquote>
+
+              <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: 'rgba(240, 228, 200, 0.8)' }}>
+                धर्मभूमि झाबुआ से ग्रामगुरुकुल प्रकाशन मण्डल द्वारा प्रकाशित यह मासिक पत्रिका भीलांचल के गाँवों में ज्ञान, वाचनालय की प्रगति, युवाओं के हलमा अभियान और पारंपरिक जीवन-मूल्यों को समर्पित है।
+              </p>
+
+              <div className="flex flex-wrap gap-4 items-center">
+                <Link
+                  href="/pustakein/bhilanchal-ki-aawaz"
+                  className="btn-primary"
+                  style={{ backgroundColor: 'var(--color-mustard)', color: 'var(--color-charcoal)' }}
+                >
+                  पत्रिका का विवरण देखें
+                  <ChevronRight size={18} aria-hidden="true" />
+                </Link>
+                <Link href="/pustakein" className="btn-secondary text-white border-white/30 hover:bg-white/10">
+                  सभी प्रकाशन देखें
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* ── 4. WORK CARDS ───────────────────────────────── */}
-      <section
-        className="py-16 section-sand"
-        aria-label="हमारे कार्य"
-      >
+      <section className="py-16 section-cream" aria-label="हमारे कार्य">
         <div className="container-main">
-          <h2
-            className="text-3xl md:text-4xl font-bold mb-3"
-            style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-          >
-            हमारे कार्य
-          </h2>
-          <p className="mb-10" style={{ color: 'var(--color-clay)' }}>
-            गाँव और शहर के बीच ज्ञान का सेतु बनाना
-          </p>
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <h2
+              className="text-3xl md:text-4xl font-bold mb-3"
+              style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+            >
+              हमारे प्रमुख कार्य
+            </h2>
+            <p style={{ color: 'var(--color-clay)' }}>
+              गाँव और शहर के बीच ज्ञान का सेतु बनाना — गाँव का ज्ञान दुनिया तक, दुनिया का विज्ञान गाँव तक
+            </p>
+          </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {WORK_CARDS.map((card) => (
               <Link
                 key={card.title}
                 href={card.href}
-                className="card-base p-6 flex flex-col gap-4 no-underline group"
+                className="card-base p-6 flex flex-col gap-4 no-underline group hover:shadow-xl transition-all"
                 style={{ textDecoration: 'none' }}
               >
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center"
+                  className="w-14 h-14 rounded-2xl flex items-center justify-center transition-transform group-hover:scale-110"
                   style={{ backgroundColor: 'rgba(200, 102, 30, 0.1)', color: 'var(--color-orange)' }}
                   aria-hidden="true"
                 >
@@ -327,7 +390,7 @@ export default async function HomePage() {
                 <p className="text-sm leading-relaxed flex-1" style={{ color: 'var(--color-clay)' }}>
                   {card.desc}
                 </p>
-                <span className="text-sm font-medium group-hover:underline" style={{ color: 'var(--color-orange)' }}>
+                <span className="text-sm font-semibold group-hover:underline flex items-center gap-1" style={{ color: 'var(--color-orange)' }}>
                   अधिक जानें →
                 </span>
               </Link>
@@ -336,7 +399,99 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 5. KNOWLEDGE QUICK LINKS ────────────────────── */}
+      {/* ── 5. REAL PHOTO STORIES GRID (Shivganga Heritage) ── */}
+      <section className="py-16 section-sand" aria-label="धरातल से जीवंत तस्वीरें">
+        <div className="container-main">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <DotDivider />
+            <h2
+              className="text-3xl md:text-4xl font-bold mb-3"
+              style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+            >
+              धरातल से जीवंत झलकियाँ
+            </h2>
+            <p style={{ color: 'var(--color-clay)' }}>
+              झाबुआ के गाँवों में लोक-चेतना, पठन क्रांति और हलमा की प्रेरणादायी यात्रा
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {STORY_PHOTOS.map((photo, i) => (
+              <div
+                key={i}
+                className="card-base overflow-hidden flex flex-col group hover:shadow-xl transition-all"
+              >
+                <div
+                  className="relative overflow-hidden aspect-4/3"
+                  style={{ backgroundColor: 'var(--color-sand)' }}
+                >
+                  <Image
+                    src={photo.src}
+                    alt={photo.caption}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute top-3 left-3">
+                    <span
+                      className="text-[11px] font-bold px-2.5 py-1 rounded-full shadow"
+                      style={{ backgroundColor: 'var(--color-mustard)', color: 'var(--color-charcoal)' }}
+                    >
+                      {photo.tag}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-4">
+                  <p
+                    className="text-sm font-semibold leading-snug"
+                    style={{ color: 'var(--color-charcoal)' }}
+                  >
+                    {photo.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── 6. FEATURED BOOKS SHOWCASE ──────────────────── */}
+      <section className="py-16 section-cream" aria-label="प्रमुख पुस्तकें">
+        <div className="container-main">
+          <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
+            <div>
+              <h2
+                className="text-3xl md:text-4xl font-bold"
+                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+              >
+                प्रमुख पुस्तकें एवं प्रकाशन
+              </h2>
+              <p className="text-sm mt-1" style={{ color: 'var(--color-clay)' }}>
+                नवभगीरथ, भीलांचल की आवाज, और स्थानीय पाठ्यपुस्तकें
+              </p>
+            </div>
+            <Link
+              href="/pustakein"
+              className="text-sm font-semibold hover:underline flex items-center gap-1"
+              style={{ color: 'var(--color-orange)' }}
+            >
+              सभी पुस्तकें देखें →
+            </Link>
+          </div>
+
+          {books.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {books.map((book) => (
+                <BookCard key={book._id} book={book} />
+              ))}
+            </div>
+          ) : (
+            <EmptyState message="अभी कोई पुस्तक उपलब्ध नहीं है।" />
+          )}
+        </div>
+      </section>
+
+      {/* ── 7. KNOWLEDGE QUICK LINKS ────────────────────── */}
       <section
         className="py-16"
         style={{ backgroundColor: 'var(--color-charcoal)' }}
@@ -350,22 +505,22 @@ export default async function HomePage() {
             ज्ञान के द्वार
           </h2>
           <p className="text-center mb-10" style={{ color: 'var(--color-sand)' }}>
-            आगे बढ़ें और जानें
+            भील संस्कृति, इतिहास, स्थानीय भूगोल और शिक्षा की समग्र दृष्टि
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {KNOWLEDGE_LINKS.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="flex flex-col gap-3 p-5 rounded-2xl transition-all no-underline group"
+                className="flex flex-col gap-3 p-5 rounded-2xl transition-all no-underline group hover:border-[var(--color-mustard)]"
                 style={{
                   backgroundColor: 'rgba(255, 255, 255, 0.06)',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: '1px solid rgba(255, 255, 255, 0.12)',
                   textDecoration: 'none',
                 }}
               >
                 <div
-                  className="w-12 h-12 rounded-xl flex items-center justify-center"
+                  className="w-12 h-12 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110"
                   style={{ backgroundColor: 'rgba(227, 176, 35, 0.15)', color: 'var(--color-mustard)' }}
                   aria-hidden="true"
                 >
@@ -377,7 +532,7 @@ export default async function HomePage() {
                 >
                   {link.title}
                 </h3>
-                <p className="text-sm" style={{ color: 'rgba(240, 228, 200, 0.6)' }}>
+                <p className="text-sm" style={{ color: 'rgba(240, 228, 200, 0.7)' }}>
                   {link.desc}
                 </p>
               </Link>
@@ -386,19 +541,24 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 6. LATEST NOTICES ───────────────────────────── */}
+      {/* ── 8. LATEST NOTICES ───────────────────────────── */}
       <section className="py-16 section-cream" aria-label="ताज़ा सूचनाएँ">
         <div className="container-main">
           <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-            <h2
-              className="text-3xl md:text-4xl font-bold"
-              style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-            >
-              सूचनाएँ एवं जानकारी
-            </h2>
+            <div>
+              <h2
+                className="text-3xl md:text-4xl font-bold"
+                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+              >
+                सूचनाएँ एवं ताज़ा गतिविधियाँ
+              </h2>
+              <p className="text-sm mt-1" style={{ color: 'var(--color-clay)' }}>
+                वाचनालय विस्तार, नवीन प्रकाशन और कार्यक्रम
+              </p>
+            </div>
             <Link
               href="/soochna"
-              className="text-sm font-medium hover:underline"
+              className="text-sm font-semibold hover:underline"
               style={{ color: 'var(--color-orange)' }}
             >
               सभी सूचनाएँ देखें →
@@ -406,9 +566,9 @@ export default async function HomePage() {
           </div>
 
           {notices.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {notices.slice(0, 5).map((notice) => (
-                <NoticeCard key={notice._id} notice={notice as any} />
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {notices.slice(0, 4).map((notice) => (
+                <NoticeCard key={notice._id} notice={notice} />
               ))}
             </div>
           ) : (
@@ -417,44 +577,12 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 7. FEATURED BOOKS ───────────────────────────── */}
-      <section className="py-16 section-sand" aria-label="प्रमुख पुस्तकें">
-        <div className="container-main">
-          <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-            <h2
-              className="text-3xl md:text-4xl font-bold"
-              style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-            >
-              पुस्तकें एवं प्रकाशन
-            </h2>
-            <Link
-              href="/pustakein"
-              className="text-sm font-medium hover:underline"
-              style={{ color: 'var(--color-orange)' }}
-            >
-              सभी पुस्तकें देखें →
-            </Link>
-          </div>
-
-          {books.length > 0 ? (
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {books.map((book) => (
-                <BookCard key={book._id} book={book as any} />
-              ))}
-            </div>
-          ) : (
-            <EmptyState message="अभी कोई पुस्तक उपलब्ध नहीं है।" />
-          )}
-        </div>
-      </section>
-
-      {/* ── 8. JOIN CTA ─────────────────────────────────── */}
+      {/* ── 9. JOIN CTA ─────────────────────────────────── */}
       <section
         className="py-16 relative overflow-hidden dot-pattern-mustard"
         style={{ backgroundColor: 'var(--color-mustard)' }}
         aria-label="आप कैसे जुड़ सकते हैं"
       >
-        {/* Background ring */}
         <div
           className="absolute right-0 top-0 w-64 h-64 rounded-full opacity-20 pointer-events-none"
           style={{ border: '20px solid var(--color-charcoal)', transform: 'translate(30%, -30%)' }}
@@ -466,67 +594,19 @@ export default async function HomePage() {
               className="text-3xl md:text-4xl font-bold mb-4"
               style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
             >
-              आप कैसे जुड़ सकते हैं?
+              इस ज्ञान-यज्ञ में आपका स्वागत है
             </h2>
-            <p className="text-lg mb-6" style={{ color: 'rgba(26, 26, 26, 0.75)' }}>
-              हमें लेखकों, शोधकर्ताओं, शिक्षकों, डिज़ाइनरों, विषय विशेषज्ञों और गाँव के जानकार बुज़ुर्गों की ज़रूरत है। अगर आप इस काम में योगदान देना चाहते हैं, तो हम आपका स्वागत करते हैं।
+            <p className="text-lg mb-8" style={{ color: 'rgba(26, 26, 26, 0.8)' }}>
+              हमें लेखकों, शोधकर्ताओं, शिक्षकों, डिज़ाइनरों, विषय विशेषज्ञों और गाँव के जानकार अग्रजों की आवश्यकता है। झाबुआ के गाँवों में ज्ञान का उजियारा फैलाने के लिए हमसे जुड़ें।
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <Link href="/hamse-judein" className="btn-secondary">
+              <Link href="/hamse-judein" className="btn-secondary text-base px-6 py-3">
                 हमसे जुड़ें
                 <ChevronRight size={18} aria-hidden="true" />
               </Link>
-              <Link href="/sampark" className="btn-secondary">
+              <Link href="/sampark" className="btn-secondary text-base px-6 py-3">
                 संपर्क करें
               </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── 9. SOCIAL STRIP ─────────────────────────────── */}
-      <section className="py-10 section-cream" aria-label="सोशल मीडिया">
-        <div className="container-main">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <h2
-                className="text-xl font-bold mb-1"
-                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-              >
-                हमसे जुड़े रहें
-              </h2>
-              <p className="text-sm" style={{ color: 'var(--color-clay)' }}>
-                ताज़ा अपडेट के लिए हमें फॉलो करें
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3">
-              <a
-                href="https://instagram.com/gramgurukulprakashan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-sm px-4 py-2"
-                style={{ minHeight: '40px' }}
-                aria-label="इंस्टाग्राम पर फॉलो करें (नया टैब)"
-              >
-                📸 इंस्टाग्राम
-              </a>
-              <a
-                href="https://facebook.com/gramgurukulprakashan"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-sm px-4 py-2"
-                style={{ minHeight: '40px' }}
-                aria-label="फेसबुक पर फॉलो करें (नया टैब)"
-              >
-                👥 फेसबुक
-              </a>
-              <a
-                href="mailto:gramgurukulprakashan@gmail.com"
-                className="btn-primary text-sm px-4 py-2"
-                style={{ minHeight: '40px' }}
-              >
-                ✉ ईमेल करें
-              </a>
             </div>
           </div>
         </div>

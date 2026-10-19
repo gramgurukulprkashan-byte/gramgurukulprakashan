@@ -50,8 +50,8 @@ async function seed() {
       linktree: 'https://linktr.ee/gramgurukulprakashan',
     },
     email: 'gramgurukulprakashan@gmail.com',
-    phone: '',
-    address: 'झाबुआ, मध्य प्रदेश (TODO: वास्तविक पता दर्ज करें)',
+    phone: '+91 96852 71507',
+    address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश)',
   });
 
   // 2. Notices

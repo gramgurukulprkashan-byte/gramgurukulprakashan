@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { NAV_ITEMS, SOCIAL_LINKS } from '@/lib/utils';
-import { Mail, Link as LinkIcon } from 'lucide-react';
+import { Mail, Phone, Link as LinkIcon } from 'lucide-react';
 import { FacebookIcon, InstagramIcon } from '@/components/Icons';
 
 export default function Footer() {
@@ -114,6 +114,17 @@ export default function Footer() {
             <ul className="space-y-3 list-none m-0 p-0">
               <li>
                 <a
+                  href={`tel:${SOCIAL_LINKS.phoneRaw}`}
+                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
+                  style={{ color: 'var(--color-sand)' }}
+                  aria-label="फोन नंबर"
+                >
+                  <Phone size={16} aria-hidden="true" />
+                  {SOCIAL_LINKS.phone}
+                </a>
+              </li>
+              <li>
+                <a
                   href={`mailto:${SOCIAL_LINKS.email}`}
                   className="flex items-center gap-2 text-sm hover:text-white transition-colors"
                   style={{ color: 'var(--color-sand)' }}
@@ -166,11 +177,23 @@ export default function Footer() {
 
             <div className="mt-4 p-3 rounded-lg" style={{ backgroundColor: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <p className="text-xs font-semibold mb-1" style={{ color: 'var(--color-mustard)' }}>
-                📍 पता और फोन
+                📍 कार्यालय का पता
               </p>
-              <p className="text-xs" style={{ color: 'rgba(240, 228, 200, 0.5)' }}>
-                TODO: वास्तविक पता और फोन नम्बर जोड़ें
+              <p className="text-xs leading-relaxed mb-2" style={{ color: 'rgba(240, 228, 200, 0.85)' }}>
+                शिवगंगा गुरुकुल, धरमपुरी
+                <br />
+                ज़िला — झाबुआ (मध्य प्रदेश)
               </p>
+              <p className="text-xs font-semibold mb-0.5" style={{ color: 'var(--color-mustard)' }}>
+                📞 फोन:
+              </p>
+              <a
+                href={`tel:${SOCIAL_LINKS.phoneRaw}`}
+                className="text-xs hover:underline block"
+                style={{ color: 'rgba(240, 228, 200, 0.9)' }}
+              >
+                {SOCIAL_LINKS.phone}
+              </a>
             </div>
           </div>
         </div>

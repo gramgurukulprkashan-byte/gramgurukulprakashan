@@ -74,13 +74,14 @@ const organizationSchema = {
     'ग्राम गुरुकुल प्रकाशन का उद्देश्य गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है।',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'शिवगंगा गुरुकुल, धरमपुरी',
     addressLocality: 'झाबुआ',
     addressRegion: 'मध्य प्रदेश',
     addressCountry: 'IN',
-    // TODO: Add full postal address when provided by client
   },
   contactPoint: {
     '@type': 'ContactPoint',
+    telephone: '+91-9685271507',
     email: 'gramgurukulprakashan@gmail.com',
     contactType: 'customer support',
     availableLanguage: ['Hindi'],

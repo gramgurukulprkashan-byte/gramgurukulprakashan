@@ -9,6 +9,7 @@ interface BookCardProps {
     slug: { current: string };
     author?: string;
     cover?: unknown;
+    coverImage?: string;
     subject?: string;
     status?: 'प्रकाशित' | 'निर्माणाधीन';
     description?: string;
@@ -16,12 +17,14 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book }: BookCardProps) {
-  const coverUrl = book.cover
+  const coverUrl = book.coverImage
+    ? book.coverImage
+    : book.cover
     ? urlFor(book.cover).width(300).height(400).url()
     : null;
 
   return (
-    <article className="card-base overflow-hidden flex flex-col">
+    <article className="card-base overflow-hidden flex flex-col group">
       <div
         className="relative overflow-hidden"
         style={{ aspectRatio: '3/4', backgroundColor: 'var(--color-sand)' }}
@@ -31,7 +34,7 @@ export default function BookCard({ book }: BookCardProps) {
             src={coverUrl}
             alt={`${book.title} — किताब का कवर`}
             fill
-            className="object-cover"
+            className="object-cover transition-transform duration-300 group-hover:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
         ) : (
@@ -45,12 +48,12 @@ export default function BookCard({ book }: BookCardProps) {
               <path d="M20 35 H60 M20 45 H60 M20 55 H50" stroke="#7A4A2B" strokeWidth="2" opacity="0.5" />
             </svg>
             <p className="text-xs mt-2" style={{ color: 'var(--color-clay)' }}>
-              TODO: कवर फोटो जोड़ें
+              निर्माणाधीन
             </p>
           </div>
         )}
         {book.status && (
-          <div className="absolute top-2 left-2">
+          <div className="absolute top-2 left-2 z-10">
             <span className={book.status === 'प्रकाशित' ? 'badge-published' : 'badge-wip'}>
               {book.status}
             </span>

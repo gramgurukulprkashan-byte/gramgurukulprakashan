@@ -1,48 +1,45 @@
 import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHero from '@/components/PageHero';
 import { getBookBySlug } from '@/lib/queries';
-import { ArrowLeft, Download } from 'lucide-react';
+import { REAL_BOOKS } from '@/lib/seedData';
+import { ArrowLeft, Download, BookOpen, User, Building2 } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
 
-const SEED_BOOKS: Record<string, any> = {
-  'mera-jila-bhag-1': {
-    title: 'मेरा जिला — भाग 1',
-    slug: { current: 'mera-jila-bhag-1' },
-    author: 'ग्राम गुरुकुल प्रकाशन',
-    subject: 'सामाजिक विज्ञान',
-    status: 'निर्माणाधीन',
-    description: 'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
-    allowDownload: false,
-  },
-  'gram-atlas-jhabua': {
-    title: 'ग्राम एटलस — झाबुआ',
-    slug: { current: 'gram-atlas-jhabua' },
-    author: 'ग्राम गुरुकुल प्रकाशन',
-    subject: 'इतिहास एवं भूगोल',
-    status: 'निर्माणाधीन',
-    description: 'झाबुआ ज़िले के हर गाँव की कहानी, इतिहास, नदी-पहाड़, परंपराएँ और संस्कृति का एक विस्तृत दस्तावेज़।',
-    allowDownload: false,
-  },
-};
+const SEED_LOOKUP: Record<string, any> = Object.fromEntries(
+  REAL_BOOKS.map((b) => [b.slug.current, b])
+);
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const book = await getBookBySlug(slug).catch(() => SEED_BOOKS[slug]);
+  let book: any = null;
+  try {
+    book = await getBookBySlug(slug);
+  } catch { /* empty */ }
+  if (!book) book = SEED_LOOKUP[slug];
   if (!book) return { title: 'पुस्तक नहीं मिली' };
-  return { title: book.title, description: book.description?.slice(0, 160) };
+  return {
+    title: `${book.title} — ग्राम गुरुकुल प्रकाशन`,
+    description: book.description?.slice(0, 160),
+  };
 }
 
 export default async function BookPage({ params }: Props) {
   const { slug } = await params;
   let book: any = null;
-  try { book = await getBookBySlug(slug); } catch { /* empty */ }
-  if (!book && SEED_BOOKS[slug]) book = SEED_BOOKS[slug];
+  try {
+    book = await getBookBySlug(slug);
+  } catch { /* empty */ }
+  if (!book && SEED_LOOKUP[slug]) book = SEED_LOOKUP[slug];
   if (!book) notFound();
+
+  const coverUrl = book.coverImage || book.cover?.asset?.url || null;
+  const pdfDownloadUrl = book.pdfUrl || book.samplePdf?.asset?.url || null;
 
   return (
     <>
@@ -61,16 +58,30 @@ export default async function BookPage({ params }: Props) {
             {/* Cover */}
             <div className="md:col-span-1">
               <div
-                className="rounded-2xl flex flex-col items-center justify-center p-8"
-                style={{ aspectRatio: '3/4', backgroundColor: 'var(--color-sand)', border: '2px solid var(--color-sand-dark)' }}
-                role="img"
-                aria-label={`${book.title} — कवर`}
+                className="relative rounded-2xl overflow-hidden shadow-xl"
+                style={{
+                  aspectRatio: '3/4',
+                  backgroundColor: 'var(--color-sand)',
+                  border: '3px solid var(--color-sand-dark)',
+                }}
               >
-                <svg viewBox="0 0 80 100" width="80" height="100" fill="none" aria-hidden="true">
-                  <rect x="5" y="5" width="70" height="90" rx="6" fill="var(--color-mustard)" opacity="0.4" />
-                  <path d="M20 35 H60 M20 45 H60 M20 55 H50 M20 65 H55" stroke="var(--color-clay)" strokeWidth="2" opacity="0.5" />
-                </svg>
-                <p className="text-xs text-center mt-2" style={{ color: 'var(--color-clay)' }}>TODO: कवर फोटो</p>
+                {coverUrl ? (
+                  <Image
+                    src={coverUrl}
+                    alt={`${book.title} — कवर पृष्ठ`}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 320px"
+                    priority
+                  />
+                ) : (
+                  <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                    <BookOpen size={48} style={{ color: 'var(--color-orange)' }} />
+                    <p className="text-xs text-center mt-3" style={{ color: 'var(--color-clay)' }}>
+                      कवर पृष्ठ निर्माणाधीन
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -78,7 +89,13 @@ export default async function BookPage({ params }: Props) {
             <div className="md:col-span-2">
               <div className="flex flex-wrap gap-2 mb-4">
                 {book.subject && (
-                  <span className="text-sm font-medium px-3 py-1 rounded-full" style={{ backgroundColor: 'rgba(200, 102, 30, 0.1)', color: 'var(--color-orange)' }}>
+                  <span
+                    className="text-sm font-medium px-3 py-1 rounded-full"
+                    style={{
+                      backgroundColor: 'rgba(200, 102, 30, 0.1)',
+                      color: 'var(--color-orange)',
+                    }}
+                  >
                     {book.subject}
                   </span>
                 )}
@@ -89,11 +106,34 @@ export default async function BookPage({ params }: Props) {
                 )}
               </div>
 
+              <h1
+                className="text-2xl md:text-3xl font-bold mb-4"
+                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+              >
+                {book.title}
+              </h1>
+
               {book.author && (
-                <p className="text-sm mb-4" style={{ color: 'var(--color-clay)' }}>
-                  <span className="font-semibold">लेखक:</span> {book.author}
+                <p className="text-sm mb-2 flex items-center gap-2" style={{ color: 'var(--color-clay)' }}>
+                  <User size={16} aria-hidden="true" style={{ color: 'var(--color-orange)' }} />
+                  <span className="font-semibold">लेखक / संपादक:</span> {book.author}
                 </p>
               )}
+
+              {book.publisher && (
+                <p className="text-sm mb-4 flex items-center gap-2" style={{ color: 'var(--color-clay)' }}>
+                  <Building2 size={16} aria-hidden="true" style={{ color: 'var(--color-orange)' }} />
+                  <span className="font-semibold">प्रकाशन:</span> {book.publisher}
+                </p>
+              )}
+
+              {book.pages && (
+                <p className="text-xs mb-4" style={{ color: 'var(--color-clay)' }}>
+                  <strong>विस्तार:</strong> {book.pages}
+                </p>
+              )}
+
+              <hr className="my-4 border-t border-[var(--color-sand-dark)]" />
 
               {book.description && (
                 <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--color-charcoal)' }}>
@@ -101,27 +141,34 @@ export default async function BookPage({ params }: Props) {
                 </p>
               )}
 
-              {/* Download */}
-              {book.allowDownload && book.samplePdf ? (
-                <a
-                  href={book.samplePdf?.asset?.url || '#'}
-                  download
-                  className="btn-primary mb-4"
-                >
-                  <Download size={18} aria-hidden="true" />
-                  नमूना PDF डाउनलोड करें
-                </a>
-              ) : (
-                /* PHASE 3 extension point: Order button (disabled) */
-                <button className="btn-disabled mb-4" disabled aria-disabled="true" title="जल्द उपलब्ध होगा">
-                  ऑर्डर जल्द उपलब्ध होगा
-                </button>
-              )}
+              {/* Download or Order Action */}
+              <div className="flex flex-wrap gap-4 items-center mb-6">
+                {pdfDownloadUrl ? (
+                  <a
+                    href={pdfDownloadUrl}
+                    download
+                    className="btn-primary"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Download size={18} aria-hidden="true" />
+                    PDF डाउनलोड करें
+                  </a>
+                ) : (
+                  <button className="btn-disabled" disabled aria-disabled="true" title="जल्द उपलब्ध होगा">
+                    पुस्तकालय प्रति उपलब्ध
+                  </button>
+                )}
 
-              <div className="mt-4">
+                <Link href="/hamse-judein" className="btn-secondary">
+                  प्रति प्राप्त करने हेतु संपर्क
+                </Link>
+              </div>
+
+              <div className="mt-8 pt-4 border-t border-[var(--color-sand-dark)]">
                 <Link href="/pustakein" className="btn-secondary flex items-center gap-2 w-fit">
                   <ArrowLeft size={16} aria-hidden="true" />
-                  सभी पुस्तकें
+                  सभी पुस्तकें देखें
                 </Link>
               </div>
             </div>

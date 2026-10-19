@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Mail, Link as LinkIcon } from 'lucide-react';
+import { Mail, Phone, Link as LinkIcon } from 'lucide-react';
 import { FacebookIcon, InstagramIcon } from '@/components/Icons';
 import PageHero from '@/components/PageHero';
 import SectionTitle from '@/components/SectionTitle';
@@ -8,10 +8,17 @@ import { SOCIAL_LINKS } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'संपर्क करें',
-  description: 'ग्राम गुरुकुल प्रकाशन से संपर्क करें — ईमेल, सोशल मीडिया या संपर्क फ़ॉर्म के ज़रिए।',
+  description: 'ग्राम गुरुकुल प्रकाशन से संपर्क करें — फोन, ईमेल, सोशल मीडिया या संपर्क फ़ॉर्म के ज़रिए।',
 };
 
 const CONTACT_ITEMS = [
+  {
+    icon: <Phone size={24} aria-hidden="true" />,
+    label: 'फोन / संपर्क सूत्र',
+    value: SOCIAL_LINKS.phone,
+    href: `tel:${SOCIAL_LINKS.phoneRaw}`,
+    external: false,
+  },
   {
     icon: <Mail size={24} aria-hidden="true" />,
     label: 'ईमेल',
@@ -93,23 +100,41 @@ export default function SamparkPage() {
                 ))}
               </div>
 
-              {/* Address placeholder */}
+              {/* Office Address Card */}
               <div
-                className="p-4 rounded-2xl"
-                style={{ backgroundColor: 'var(--color-sand)', border: '2px dashed var(--color-sand-dark)' }}
+                className="p-5 rounded-2xl"
+                style={{ backgroundColor: 'white', border: '2px solid var(--color-sand-dark)' }}
               >
-                <p className="font-semibold mb-1" style={{ color: 'var(--color-charcoal)' }}>
-                  📍 पता
-                </p>
-                <p className="text-sm" style={{ color: 'var(--color-clay)' }}>
-                  TODO: वास्तविक पता यहाँ जोड़ें — झाबुआ, मध्य प्रदेश
-                </p>
-                <p className="font-semibold mt-3 mb-1" style={{ color: 'var(--color-charcoal)' }}>
-                  📞 फोन
-                </p>
-                <p className="text-sm" style={{ color: 'var(--color-clay)' }}>
-                  TODO: फोन नम्बर यहाँ जोड़ें
-                </p>
+                <div className="flex items-start gap-3">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 text-lg"
+                    style={{ backgroundColor: 'rgba(200, 102, 30, 0.1)', color: 'var(--color-orange)' }}
+                    aria-hidden="true"
+                  >
+                    📍
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base mb-1" style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}>
+                      कार्यालय का पता
+                    </h3>
+                    <p className="text-sm font-semibold" style={{ color: 'var(--color-charcoal)' }}>
+                      शिवगंगा गुरुकुल, धरमपुरी
+                    </p>
+                    <p className="text-sm mb-3" style={{ color: 'var(--color-clay)' }}>
+                      ज़िला — झाबुआ (मध्य प्रदेश)
+                    </p>
+                    <p className="text-xs font-semibold" style={{ color: 'var(--color-clay)' }}>
+                      सीधा संपर्क सूत्र:
+                    </p>
+                    <a
+                      href={`tel:${SOCIAL_LINKS.phoneRaw}`}
+                      className="text-sm font-bold hover:underline block mt-0.5"
+                      style={{ color: 'var(--color-orange)' }}
+                    >
+                      {SOCIAL_LINKS.phone}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
 
