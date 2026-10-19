@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   BookOpen, MapPin, Music, History, Sprout, Library,
   ChevronRight, Users, GraduationCap, Pen
@@ -224,39 +225,25 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Image placeholder */}
+            {/* Real Gram Vachanalay Photo */}
             <div className="animate-fade-in-up-delay-1 flex justify-center">
               <div
-                className="relative rounded-full overflow-hidden dot-pattern-light"
+                className="relative rounded-3xl md:rounded-full overflow-hidden shadow-2xl transition-transform hover:scale-102 duration-300"
                 style={{
-                  width: 'min(340px, 90vw)',
-                  height: 'min(340px, 90vw)',
+                  width: 'min(380px, 90vw)',
+                  height: 'min(380px, 90vw)',
                   border: '6px solid var(--color-mustard)',
-                  boxShadow: '0 8px 48px rgba(227, 176, 35, 0.3)',
-                  backgroundColor: 'var(--color-sand)',
+                  boxShadow: '0 16px 48px rgba(122, 74, 43, 0.25)',
                 }}
-                role="img"
-                aria-label="TODO: ग्राम वाचनालय या गाँव का फोटो यहाँ लगाएँ"
               >
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                  <svg viewBox="0 0 120 120" width="100" height="100" fill="none" aria-hidden="true">
-                    {/* House with books illustration */}
-                    <circle cx="60" cy="60" r="55" fill="rgba(227, 176, 35, 0.15)" />
-                    <path d="M60 20 L90 45 L90 90 L30 90 L30 45 Z" fill="rgba(200, 102, 30, 0.2)" stroke="#C8661E" strokeWidth="2" />
-                    <path d="M45 90 L45 68 L55 68 L55 90" fill="none" stroke="#C8661E" strokeWidth="2" />
-                    <path d="M20 45 L60 15 L100 45" stroke="#E3B023" strokeWidth="3" fill="none" />
-                    {/* Books */}
-                    <rect x="62" y="55" width="20" height="28" rx="2" fill="rgba(63, 91, 46, 0.4)" stroke="#3F5B2E" strokeWidth="1.5" />
-                    <path d="M65 55 L65 83" stroke="#3F5B2E" strokeWidth="1" />
-                    {/* Dots pattern */}
-                    <circle cx="35" cy="70" r="2" fill="#E3B023" opacity="0.5" />
-                    <circle cx="40" cy="78" r="2" fill="#E3B023" opacity="0.5" />
-                    <circle cx="35" cy="80" r="2" fill="#C8661E" opacity="0.4" />
-                  </svg>
-                  <p className="text-sm mt-4 font-semibold" style={{ color: 'var(--color-clay)' }}>
-                    TODO: ग्राम वाचनालय की फोटो
-                  </p>
-                </div>
+                <Image
+                  src="/images/gram-vachanalay-hero.jpg"
+                  alt="ग्राम वाचनालय, झाबुआ — बच्चे और बुजुर्ग साथ मिलकर पुस्तकें पढ़ते हुए"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 90vw, 380px"
+                />
               </div>
             </div>
           </div>
