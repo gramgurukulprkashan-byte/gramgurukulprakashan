@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import PageHero from '@/components/PageHero';
 import SectionTitle from '@/components/SectionTitle';
 import EmptyState from '@/components/EmptyState';
@@ -115,9 +116,36 @@ export default async function GramVachanalaPage() {
       <section className="py-16 section-sand" aria-label="125 पुस्तकों की पेटी">
         <div className="container-main">
           <SectionTitle title="125 पुस्तकों की पेटी" />
-          <p className="mb-8" style={{ color: 'var(--color-clay)' }}>
-            हर पेटी में नीचे दिए गए 14 विषयों पर पुस्तकें होती हैं:
-          </p>
+          <div className="grid lg:grid-cols-12 gap-8 items-center mb-10">
+            <div className="lg:col-span-5">
+              <div
+                className="relative rounded-2xl overflow-hidden shadow-xl aspect-square"
+                style={{ border: '4px solid var(--color-mustard)' }}
+              >
+                <Image
+                  src="/images/gram-vachanalay-hero.jpg"
+                  alt="ग्राम वाचनालय, झाबुआ — 125 पुस्तकों की पेटी और पाठक"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 420px"
+                />
+              </div>
+            </div>
+            <div className="lg:col-span-7">
+              <h3
+                className="text-2xl font-bold mb-4"
+                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+              >
+                हर गाँव में एक पेटी, हर पेटी में 125 पुस्तकें
+              </h3>
+              <p className="text-base leading-relaxed mb-4" style={{ color: 'var(--color-clay)' }}>
+                ग्राम वाचनालय केवल एक आलमारी या कमरा नहीं है; यह एक गतिशील सामुदायिक केंद्र है। हर गाँव में लकड़ी की एक विशेष पेटी में 125 चुनिंदा पुस्तकें पहुँचाई जाती हैं। गाँव के बच्चे, युवा और बुजुर्ग इसे मिलकर चलाते हैं।
+              </p>
+              <p className="text-base leading-relaxed" style={{ color: 'var(--color-clay)' }}>
+                हर पेटी में नीचे दिए गए 14 विषयों पर ज्ञानवर्धक और रोचक सामग्री उपलब्ध कराई जाती है:
+              </p>
+            </div>
+          </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-4">
             {subjects.map((sub, i) => (
               <div
