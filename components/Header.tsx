@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { Menu, X, Search } from 'lucide-react';
@@ -58,18 +59,18 @@ export default function Header() {
               aria-label="ग्राम गुरुकुल प्रकाशन — मुखपृष्ठ पर जाएँ"
             >
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0"
-                style={{ backgroundColor: 'white', border: '2px solid var(--color-mustard)' }}
+                className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden bg-white p-1"
+                style={{ border: '2px solid var(--color-mustard)' }}
                 aria-hidden="true"
               >
-                <svg viewBox="0 0 40 40" width="32" height="32" fill="none">
-                  <circle cx="20" cy="20" r="18" fill="#1A1A1A" />
-                  <path d="M20 8 L30 17 L30 30 L10 30 L10 17 Z" stroke="#C8661E" strokeWidth="1.5" fill="none" />
-                  <path d="M15 30 L15 22 L20 22 L20 30" stroke="#C8661E" strokeWidth="1.5" fill="none" />
-                  <path d="M8 17 L20 7 L32 17" stroke="#E3B023" strokeWidth="2" fill="none" />
-                  <path d="M12 20 L18 20 M12 23 L18 23" stroke="#C8661E" strokeWidth="1" />
-                  <path d="M22 20 L28 20 M22 23 L28 23" stroke="#C8661E" strokeWidth="1" />
-                </svg>
+                <Image
+                  src="/images/logo.webp"
+                  alt="ग्राम गुरुकुल प्रकाशन लोगो"
+                  width={34}
+                  height={34}
+                  className="object-contain w-full h-full"
+                  priority
+                />
               </div>
               <div className="leading-tight">
                 <div

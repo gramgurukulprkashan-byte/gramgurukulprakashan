@@ -14,9 +14,9 @@ import { getLatestNotices, getFeaturedBooks } from '@/lib/queries';
 import { REAL_BOOKS, REAL_NOTICES } from '@/lib/seedData';
 
 export const metadata: Metadata = {
-  title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | शिवगंगा झाबुआ',
+  title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | झाबुआ',
   description:
-    'झाबुआ के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश-दुनिया तक ले जाने और 900+ गाँवों में ग्राम वाचनालय स्थापित करने का संकल्प।',
+    'झाबुआ के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश-दुनिया तक ले जाने और गाँवों में ग्राम वाचनालय स्थापित करने का संकल्प।',
 };
 
 const STATS = [
@@ -69,7 +69,7 @@ const WORK_CARDS = [
   {
     icon: <Library size={32} />,
     title: 'शिवगंगा ग्राम वाचनालय',
-    desc: '900+ गाँवों में पुस्तकों की पेटी स्थापित, जहाँ 125 पुस्तकों के माध्यम से पठन संस्कृति घर-घर पहुँच रही है।',
+    desc: 'गाँवों में पुस्तकों की पेटी स्थापित, जहाँ 125 पुस्तकों के माध्यम से पठन संस्कृति घर-घर पहुँच रही है।',
     href: '/gram-vachanalay',
   },
   {
@@ -170,7 +170,7 @@ export default async function HomePage() {
                 }}
               >
                 <span>🌿</span>
-                <span>शिवगंगा समग्र ग्रामविकास परिषद — झाबुआ</span>
+                <span>ग्राम गुरुकुल प्रकाशन — झाबुआ</span>
               </div>
 
               <h1
@@ -186,7 +186,7 @@ export default async function HomePage() {
                 className="text-lg md:text-xl mb-8 leading-relaxed max-w-2xl"
                 style={{ color: 'var(--color-clay)' }}
               >
-                झाबुआ के परंपरागत ज्ञान-विज्ञान और भील संस्कृति को देश-दुनिया में सही रूप में ले जाना, और आधुनिक ज्ञान को झाबुआ के <strong>900+ गाँवों</strong> में सरल हिंदी भाषा में पहुँचाना।
+                झाबुआ के परंपरागत ज्ञान-विज्ञान और भील संस्कृति को देश-दुनिया में सही रूप में ले जाना, और आधुनिक ज्ञान को झाबुआ के <strong>गाँवों</strong> में सरल भाषा में पहुँचाना।
               </p>
 
               <div className="flex flex-wrap gap-4 items-center">
@@ -202,7 +202,7 @@ export default async function HomePage() {
               <div className="mt-8 pt-6 border-t border-[var(--color-sand-dark)] flex items-center gap-6 text-xs md:text-sm font-medium" style={{ color: 'var(--color-clay)' }}>
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
-                  <span>900+ सक्रिय ग्राम वाचनालय</span>
+                  <span>सक्रिय ग्राम वाचनालय</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500"></span>

@@ -56,6 +56,15 @@ export const metadata: Metadata = {
     title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
     description: 'गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर।',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: '32x32' },
+      { url: '/favicon.webp', type: 'image/webp' },
+      { url: '/logo.webp', type: 'image/webp' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/logo.webp',
+  },
   robots: {
     index: true,
     follow: true,
@@ -69,7 +78,7 @@ const organizationSchema = {
   name: 'ग्राम गुरुकुल प्रकाशन',
   alternateName: 'Gram Gurukul Prakashan',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org',
-  logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org'}/logo.png`,
+  logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org'}/logo.webp`,
   description:
     'ग्राम गुरुकुल प्रकाशन का उद्देश्य गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है।',
   address: {
