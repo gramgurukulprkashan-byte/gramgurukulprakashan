@@ -35,9 +35,9 @@ const SEED_VACHANALAY = [
   { _id: 'v-udaypuria', village: 'उदयपुरिया', block: 'झाबुआ', district: 'झाबुआ', note: 'वितरण व शुरूआत: 27/10/2023' },
   { _id: 'v-dharampuri', village: 'धरमपुरी', block: 'झाबुआ', district: 'झाबुआ', note: 'वितरण व शुरूआत: 27/10/2023' },
   { _id: 'v-bhamarda', village: 'भमरदा', block: 'झाबुआ', district: 'झाबुआ', note: 'वितरण व शुरूआत: 27/10/2023' },
-  { _id: 'v-semalpada', village: 'सेमलपाड़ा', block: 'थांदला', district: 'झाबुआ', note: 'ग्राम गुरुकुल वर्ग एवं सक्रिय वाचनालय' },
+  { _id: 'v-semalpada', village: 'सेमलपाड़ा', block: 'थांदला', district: 'झाबुआ', note: 'ग्रामगुरुकुल वर्ग एवं सक्रिय वाचनालय' },
   { _id: 'v-salarpada', village: 'सालारपाड़ा', block: 'झाबुआ', district: 'झाबुआ', note: '3 फलियों के 49 युवा सक्रिय पाठक' },
-  { _id: 'v-ranpura', village: 'रणपुरा', block: 'झाबुआ', district: 'झाबुआ', note: 'कृषक एवं युवा पाठक समूह' },
+  { _id: 'v-chandragarh', village: 'चंद्रगढ़', block: 'झाबुआ', district: 'झाबुआ', note: 'कृषक एवं युवा पाठक समूह' },
   { _id: 'v-meghnagar', village: 'मेघनगर', block: 'मेघनगर', district: 'झाबुआ', note: 'नियमित पठन सत्र' },
   { _id: 'v-petlawad', village: 'पेटलावद', block: 'पेटलावद', district: 'झाबुआ', note: 'सक्रिय पुस्तकालय केंद्र' },
 ];

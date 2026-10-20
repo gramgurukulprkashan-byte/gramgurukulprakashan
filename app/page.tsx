@@ -3,18 +3,17 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   BookOpen, MapPin, Music, History, Sprout, Library,
-  ChevronRight, Users, GraduationCap, Pen, Download, Sparkles
+  ChevronRight, Users, GraduationCap, Pen, Download
 } from 'lucide-react';
 import StatsGrid from '@/components/StatsGrid';
-import NoticeCard from '@/components/NoticeCard';
 import BookCard from '@/components/BookCard';
 import DotDivider from '@/components/DotDivider';
 import EmptyState from '@/components/EmptyState';
-import { getLatestNotices, getFeaturedBooks } from '@/lib/queries';
-import { REAL_BOOKS, REAL_NOTICES } from '@/lib/seedData';
+import { getFeaturedBooks } from '@/lib/queries';
+import { REAL_BOOKS } from '@/lib/seedData';
 
 export const metadata: Metadata = {
-  title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | झाबुआ',
+  title: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | झाबुआ',
   description:
     'झाबुआ के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश-दुनिया तक ले जाने और गाँवों में ग्राम वाचनालय स्थापित करने का संकल्प।',
 };
@@ -74,7 +73,7 @@ const WORK_CARDS = [
   },
   {
     icon: <Users size={32} />,
-    title: 'ग्राम गुरुकुल वर्ग',
+    title: 'ग्रामगुरुकुल वर्ग',
     desc: 'गाँव के युवाओं, किशोरों और महिलाओं के लिए स्वावलंबन, व्यक्तित्व विकास और सामाजिक दायित्व के वर्ग।',
     href: '/karya',
   },
@@ -115,7 +114,7 @@ const STORY_PHOTOS = [
   },
   {
     src: '/content-media/semalpada-gurukul-varg.webp',
-    caption: 'ग्राम गुरुकुल वर्ग — सेमलपाड़ा (थांदला)',
+    caption: 'ग्रामगुरुकुल वर्ग — सेमलपाड़ा (थांदला)',
     tag: 'व्यक्तित्व विकास',
   },
   {
@@ -126,13 +125,7 @@ const STORY_PHOTOS = [
 ];
 
 export default async function HomePage() {
-  let notices: any[] = [];
   let books: any[] = [];
-
-  try {
-    notices = await getLatestNotices(4) || [];
-  } catch { /* empty */ }
-  if (!notices || notices.length === 0) notices = REAL_NOTICES;
 
   try {
     books = await getFeaturedBooks(4) || [];
@@ -170,7 +163,7 @@ export default async function HomePage() {
                 }}
               >
                 <span>🌿</span>
-                <span>ग्राम गुरुकुल प्रकाशन — झाबुआ</span>
+                <span>ग्रामगुरुकुल प्रकाशन — झाबुआ</span>
               </div>
 
               <h1
@@ -276,80 +269,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 3. BHILANCHAL KI AAWAZ FEATURE ──────────────── */}
-      <section
-        className="py-16 relative overflow-hidden"
-        style={{ backgroundColor: '#211812' }}
-        aria-label="भीलांचल की आवाज मासिक पत्रिका"
-      >
-        <div className="container-main relative z-10">
-          <div className="grid lg:grid-cols-12 gap-8 items-center">
-            {/* Magazine Cover */}
-            <div className="lg:col-span-4 flex justify-center">
-              <div
-                className="relative rounded-2xl overflow-hidden shadow-2xl transition-transform hover:scale-105 duration-300"
-                style={{
-                  width: '280px',
-                  aspectRatio: '3/4',
-                  border: '4px solid var(--color-mustard)',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.6)',
-                }}
-              >
-                <Image
-                  src="/content-media/bhilanchal-ki-aawaz.webp"
-                  alt="भीलांचल की आवाज — मासिक पत्रिका, झाबुआ"
-                  fill
-                  className="object-cover"
-                  sizes="280px"
-                />
-              </div>
-            </div>
-
-            {/* Magazine Text */}
-            <div className="lg:col-span-8 text-white">
-              <div
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold mb-4"
-                style={{ backgroundColor: 'rgba(227, 176, 35, 0.2)', color: 'var(--color-mustard)' }}
-              >
-                <Sparkles size={14} />
-                <span>नियमित मासिक पत्रिका</span>
-              </div>
-
-              <h2
-                className="text-3xl md:text-4xl font-bold mb-3 text-white"
-                style={{ fontFamily: 'var(--font-heading)' }}
-              >
-                भीलांचल की आवाज
-              </h2>
-
-              <blockquote
-                className="text-lg md:text-xl font-semibold mb-4 italic"
-                style={{ color: 'var(--color-mustard)' }}
-              >
-                "चलो जलायें दीप वहाँ, जहाँ अभी भी अंधेरा है"
-              </blockquote>
-
-              <p className="text-sm md:text-base leading-relaxed mb-6" style={{ color: 'rgba(240, 228, 200, 0.8)' }}>
-                धर्मभूमि झाबुआ से ग्रामगुरुकुल प्रकाशन मण्डल द्वारा प्रकाशित यह मासिक पत्रिका भीलांचल के गाँवों में ज्ञान, वाचनालय की प्रगति, युवाओं के हलमा अभियान और पारंपरिक जीवन-मूल्यों को समर्पित है।
-              </p>
-
-              <div className="flex flex-wrap gap-4 items-center">
-                <Link
-                  href="/pustakein/bhilanchal-ki-aawaz"
-                  className="btn-primary"
-                  style={{ backgroundColor: 'var(--color-mustard)', color: 'var(--color-charcoal)' }}
-                >
-                  पत्रिका का विवरण देखें
-                  <ChevronRight size={18} aria-hidden="true" />
-                </Link>
-                <Link href="/pustakein" className="btn-secondary text-white border-white/30 hover:bg-white/10">
-                  सभी प्रकाशन देखें
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* ── 4. WORK CARDS ───────────────────────────────── */}
       <section className="py-16 section-cream" aria-label="हमारे कार्य">
@@ -541,41 +460,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ── 8. LATEST NOTICES ───────────────────────────── */}
-      <section className="py-16 section-cream" aria-label="ताज़ा सूचनाएँ">
-        <div className="container-main">
-          <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
-            <div>
-              <h2
-                className="text-3xl md:text-4xl font-bold"
-                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
-              >
-                सूचनाएँ एवं ताज़ा गतिविधियाँ
-              </h2>
-              <p className="text-sm mt-1" style={{ color: 'var(--color-clay)' }}>
-                वाचनालय विस्तार, नवीन प्रकाशन और कार्यक्रम
-              </p>
-            </div>
-            <Link
-              href="/soochna"
-              className="text-sm font-semibold hover:underline"
-              style={{ color: 'var(--color-orange)' }}
-            >
-              सभी सूचनाएँ देखें →
-            </Link>
-          </div>
-
-          {notices.length > 0 ? (
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {notices.slice(0, 4).map((notice) => (
-                <NoticeCard key={notice._id} notice={notice} />
-              ))}
-            </div>
-          ) : (
-            <EmptyState message="अभी कोई सूचना उपलब्ध नहीं है।" />
-          )}
-        </div>
-      </section>
 
       {/* ── 9. JOIN CTA ─────────────────────────────────── */}
       <section

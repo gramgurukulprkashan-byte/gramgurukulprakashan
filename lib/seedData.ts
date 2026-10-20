@@ -2,7 +2,7 @@ export interface BookItem {
   _id: string;
   title: string;
   slug: { current: string };
-  author: string;
+  author?: string;
   subject: string;
   status: 'प्रकाशित' | 'निर्माणाधीन';
   coverImage?: string;
@@ -56,43 +56,26 @@ export const REAL_BOOKS: BookItem[] = [
     description:
       'पद्मश्री महेश शर्मा जी के मार्गदर्शन में शिवगंगा द्वारा झाबुआ की माटी में हलमा परंपरा के माध्यम से किए गए जल-संरक्षण, पर्यावरण-संरक्षण और सामाजिक समरसता की ऐतिहासिक गाथा।',
     pages: '220 पृष्ठ',
-    publisher: 'शिवगंगा एवं ग्राम गुरुकुल प्रकाशन',
-    allowDownload: false,
-  },
-  {
-    _id: 'book-bhilanchal-ki-aawaz',
-    title: 'भीलांचल की आवाज — मासिक पत्रिका',
-    slug: { current: 'bhilanchal-ki-aawaz' },
-    author: 'ग्रामगुरुकुल प्रकाशन मण्डल',
-    subject: 'ग्राम चेतना एवं संस्कृति',
-    status: 'प्रकाशित',
-    coverImage: '/content-media/bhilanchal-ki-aawaz.webp',
-    description:
-      'अंक 01 (जनवरी 2024), धर्मभूमि झाबुआ। ध्येय वाक्य: "चलो जलायें दीप वहाँ, जहाँ अभी भी अंधेरा है"। झाबुआ के 900 गाँवों में ग्राम वाचनालय, हलमा, स्थानीय ज्ञान और ग्राम विकास की ताज़ा गतिविधियों की मासिक पत्रिका।',
-    pages: '32 पृष्ठ',
-    publisher: 'ग्राम गुरुकुल प्रकाशन मण्डल, झाबुआ',
+    publisher: 'शिवगंगा एवं ग्रामगुरुकुल प्रकाशन',
     allowDownload: false,
   },
   {
     _id: 'book-mera-jila',
     title: 'मेरा जिला — भाग 1',
     slug: { current: 'mera-jila-bhag-1' },
-    author: 'ग्राम गुरुकुल प्रकाशन मण्डल',
     subject: 'सामाजिक विज्ञान (कक्षा 6)',
     status: 'निर्माणाधीन',
     coverImage: '/content-media/mera-jila-cover.webp',
     pdfUrl: '/content-media/Front - Back.pdf',
     description:
       'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, बड़वा, तड़वी, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
-    pages: 'पाठ्यपुस्तक प्रारूप',
-    publisher: 'ग्राम गुरुकुल प्रकाशन',
     allowDownload: true,
   },
   {
     _id: 'book-gram-atlas-chhagola',
     title: 'ग्राम एटलस — छागोला',
     slug: { current: 'gram-atlas-chhagola' },
-    author: 'ग्राम गुरुकुल शोध दल',
+    author: 'ग्रामगुरुकुल शोध दल',
     subject: 'इतिहास, भूगोल एवं सर्वेक्षण',
     status: 'प्रकाशित',
     coverImage: '/content-media/chhagola-atlas-cover.webp',
@@ -100,14 +83,14 @@ export const REAL_BOOKS: BookItem[] = [
     description:
       'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। 13.4 MB के इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
     pages: '13.4 MB पूर्ण एटलस',
-    publisher: 'ग्राम गुरुकुल प्रकाशन',
+    publisher: 'ग्रामगुरुकुल प्रकाशन',
     allowDownload: true,
   },
   {
     _id: 'book-vachanalay-125',
     title: 'ग्राम वाचनालय संचयन (125 पुस्तकें)',
     slug: { current: 'vachanalay-125-pustakein' },
-    author: 'शिवगंगा एवं ग्राम गुरुकुल प्रकाशन',
+    author: 'शिवगंगा एवं ग्रामगुरुकुल प्रकाशन',
     subject: 'सामुदायिक पुस्तकालय संचयन',
     status: 'प्रकाशित',
     coverImage: '/content-media/vachanalay-125-books.webp',
@@ -142,7 +125,7 @@ export const REAL_VILLAGES: VillageItem[] = [
       'तड़वी (गाँव का मुखिया), बड़वा (परंपरागत स्वास्थ्य और अनुष्ठान विशेषज्ञ), और कोटवाल की सामूहिक व्यवस्था से गाँव चलता है।',
     traditionsAndFestivals:
       'भगोरिया, जात्रा, दिवसो, नवाई, और हलमा यहाँ के प्रमुख पर्व व परंपराएँ हैं।',
-    contributor: 'ग्राम गुरुकुल शोध दल एवं छागोला ग्रामवासी',
+    contributor: 'ग्रामगुरुकुल शोध दल एवं छागोला ग्रामवासी',
   },
   {
     _id: 'v-silkhodari',
@@ -206,11 +189,11 @@ export const REAL_VILLAGES: VillageItem[] = [
     nameStory:
       'सेमल (शाल्मली) के घने वृक्षों की उपस्थिति के कारण गाँव का नाम सेमलपाड़ा पड़ा।',
     settlementHistory:
-      'यहाँ ग्राम गुरुकुल वर्ग का आयोजन हुआ जिसमें युवाओं ने व्यक्तित्व विकास और समाज सेवा के संकल्प लिए।',
+      'यहाँ ग्रामगुरुकुल वर्ग का आयोजन हुआ जिसमें युवाओं ने व्यक्तित्व विकास और समाज सेवा के संकल्प लिए।',
     riversAndPonds: 'नदी की उपधारा और तलाई।',
     plantsAndAnimals: 'सेमल, महुआ और आम।',
     grazingAreas: 'पहाड़ी गोचर।',
-    traditionalSystem: 'ग्राम गुरुकुल युवा समिति।',
+    traditionalSystem: 'ग्रामगुरुकुल युवा समिति।',
     traditionsAndFestivals: 'हलमा और भगोरिया।',
   },
   {
@@ -223,7 +206,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     nameStory:
       'सालार वृक्षों की बहुतायत से इस गाँव का नाम सालारपाड़ा पड़ा।',
     settlementHistory:
-      'यहाँ 3 फलियों के 49 युवाओं ने ग्राम गुरुकुल वर्ग में भाग लिया और गाँव के विकास का संकल्प लिया।',
+      'यहाँ 3 फलियों के 49 युवाओं ने ग्रामगुरुकुल वर्ग में भाग लिया और गाँव के विकास का संकल्प लिया।',
     riversAndPonds: 'गाँव के पास जलधारा।',
     plantsAndAnimals: 'सालार और औषधीय पेड़।',
     grazingAreas: 'पशु चराई क्षेत्र।',
@@ -231,18 +214,21 @@ export const REAL_VILLAGES: VillageItem[] = [
     traditionsAndFestivals: 'नवाई और सामूहिक उत्सव।',
   },
   {
-    _id: 'v-ranpura',
-    name: 'रणपुरा',
-    slug: { current: 'ranpura' },
+    _id: 'v-chandragarh',
+    name: 'चंद्रगढ़',
+    slug: { current: 'chandragarh' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    nameStory: 'रणपुरा झाबुआ का एक प्राचीन गाँव है, जहाँ कृषि और पशुपालन मुख्य आधार हैं।',
-    settlementHistory: 'गाँव में कई पीढ़ियों से भील परिवार प्रेम और सहयोग से रहते हैं।',
-    riversAndPonds: 'गाँव का तालाब और कुएँ।',
-    plantsAndAnimals: 'महुआ, नीम और पीपल।',
-    grazingAreas: 'शामलात गोचर।',
-    traditionalSystem: 'तड़वी व्यवस्था।',
-    traditionsAndFestivals: 'भगोरिया और जात्रा।',
+    thumbnail: '/content-media/chhagola-village-school.webp',
+    nameStory:
+      'चंद्रगढ़ झाबुआ ज़िले का एक ऐतिहासिक एवं सांस्कृतिक रूप से समृद्ध गाँव है, जो अपनी प्राचीन पहाड़ियों और प्राकृतिक परिवेश के लिए जाना जाता है।',
+    settlementHistory:
+      'यहाँ भील समुदाय की कई पीढ़ियाँ सदियों से कृषि, वनोपज संकलन और अपनी समृद्ध लोक-परंपराओं के साथ निवास कर रही हैं।',
+    riversAndPonds: 'गाँव में प्राकृतिक जलधाराएँ, चेकडैम और तलाई स्थित हैं।',
+    plantsAndAnimals: 'महुआ, नीम, पीपल, सागौन और देशी पशुधन।',
+    grazingAreas: 'गाँव की शामलात गोचर भूमि।',
+    traditionalSystem: 'पारंपरिक तड़वी और बड़वा व्यवस्था।',
+    traditionsAndFestivals: 'भगोरिया, जात्रा, दिवसो और हलमा परंपरा।',
   },
   {
     _id: 'v-dharampuri',
@@ -263,54 +249,4 @@ export const REAL_VILLAGES: VillageItem[] = [
   },
 ];
 
-export const REAL_NOTICES: NoticeItem[] = [
-  {
-    _id: 'notice-bhilanchal',
-    title: '"भीलांचल की आवाज" मासिक पत्रिका का नवीन अंक प्रकाशित',
-    slug: { current: 'bhilanchal-ki-aawaz-ank-1' },
-    description:
-      'धर्मभूमि झाबुआ से "भीलांचल की आवाज" (अंक 01) का विमोचन। ध्येय: "चलो जलायें दीप वहाँ, जहाँ अभी भी अंधेरा है"। ग्राम वाचनालय और झाबुआ के विकास की प्रेरणादायी गाथा।',
-    publishDate: '2024-01-15',
-    important: true,
-    hasImage: true,
-    hasPdf: false,
-    image: '/content-media/bhilanchal-ki-aawaz.webp',
-  },
-  {
-    _id: 'notice-nav-bhagirath',
-    title: 'पुस्तक "नवभगीरथ" — झाबुआ में गंगावतरण का लोकार्पण',
-    slug: { current: 'nav-bhagirath-lokarpan' },
-    description:
-      'पद्मश्री महेश शर्मा जी के मार्गदर्शन में शिवगंगा के हलमा अभियान और जल-आंदोलन पर गिरीश प्रभुणे द्वारा लिखित पुस्तक अब उपलब्ध।',
-    publishDate: '2024-02-10',
-    important: true,
-    hasImage: true,
-    hasPdf: false,
-    image: '/content-media/nav-bhagirath-book.webp',
-  },
-  {
-    _id: 'notice-chhagola-atlas',
-    title: 'ग्राम एटलस — छागोला (विस्तृत 13.4 MB शोध दस्तावेज़) जारी',
-    slug: { current: 'chhagola-atlas-jari' },
-    description:
-      'ग्राम छागोला का पूर्ण सामाजिक, भौगोलिक व सांस्कृतिक एटलस प्रकाशित। ग्रामीण व शोधकर्ता निःशुल्क डाउनलोड कर सकते हैं।',
-    publishDate: '2024-03-01',
-    important: false,
-    hasImage: true,
-    hasPdf: true,
-    image: '/content-media/chhagola-atlas-cover.webp',
-    pdf: '/content-media/छागोला गांव एटलस.pdf',
-  },
-  {
-    _id: 'notice-vachanalay-varg',
-    title: 'उदयपुरिया, धरमपुरी एवं भमरदा में नए ग्राम वाचनालय की स्थापना',
-    slug: { current: 'udaypuria-dharampuri-bhamarda-vachanalay' },
-    description:
-      'गाँवों में 125 पुस्तकों से युक्त विशेष वाचनालय पेटियों का वितरण सम्पन्न। बच्चों और युवाओं में पठन के प्रति अपार उत्साह।',
-    publishDate: '2023-10-27',
-    important: false,
-    hasImage: true,
-    hasPdf: false,
-    image: '/content-media/udaypuria-dharampuri-launch.webp',
-  },
-];
+export const REAL_NOTICES: NoticeItem[] = [];

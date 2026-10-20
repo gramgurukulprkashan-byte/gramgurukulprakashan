@@ -65,7 +65,7 @@ export async function POST(req: NextRequest) {
       const { Resend } = await import('resend');
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
-        from: 'ग्राम गुरुकुल प्रकाशन <noreply@gramgurukulprakashan.org>',
+        from: 'ग्रामगुरुकुल प्रकाशन <noreply@gramgurukulprakashan.org>',
         to: contactEmail,
         replyTo: email,
         subject: `नया संदेश: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`,

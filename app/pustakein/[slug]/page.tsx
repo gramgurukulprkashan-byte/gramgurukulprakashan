@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!book) book = SEED_LOOKUP[slug];
   if (!book) return { title: 'पुस्तक नहीं मिली' };
   return {
-    title: `${book.title} — ग्राम गुरुकुल प्रकाशन`,
+    title: `${book.title} — ग्रामगुरुकुल प्रकाशन`,
     description: book.description?.slice(0, 160),
   };
 }
@@ -133,7 +133,9 @@ export default async function BookPage({ params }: Props) {
                 </p>
               )}
 
-              <hr className="my-4 border-t border-[var(--color-sand-dark)]" />
+              {(book.author || book.publisher || book.pages) && (
+                <hr className="my-4 border-t border-[var(--color-sand-dark)]" />
+              )}
 
               {book.description && (
                 <p className="text-base leading-relaxed mb-6" style={{ color: 'var(--color-charcoal)' }}>

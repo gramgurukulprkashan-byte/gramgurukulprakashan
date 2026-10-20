@@ -7,7 +7,7 @@ import { getAllNotices } from '@/lib/queries';
 
 export const metadata: Metadata = {
   title: 'सूचना एवं जानकारी',
-  description: 'ग्राम गुरुकुल प्रकाशन की सभी सूचनाएँ, कार्यक्रम और जानकारी।',
+  description: 'ग्रामगुरुकुल प्रकाशन की सभी सूचनाएँ, कार्यक्रम और जानकारी।',
 };
 
 import { REAL_NOTICES } from '@/lib/seedData';
@@ -26,7 +26,7 @@ export default async function SoochnaPage() {
     <>
       <PageHero
         title="सूचना एवं जानकारी"
-        description="ग्राम गुरुकुल प्रकाशन की ताज़ा सूचनाएँ, कार्यक्रम और जानकारी"
+        description="ग्रामगुरुकुल प्रकाशन की ताज़ा सूचनाएँ, कार्यक्रम और जानकारी"
         breadcrumb={[{ label: 'सूचना एवं जानकारी' }]}
         variant="cream"
       />

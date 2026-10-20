@@ -6,7 +6,7 @@ import { Pen, Search, Palette, Sprout } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'हमसे जुड़ें',
-  description: 'ग्राम गुरुकुल प्रकाशन से जुड़ें — लेखक, शोधकर्ता, शिक्षक, डिज़ाइनर या गाँव के जानकार।',
+  description: 'ग्रामगुरुकुल प्रकाशन से जुड़ें — लेखक, शोधकर्ता, शिक्षक, डिज़ाइनर या गाँव के जानकार।',
 };
 
 const WHO_WE_NEED = [
@@ -37,7 +37,7 @@ export default function HamseJudeinPage() {
     <>
       <PageHero
         title="हमसे जुड़ें"
-        description="ग्राम गुरुकुल प्रकाशन के साथ इस ज्ञान-यात्रा में शामिल हों"
+        description="ग्रामगुरुकुल प्रकाशन के साथ इस ज्ञान-यात्रा में शामिल हों"
         breadcrumb={[{ label: 'हमसे जुड़ें' }]}
         variant="mustard"
       />

@@ -1,5 +1,5 @@
 /**
- * ग्राम गुरुकुल प्रकाशन — Sanity Seed Script
+ * ग्रामगुरुकुल प्रकाशन — Sanity Seed Script
  * 
  * चलाने के लिए:
  *   npx tsx sanity/seed.ts
@@ -30,7 +30,7 @@ const client = createClient({
 });
 
 async function seed() {
-  console.log('🌱 ग्राम गुरुकुल प्रकाशन डेटाबेस सीडिंग प्रारंभ...\n');
+  console.log('🌱 ग्रामगुरुकुल प्रकाशन डेटाबेस सीडिंग प्रारंभ...\n');
 
   // 1. Site Settings
   console.log('1. मुख्य साइट सेटिंग्स दर्ज की जा रही हैं...');
@@ -91,13 +91,12 @@ async function seed() {
 
   // 3. Books
   console.log('3. पुस्तकें जोड़ी जा रही हैं...');
-  const books = [
+  const books: any[] = [
     {
       _id: 'book-1',
       _type: 'book',
       title: 'मेरा जिला — भाग 1',
       slug: { _type: 'slug', current: 'mera-jila-bhag-1' },
-      author: 'ग्राम गुरुकुल प्रकाशन',
       subject: 'सामाजिक विज्ञान',
       status: 'निर्माणाधीन',
       publishDate: '2024 (शीघ्र प्रकाशित)',
@@ -109,7 +108,7 @@ async function seed() {
       _type: 'book',
       title: 'ग्राम एटलस — झाबुआ',
       slug: { _type: 'slug', current: 'gram-atlas-jhabua' },
-      author: 'ग्राम गुरुकुल प्रकाशन',
+      author: 'ग्रामगुरुकुल प्रकाशन',
       subject: 'इतिहास एवं भूगोल',
       status: 'निर्माणाधीन',
       publishDate: '2024 (शीघ्र प्रकाशित)',
@@ -124,7 +123,7 @@ async function seed() {
   // 4. Vachanalay
   console.log('4. ग्राम वाचनालय सूचियाँ जोड़ी जा रही हैं...');
   const vachanalays = [
-    { _id: 'vachanalay-1', _type: 'vachanalay', village: 'रणपुरा', block: 'झाबुआ', district: 'झाबुआ', note: 'सक्रिय वाचनालय' },
+    { _id: 'vachanalay-1', _type: 'vachanalay', village: 'चंद्रगढ़', block: 'झाबुआ', district: 'झाबुआ', note: 'सक्रिय वाचनालय' },
     { _id: 'vachanalay-2', _type: 'vachanalay', village: 'मेघनगर', block: 'मेघनगर', district: 'झाबुआ', note: 'नियमित पाठक बैठकें' },
     { _id: 'vachanalay-3', _type: 'vachanalay', village: 'थांदला', block: 'थांदला', district: 'झाबुआ', note: 'नई पुस्तकें उपलब्ध' },
     { _id: 'vachanalay-4', _type: 'vachanalay', village: 'पेटलावद', block: 'पेटलावद', district: 'झाबुआ', note: 'सक्रिय वाचनालय' },
@@ -139,20 +138,20 @@ async function seed() {
   console.log('5. ग्राम एटलस के गाँव जोड़े जा रहे हैं...');
   const villages = [
     {
-      _id: 'village-ranpura',
+      _id: 'village-chandragarh',
       _type: 'village',
-      name: 'रणपुरा',
-      slug: { _type: 'slug', current: 'ranpura' },
+      name: 'चंद्रगढ़',
+      slug: { _type: 'slug', current: 'chandragarh' },
       district: 'झाबुआ',
       block: 'झाबुआ',
-      nameStory: 'गाँव के बुजुर्गों के अनुसार यह गाँव प्राचीन काल में वीरों के पड़ाव के कारण रणपुरा कहलाया।',
-      settlementHistory: 'लगभग सात पीढ़ियों पूर्व यहाँ भील परिवारों का पहला बसाहट हुआ।',
+      nameStory: 'चंद्रगढ़ झाबुआ ज़िले का एक ऐतिहासिक एवं सांस्कृतिक रूप से समृद्ध गाँव है, जो अपनी प्राचीन पहाड़ियों और प्राकृतिक परिवेश के लिए जाना जाता है।',
+      settlementHistory: 'यहाँ भील समाज की पीढ़ियाँ सदियों से कृषि और वनोपज संकलन से जीवन यापन कर रही हैं।',
       riversAndPonds: 'गाँव के पास से एक मौसमी नाला बहता है जो आगे चलकर अनास नदी में मिलता है।',
       plantsAndAnimals: 'महुआ, ताड़, नीम, पलाश के वृक्ष बहुतायत में पाए जाते हैं।',
       grazingAreas: 'गाँव की साझा गोचर भूमि जहाँ पशुओं के चरने की पारंपरिक व्यवस्था है।',
       traditionalSystem: 'तड़वी और बुजुर्गों की पंचायत द्वारा आपसी विवादों का निपटारा किया जाता है।',
       traditionsAndFestivals: 'भगोरिया, जातर और नवाई धूमधाम से मनाए जाते हैं।',
-      contributor: 'रणपुरा ग्रामवासी एवं युवा साथी',
+      contributor: 'चंद्रगढ़ ग्रामवासी एवं युवा साथी',
     },
     {
       _id: 'village-meghnagar',
@@ -375,7 +374,7 @@ async function seed() {
       _type: 'libraryStory',
       title: 'पढ़कर बदली सोच',
       author: 'रमेश भाई',
-      village: 'रणपुरा',
+      village: 'चंद्रगढ़',
       body: 'वाचनालय में खेती की किताब पढ़ने के बाद मैंने अपने खेत में पारंपरिक बीजों और जैविक खाद की विधि आज़माई। फसल बेहतर हुई और लागत भी घटी।',
     },
     {

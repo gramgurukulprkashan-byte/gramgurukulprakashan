@@ -56,7 +56,7 @@ export default function Header() {
             <Link
               href="/"
               className="flex items-center gap-3 shrink-0"
-              aria-label="ग्राम गुरुकुल प्रकाशन — मुखपृष्ठ पर जाएँ"
+              aria-label="ग्रामगुरुकुल प्रकाशन — मुखपृष्ठ पर जाएँ"
             >
               <div
                 className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 overflow-hidden bg-white p-1"
@@ -65,7 +65,7 @@ export default function Header() {
               >
                 <Image
                   src="/images/logo.webp"
-                  alt="ग्राम गुरुकुल प्रकाशन लोगो"
+                  alt="ग्रामगुरुकुल प्रकाशन लोगो"
                   width={34}
                   height={34}
                   className="object-contain w-full h-full"

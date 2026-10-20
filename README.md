@@ -1,4 +1,4 @@
-# ग्राम गुरुकुल प्रकाशन (Gram Gurukul Prakashan)
+# ग्रामगुरुकुल प्रकाशन (Gram Gurukul Prakashan)
 
 > **"जो बांचेगा वही बचेगा"**  
 > A rural-knowledge publishing and community-library initiative based in Jhabua (झाबुआ), Madhya Pradesh, India, working with the Bhil (भील) community.
@@ -262,7 +262,7 @@ The architecture includes hooks for planned Phase 3 enhancements:
 
 ## 🇮🇳 हिंदी में प्रशासक मार्गदर्शिका (Admin Guide)
 
-> **ग्राम गुरुकुल प्रकाशन के गैर-तकनीकी साथियों के लिए सरल मार्गदर्शिका**
+> **ग्रामगुरुकुल प्रकाशन के गैर-तकनीकी साथियों के लिए सरल मार्गदर्शिका**
 
 ### 1. व्यवस्थापक पैनल (Admin Studio) कैसे खोलें?
 - अपने कंप्यूटर या मोबाइल ब्राउज़र में वेबसाइट के पते के आगे `/studio` लिखें।  

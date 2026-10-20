@@ -4,7 +4,7 @@ import { schemaTypes } from './sanity/schemas';
 
 export default defineConfig({
   name: 'default',
-  title: 'ग्राम गुरुकुल प्रकाशन (Gram Gurukul Prakashan)',
+  title: 'ग्रामगुरुकुल प्रकाशन (Gram Gurukul Prakashan)',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'placeholder',
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
   basePath: '/studio',

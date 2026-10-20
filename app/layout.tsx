@@ -24,13 +24,13 @@ const tiroDevanagari = Tiro_Devanagari_Hindi({
 // ─── Default Metadata ─────────────────────────────────────
 export const metadata: Metadata = {
   title: {
-    default: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
-    template: '%s | ग्राम गुरुकुल प्रकाशन',
+    default: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
+    template: '%s | ग्रामगुरुकुल प्रकाशन',
   },
   description:
-    'ग्राम गुरुकुल प्रकाशन का उद्देश्य गाँव के अद्वितीय परंपरागत ज्ञान और भील समाज की समृद्ध सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है। झाबुआ, मध्य प्रदेश।',
+    'ग्रामगुरुकुल प्रकाशन का उद्देश्य गाँव के अद्वितीय परंपरागत ज्ञान और भील समाज की समृद्ध सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है। झाबुआ, मध्य प्रदेश।',
   keywords: [
-    'ग्राम गुरुकुल प्रकाशन',
+    'ग्रामगुरुकुल प्रकाशन',
     'भील समाज',
     'झाबुआ',
     'ग्राम वाचनालय',
@@ -38,22 +38,22 @@ export const metadata: Metadata = {
     'मध्य प्रदेश',
     'सांस्कृतिक धरोहर',
   ],
-  authors: [{ name: 'ग्राम गुरुकुल प्रकाशन' }],
-  creator: 'ग्राम गुरुकुल प्रकाशन',
-  publisher: 'ग्राम गुरुकुल प्रकाशन',
+  authors: [{ name: 'ग्रामगुरुकुल प्रकाशन' }],
+  creator: 'ग्रामगुरुकुल प्रकाशन',
+  publisher: 'ग्रामगुरुकुल प्रकाशन',
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org'),
   openGraph: {
     type: 'website',
     locale: 'hi_IN',
     url: process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org',
-    siteName: 'ग्राम गुरुकुल प्रकाशन',
-    title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
+    siteName: 'ग्रामगुरुकुल प्रकाशन',
+    title: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
     description:
       'गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष लाने का संकल्प।',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'ग्राम गुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
+    title: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
     description: 'गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर।',
   },
   icons: {
@@ -75,12 +75,12 @@ export const metadata: Metadata = {
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'ग्राम गुरुकुल प्रकाशन',
+  name: 'ग्रामगुरुकुल प्रकाशन',
   alternateName: 'Gram Gurukul Prakashan',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org',
   logo: `${process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.org'}/logo.webp`,
   description:
-    'ग्राम गुरुकुल प्रकाशन का उद्देश्य गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है।',
+    'ग्रामगुरुकुल प्रकाशन का उद्देश्य गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष प्रस्तुत करना है।',
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'शिवगंगा गुरुकुल, धरमपुरी',

@@ -235,7 +235,7 @@ export default function JoinForm() {
             aria-invalid={!!errors.consent}
           />
           <span className="text-sm" style={{ color: 'var(--color-charcoal)' }}>
-            मैं सहमत हूँ कि यह जानकारी ग्राम गुरुकुल प्रकाशन को दे रहा/रही हूँ। प्रकाशन से पहले मेरी सहमति ली जाएगी। *
+            मैं सहमत हूँ कि यह जानकारी ग्रामगुरुकुल प्रकाशन को दे रहा/रही हूँ। प्रकाशन से पहले मेरी सहमति ली जाएगी। *
           </span>
         </label>
         {errors.consent && <p role="alert" className="text-sm mt-1" style={{ color: '#dc3545' }}>{errors.consent}</p>}

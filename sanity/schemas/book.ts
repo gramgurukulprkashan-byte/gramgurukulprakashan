@@ -22,7 +22,7 @@ export const bookType = defineType({
       name: 'author',
       title: 'लेखक / संपादक / संकलनकर्ता',
       type: 'string',
-      initialValue: 'ग्राम गुरुकुल प्रकाशन',
+      initialValue: 'ग्रामगुरुकुल प्रकाशन',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

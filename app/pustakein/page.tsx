@@ -8,7 +8,7 @@ import { REAL_BOOKS } from '@/lib/seedData';
 
 export const metadata: Metadata = {
   title: 'पुस्तकें एवं प्रकाशन',
-  description: 'ग्राम गुरुकुल प्रकाशन की प्रकाशित और निर्माणाधीन पुस्तकें — नवभगीरथ, भीलांचल की आवाज, मेरा जिला और ग्राम एटलस।',
+  description: 'ग्रामगुरुकुल प्रकाशन की प्रकाशित और निर्माणाधीन पुस्तकें — नवभगीरथ, भीलांचल की आवाज, मेरा जिला और ग्राम एटलस।',
 };
 
 export default async function PustakeinPage() {
@@ -24,7 +24,7 @@ export default async function PustakeinPage() {
     <>
       <PageHero
         title="पुस्तकें एवं प्रकाशन"
-        description="ग्राम गुरुकुल प्रकाशन की पुस्तकें — गाँव के ज्ञान से, गाँव के लिए"
+        description="ग्रामगुरुकुल प्रकाशन की पुस्तकें — गाँव के ज्ञान से, गाँव के लिए"
         breadcrumb={[{ label: 'पुस्तकें एवं प्रकाशन' }]}
         variant="mustard"
       />
@@ -32,7 +32,7 @@ export default async function PustakeinPage() {
       <section className="py-16 section-cream">
         <div className="container-main">
           <SectionTitle
-            title="सभी पुस्तकें एवं पत्रिकाएँ"
+            title="सभी पुस्तकें एवं प्रकाशन"
             subtitle="गाँव के अनुभव, स्थानीय इतिहास, जल-संरक्षण और लोक-संस्कृति पर आधारित मौलिक प्रकाशन"
           />
           {books.length > 0 ? (
