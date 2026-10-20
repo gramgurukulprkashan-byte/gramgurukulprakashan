@@ -29,7 +29,7 @@ export const NAV_ITEMS = [
   {
     group: 'मुख्य',
     items: [
-      { label: 'मुखपृष्ठ', href: '/' },
+      { label: 'मुख्य पृष्ठ', href: '/' },
       { label: 'हमारे बारे में', href: '/hamare-bare-mein' },
       { label: 'हमारे कार्य', href: '/karya' },
     ],

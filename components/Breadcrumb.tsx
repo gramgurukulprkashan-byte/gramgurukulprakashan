@@ -17,10 +17,10 @@ export default function Breadcrumb({ items }: BreadcrumbProps) {
         href="/"
         className="flex items-center gap-1 text-sm transition-colors hover:opacity-80"
         style={{ color: 'var(--color-clay)' }}
-        aria-label="मुखपृष्ठ"
+        aria-label="मुख्य पृष्ठ"
       >
         <Home size={14} aria-hidden="true" />
-        <span>मुखपृष्ठ</span>
+        <span>मुख्य पृष्ठ</span>
       </Link>
       {items.map((item, i) => (
         <span key={i} className="flex items-center gap-1">

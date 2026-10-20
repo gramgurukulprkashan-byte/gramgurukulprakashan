@@ -40,7 +40,7 @@ export default function PageHero({
 
   return (
     <section
-      className="relative overflow-hidden pt-24 pb-10 md:pt-28 md:pb-14 dot-pattern"
+      className="relative overflow-hidden pt-10 pb-10 md:pt-14 md:pb-14 dot-pattern"
       style={{ backgroundColor: s.bg }}
       aria-label="पृष्ठ शीर्षक"
     >

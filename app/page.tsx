@@ -136,7 +136,7 @@ export default async function HomePage() {
     <>
       {/* ── 1. HERO (Inspired by Shivganga Visual Depth) ── */}
       <section
-        className="relative overflow-hidden min-h-[90vh] flex items-center hero-gradient dot-pattern pt-20 md:pt-28"
+        className="relative overflow-hidden min-h-[85vh] flex items-center hero-gradient dot-pattern py-12 md:py-16"
         aria-label="मुख्य परिचय"
       >
         <div
