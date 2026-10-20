@@ -102,7 +102,7 @@ export default function GaonSeShikshaPage() {
                     className="text-2xl font-bold"
                     style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
                   >
-                    मेरा जिला — भाग 1 (झाबुआ)
+                    मेरा जिला — भाग 1
                   </h3>
                   <span className="badge-wip">निर्माणाधीन पाठ्यपुस्तक</span>
                 </div>

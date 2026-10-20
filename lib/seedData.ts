@@ -75,12 +75,12 @@ export const REAL_BOOKS: BookItem[] = [
   },
   {
     _id: 'book-mera-jila',
-    title: 'मेरा जिला — भाग 1 (झाबुआ)',
+    title: 'मेरा जिला — भाग 1',
     slug: { current: 'mera-jila-bhag-1' },
     author: 'ग्राम गुरुकुल प्रकाशन मण्डल',
     subject: 'सामाजिक विज्ञान (कक्षा 6)',
     status: 'निर्माणाधीन',
-    coverImage: '/content-media/vachanalay-125-books.webp',
+    coverImage: '/content-media/mera-jila-cover.webp',
     pdfUrl: '/content-media/Front - Back.pdf',
     description:
       'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, बड़वा, तड़वी, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
@@ -95,7 +95,7 @@ export const REAL_BOOKS: BookItem[] = [
     author: 'ग्राम गुरुकुल शोध दल',
     subject: 'इतिहास, भूगोल एवं सर्वेक्षण',
     status: 'प्रकाशित',
-    coverImage: '/content-media/chhagola-village-school.webp',
+    coverImage: '/content-media/chhagola-atlas-cover.webp',
     pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     description:
       'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। 13.4 MB के इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
@@ -126,7 +126,7 @@ export const REAL_VILLAGES: VillageItem[] = [
     slug: { current: 'chhagola' },
     district: 'झाबुआ',
     block: 'झाबुआ',
-    thumbnail: '/content-media/chhagola-village-school.webp',
+    thumbnail: '/content-media/chhagola-atlas-cover.webp',
     pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     nameStory:
       'छागोला गाँव का नामकरण यहाँ की ऐतिहासिक घाटी और छांवदार वनों के आधार पर माना जाता है। बुजुर्गों के अनुसार पुराने समय में यह क्षेत्र सघन पेड़ों और शीतल जलस्रोतों से समृद्ध था।',
@@ -298,7 +298,7 @@ export const REAL_NOTICES: NoticeItem[] = [
     important: false,
     hasImage: true,
     hasPdf: true,
-    image: '/content-media/chhagola-village-school.webp',
+    image: '/content-media/chhagola-atlas-cover.webp',
     pdf: '/content-media/छागोला गांव एटलस.pdf',
   },
   {

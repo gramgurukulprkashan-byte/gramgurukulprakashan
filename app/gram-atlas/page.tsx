@@ -51,7 +51,7 @@ export default async function GramAtlasPage() {
                     style={{ border: '2px solid var(--color-sand-dark)' }}
                   >
                     <Image
-                      src={chhagola.thumbnail || '/content-media/chhagola-village-school.webp'}
+                      src={chhagola.thumbnail || '/content-media/chhagola-atlas-cover.webp'}
                       alt="ग्राम छागोला सर्वेक्षण एवं एटलस"
                       fill
                       className="object-cover"

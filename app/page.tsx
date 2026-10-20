@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 };
 
 const STATS = [
-  { value: 900, suffix: '+', label: 'गाँवों में ग्राम वाचनालय', sublabel: 'झाबुआ ज़िला' },
+  { value: 900, suffix: '+', label: 'गाँवों में ग्राम वाचनालय', sublabel: 'झाबुआ + आलीराजपुर' },
   { value: 125, label: 'पुस्तकें प्रति वाचनालय', sublabel: 'हर पेटी में' },
   { value: 14, label: 'विषय', sublabel: 'विविध ज्ञान' },
   { value: 2009, label: 'से सक्रिय', sublabel: 'अविरल अभियान' },
@@ -110,8 +110,8 @@ const STORY_PHOTOS = [
   },
   {
     src: '/content-media/halma-youth-group.webp',
-    caption: 'हलमा अभियान में जुटे भीलांचल के उत्साही युवा',
-    tag: 'सामूहिक शक्ति',
+    caption: 'ग्रामगुरुकुल प्रकाशन की टोली',
+    tag: 'प्रकाशन टोली',
   },
   {
     src: '/content-media/semalpada-gurukul-varg.webp',
@@ -597,7 +597,7 @@ export default async function HomePage() {
               इस ज्ञान-यज्ञ में आपका स्वागत है
             </h2>
             <p className="text-lg mb-8" style={{ color: 'rgba(26, 26, 26, 0.8)' }}>
-              हमें लेखकों, शोधकर्ताओं, शिक्षकों, डिज़ाइनरों, विषय विशेषज्ञों और गाँव के जानकार अग्रजों की आवश्यकता है। झाबुआ के गाँवों में ज्ञान का उजियारा फैलाने के लिए हमसे जुड़ें।
+              हमें लेखकों, शोधकर्ताओं, शिक्षकों, डिज़ाइनरों, विषय विशेषज्ञों और गाँव के जानकार अग्रजों की आवश्यकता है। ज्ञान का उजियारा दुनिया में फैलाने और नए ज्ञान को झाबुआ में लाने के लिए जुड़ें।
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/hamse-judein" className="btn-secondary text-base px-6 py-3">
