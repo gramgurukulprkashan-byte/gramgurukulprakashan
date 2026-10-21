@@ -59,9 +59,6 @@ export const NAV_ITEMS = [
 ];
 
 export const SOCIAL_LINKS = {
-  instagram: 'https://instagram.com/gramgurukulprakashan',
-  facebook: 'https://facebook.com/gramgurukulprakashan',
-  linktree: 'https://linktr.ee/gramgurukulprakashan',
   email: 'gramgurukulprakashan@gmail.com',
   phone: '+91 96852 71507',
   phoneRaw: '+919685271507',

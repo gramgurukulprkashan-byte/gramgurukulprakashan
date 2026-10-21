@@ -1,6 +1,5 @@
 import type { Metadata } from 'next';
-import { Mail, Phone, Link as LinkIcon } from 'lucide-react';
-import { FacebookIcon, InstagramIcon } from '@/components/Icons';
+import { Mail, Phone } from 'lucide-react';
 import PageHero from '@/components/PageHero';
 import SectionTitle from '@/components/SectionTitle';
 import ContactForm from '@/components/ContactForm';
@@ -8,7 +7,7 @@ import { SOCIAL_LINKS } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'संपर्क करें',
-  description: 'ग्रामगुरुकुल प्रकाशन से संपर्क करें — फोन, ईमेल, सोशल मीडिया या संपर्क फ़ॉर्म के ज़रिए।',
+  description: 'ग्रामगुरुकुल प्रकाशन से संपर्क करें — फोन, ईमेल या संपर्क फ़ॉर्म के ज़रिए।',
 };
 
 const CONTACT_ITEMS = [
@@ -25,27 +24,6 @@ const CONTACT_ITEMS = [
     value: SOCIAL_LINKS.email,
     href: `mailto:${SOCIAL_LINKS.email}`,
     external: false,
-  },
-  {
-    icon: <InstagramIcon size={24} aria-hidden="true" />,
-    label: 'इंस्टाग्राम',
-    value: '@gramgurukulprakashan',
-    href: SOCIAL_LINKS.instagram,
-    external: true,
-  },
-  {
-    icon: <FacebookIcon size={24} aria-hidden="true" />,
-    label: 'फेसबुक',
-    value: 'ग्रामगुरुकुल प्रकाशन',
-    href: SOCIAL_LINKS.facebook,
-    external: true,
-  },
-  {
-    icon: <LinkIcon size={24} aria-hidden="true" />,
-    label: 'लिंकट्री',
-    value: 'linktr.ee/gramgurukulprakashan',
-    href: SOCIAL_LINKS.linktree,
-    external: true,
   },
 ];
 

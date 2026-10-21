@@ -44,11 +44,6 @@ async function seed() {
       booksPublished: 2,
       activeReaders: 5000,
     },
-    socialLinks: {
-      instagram: 'https://instagram.com/gramgurukulprakashan',
-      facebook: 'https://facebook.com/gramgurukulprakashan',
-      linktree: 'https://linktr.ee/gramgurukulprakashan',
-    },
     email: 'gramgurukulprakashan@gmail.com',
     phone: '+91 96852 71507',
     address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश) - 457661',

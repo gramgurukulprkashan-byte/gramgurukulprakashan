@@ -96,11 +96,6 @@ const organizationSchema = {
     contactType: 'customer support',
     availableLanguage: ['Hindi'],
   },
-  sameAs: [
-    'https://instagram.com/gramgurukulprakashan',
-    'https://facebook.com/gramgurukulprakashan',
-    'https://linktr.ee/gramgurukulprakashan',
-  ],
 };
 
 // ─── Root Layout ──────────────────────────────────────────

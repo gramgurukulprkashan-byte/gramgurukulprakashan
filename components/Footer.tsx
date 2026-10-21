@@ -1,8 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { NAV_ITEMS, SOCIAL_LINKS } from '@/lib/utils';
-import { Mail, Phone, Link as LinkIcon } from 'lucide-react';
-import { FacebookIcon, InstagramIcon } from '@/components/Icons';
+import { Mail, Phone } from 'lucide-react';
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -109,7 +108,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold tracking-widest uppercase mb-4" style={{ color: 'var(--color-mustard)' }}>
-              संपर्क और सोशल
+              संपर्क सूत्र
             </h3>
             <ul className="space-y-3 list-none m-0 p-0">
               <li>
@@ -132,45 +131,6 @@ export default function Footer() {
                 >
                   <Mail size={16} aria-hidden="true" />
                   {SOCIAL_LINKS.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
-                  style={{ color: 'var(--color-sand)' }}
-                  aria-label="इंस्टाग्राम (नया टैब में खुलेगा)"
-                >
-                  <InstagramIcon size={16} aria-hidden="true" />
-                  इंस्टाग्राम
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
-                  style={{ color: 'var(--color-sand)' }}
-                  aria-label="फेसबुक (नया टैब में खुलेगा)"
-                >
-                  <FacebookIcon size={16} aria-hidden="true" />
-                  फेसबुक
-                </a>
-              </li>
-              <li>
-                <a
-                  href={SOCIAL_LINKS.linktree}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm hover:text-white transition-colors"
-                  style={{ color: 'var(--color-sand)' }}
-                  aria-label="लिंकट्री (नया टैब में खुलेगा)"
-                >
-                  <LinkIcon size={16} aria-hidden="true" />
-                  लिंकट्री
                 </a>
               </li>
             </ul>
