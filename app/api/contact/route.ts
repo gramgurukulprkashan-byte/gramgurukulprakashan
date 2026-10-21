@@ -58,14 +58,76 @@ export async function POST(req: NextRequest) {
 
   // ─── Send Email ────────────────────────────────────────
   const contactEmail = process.env.CONTACT_EMAIL || 'gramgurukulprakashan@gmail.com';
+  const gmailUser = process.env.GMAIL_USER || 'gramgurukulprakashan@gmail.com';
+  const gmailPassword = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
 
   try {
-    if (process.env.RESEND_API_KEY) {
+    if (gmailPassword) {
+      // Use Nodemailer with Gmail SMTP
+      const nodemailer = await import('nodemailer');
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: gmailUser,
+          pass: gmailPassword,
+        },
+        connectionTimeout: 10000,
+        greetingTimeout: 10000,
+        socketTimeout: 15000,
+      });
+
+      const mailSubject = `नया संदेश [वेबसाइट संपर्क फ़ॉर्म]: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`;
+
+      const htmlContent = `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #E2D5BA; border-radius: 12px; background-color: #FAF7F0;">
+          <div style="background-color: #5A2C10; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
+            <h1 style="color: #FAF7F0; margin: 0; font-size: 20px;">ग्रामगुरुकुल प्रकाशन — नया संपर्क संदेश</h1>
+            <p style="color: #E8DCBF; margin: 4px 0 0 0; font-size: 13px;">वेबसाइट (gramgurukulprakashan.com) के संपर्क फ़ॉर्म से प्राप्त</p>
+          </div>
+
+          <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+            <tr style="border-bottom: 1px solid #E8DFC8;">
+              <td style="padding: 10px; font-weight: bold; color: #5A2C10; width: 120px;">प्रेषक का नाम:</td>
+              <td style="padding: 10px; color: #1A1A1A;">${naam}</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E8DFC8;">
+              <td style="padding: 10px; font-weight: bold; color: #5A2C10;">ईमेल:</td>
+              <td style="padding: 10px; color: #1A1A1A;"><a href="mailto:${email}" style="color: #C8661E; text-decoration: underline;">${email}</a></td>
+            </tr>
+            <tr style="border-bottom: 1px solid #E8DFC8;">
+              <td style="padding: 10px; font-weight: bold; color: #5A2C10;">विषय:</td>
+              <td style="padding: 10px; color: #1A1A1A;">${VISHAY_LABELS[vishay] || vishay}</td>
+            </tr>
+            <tr>
+              <td style="padding: 10px; font-weight: bold; color: #5A2C10; vertical-align: top;">संदेश:</td>
+              <td style="padding: 10px; color: #1A1A1A; line-height: 1.6; white-space: pre-wrap;">${sandesh}</td>
+            </tr>
+          </table>
+
+          <div style="background-color: #EFE8D6; padding: 12px 16px; border-radius: 6px; font-size: 12px; color: #7A4A2B; text-align: center;">
+            सीधे इस ईमेल का उत्तर (Reply) देकर आप <strong>${email}</strong> को जवाब भेज सकते हैं।
+          </div>
+
+          <p style="text-align: center; color: #8B5A2B; font-size: 11px; margin-top: 20px;">
+            © ${new Date().getFullYear()} ग्रामगुरुकुल प्रकाशन, झाबुआ (मध्य प्रदेश)
+          </p>
+        </div>
+      `;
+
+      await transporter.sendMail({
+        from: `"ग्रामगुरुकुल प्रकाशन वेबसाइट" <${gmailUser}>`,
+        to: contactEmail,
+        replyTo: email,
+        subject: mailSubject,
+        html: htmlContent,
+        text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
+      });
+    } else if (process.env.RESEND_API_KEY) {
       // Use Resend
       const { Resend } = await import('resend');
       const resend = new Resend(process.env.RESEND_API_KEY);
       await resend.emails.send({
-        from: 'ग्रामगुरुकुल प्रकाशन <noreply@gramgurukulprakashan.org>',
+        from: 'ग्रामगुरुकुल प्रकाशन <noreply@gramgurukulprakashan.com>',
         to: contactEmail,
         replyTo: email,
         subject: `नया संदेश: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`,
@@ -78,11 +140,10 @@ export async function POST(req: NextRequest) {
             <tr><td style="padding:8px;font-weight:bold">संदेश</td><td style="padding:8px">${sandesh.replace(/\n/g, '<br>')}</td></tr>
           </table>
           <hr>
-          <p style="color:#888;font-size:12px">यह संदेश gramgurukulprakashan.org के संपर्क फ़ॉर्म से भेजा गया है।</p>
+          <p style="color:#888;font-size:12px">यह संदेश gramgurukulprakashan.com के संपर्क फ़ॉर्म से भेजा गया है।</p>
         `,
       });
     } else {
-      // Log to console in dev (do not store personal data in DB unless explicitly configured)
       console.log('[ContactForm] New message from:', naam, '|', email, '|', vishay);
     }
   } catch (err) {
