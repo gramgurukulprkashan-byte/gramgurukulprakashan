@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { checkRateLimit } from '@/lib/utils';
+import nodemailer, { SentMessageInfo } from 'nodemailer';
+
+// Force Node.js runtime for Nodemailer networking
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
 
 // ─── Zod Schema ──────────────────────────────────────────
 const contactSchema = z.object({
@@ -52,125 +57,99 @@ export async function POST(req: NextRequest) {
 
   // ─── Honeypot Check ────────────────────────────────────
   if (honeypot && honeypot.length > 0) {
-    // Silently accept but do not send
     return NextResponse.json({ success: true }, { status: 200 });
   }
 
-  // ─── Send Email via Nodemailer ────────────────────────
+  // ─── Pure Nodemailer via Gmail SMTP (Port 587 STARTTLS) ─
   const contactEmail = process.env.CONTACT_EMAIL || 'gramgurukulprkashan@gmail.com';
   const gmailUser = process.env.GMAIL_USER || 'gramgurukulprkashan@gmail.com';
   const gmailPassword = (process.env.GMAIL_APP_PASSWORD || 'tszsefucateoquoq').replace(/\s+/g, '');
   const subjectText = `नया संदेश [वेबसाइट संपर्क फ़ॉर्म]: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`;
 
-  console.log('[ContactForm] Processing message via Nodemailer:', {
-    from: `${naam} <${email}>`,
-    vishay: VISHAY_LABELS[vishay] || vishay,
-    to: contactEmail,
-    timestamp: new Date().toISOString(),
+  console.log('[ContactForm] Dispatching email purely via Nodemailer to:', contactEmail);
+
+  const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // Port 587 uses STARTTLS
+    auth: {
+      user: gmailUser,
+      pass: gmailPassword,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 
-  let sent = false;
+  const htmlContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #E2D5BA; border-radius: 12px; background-color: #FAF7F0;">
+      <div style="background-color: #5A2C10; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
+        <h1 style="color: #FAF7F0; margin: 0; font-size: 20px;">ग्रामगुरुकुल प्रकाशन — नया संपर्क संदेश</h1>
+        <p style="color: #E8DCBF; margin: 4px 0 0 0; font-size: 13px;">वेबसाइट (gramgurukulprakashan.com) के संपर्क फ़ॉर्म से प्राप्त</p>
+      </div>
+
+      <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
+        <tr style="border-bottom: 1px solid #E8DFC8;">
+          <td style="padding: 10px; font-weight: bold; color: #5A2C10; width: 120px;">प्रेषक का नाम:</td>
+          <td style="padding: 10px; color: #1A1A1A;">${naam}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E8DFC8;">
+          <td style="padding: 10px; font-weight: bold; color: #5A2C10;">ईमेल:</td>
+          <td style="padding: 10px; color: #1A1A1A;"><a href="mailto:${email}" style="color: #C8661E; text-decoration: underline;">${email}</a></td>
+        </tr>
+        <tr style="border-bottom: 1px solid #E8DFC8;">
+          <td style="padding: 10px; font-weight: bold; color: #5A2C10;">विषय:</td>
+          <td style="padding: 10px; color: #1A1A1A;">${VISHAY_LABELS[vishay] || vishay}</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px; font-weight: bold; color: #5A2C10; vertical-align: top;">संदेश:</td>
+          <td style="padding: 10px; color: #1A1A1A; line-height: 1.6; white-space: pre-wrap;">${sandesh}</td>
+        </tr>
+      </table>
+
+      <div style="background-color: #EFE8D6; padding: 12px 16px; border-radius: 6px; font-size: 12px; color: #7A4A2B; text-align: center;">
+        सीधे इस ईमेल का उत्तर (Reply) देकर आप <strong>${email}</strong> को जवाब भेज सकते हैं।
+      </div>
+
+      <p style="text-align: center; color: #8B5A2B; font-size: 11px; margin-top: 20px;">
+        © ${new Date().getFullYear()} ग्रामगुरुकुल प्रकाशन, झाबुआ (मध्य प्रदेश)
+      </p>
+    </div>
+  `;
 
   try {
-    const nodemailer = await import('nodemailer');
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 465,
-      secure: true,
-      auth: {
-        user: gmailUser,
-        pass: gmailPassword,
-      },
-      connectionTimeout: 2500,
-      greetingTimeout: 2500,
-      socketTimeout: 4000,
-    });
-
-    const htmlContent = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #E2D5BA; border-radius: 12px; background-color: #FAF7F0;">
-        <div style="background-color: #5A2C10; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
-          <h1 style="color: #FAF7F0; margin: 0; font-size: 20px;">ग्रामगुरुकुल प्रकाशन — नया संपर्क संदेश</h1>
-          <p style="color: #E8DCBF; margin: 4px 0 0 0; font-size: 13px;">वेबसाइट (gramgurukulprakashan.com) के संपर्क फ़ॉर्म से प्राप्त</p>
-        </div>
-
-        <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 14px;">
-          <tr style="border-bottom: 1px solid #E8DFC8;">
-            <td style="padding: 10px; font-weight: bold; color: #5A2C10; width: 120px;">प्रेषक का नाम:</td>
-            <td style="padding: 10px; color: #1A1A1A;">${naam}</td>
-          </tr>
-          <tr style="border-bottom: 1px solid #E8DFC8;">
-            <td style="padding: 10px; font-weight: bold; color: #5A2C10;">ईमेल:</td>
-            <td style="padding: 10px; color: #1A1A1A;"><a href="mailto:${email}" style="color: #C8661E; text-decoration: underline;">${email}</a></td>
-          </tr>
-          <tr style="border-bottom: 1px solid #E8DFC8;">
-            <td style="padding: 10px; font-weight: bold; color: #5A2C10;">विषय:</td>
-            <td style="padding: 10px; color: #1A1A1A;">${VISHAY_LABELS[vishay] || vishay}</td>
-          </tr>
-          <tr>
-            <td style="padding: 10px; font-weight: bold; color: #5A2C10; vertical-align: top;">संदेश:</td>
-            <td style="padding: 10px; color: #1A1A1A; line-height: 1.6; white-space: pre-wrap;">${sandesh}</td>
-          </tr>
-        </table>
-
-        <div style="background-color: #EFE8D6; padding: 12px 16px; border-radius: 6px; font-size: 12px; color: #7A4A2B; text-align: center;">
-          सीधे इस ईमेल का उत्तर (Reply) देकर आप <strong>${email}</strong> को जवाब भेज सकते हैं।
-        </div>
-
-        <p style="text-align: center; color: #8B5A2B; font-size: 11px; margin-top: 20px;">
-          © ${new Date().getFullYear()} ग्रामगुरुकुल प्रकाशन, झाबुआ (मध्य प्रदेश)
-        </p>
-      </div>
-    `;
-
-    const info = await transporter.sendMail({
-      from: `"ग्रामगुरुकुल प्रकाशन वेबसाइट" <${gmailUser}>`,
-      to: contactEmail,
-      replyTo: email,
-      subject: subjectText,
-      html: htmlContent,
-      text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
-    });
-
-    console.log('[ContactForm] Nodemailer sent successfully! ID:', info.messageId);
-    sent = true;
-  } catch (smtpErr) {
-    console.warn('[ContactForm] Nodemailer SMTP timed out (Vercel firewall blocked port 465). Falling back to direct HTTPS dispatch...');
-  }
-
-  // 2. If SMTP was blocked by Vercel firewall, immediately dispatch via HTTPS (Port 443)
-  if (!sent) {
-    try {
-      const fsRes = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(contactEmail)}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-          'Referer': 'https://gramgurukulprakashan.vercel.app/sampark',
-          'Origin': 'https://gramgurukulprakashan.vercel.app',
+    // Send email using Promise-wrapped sendMail for serverless reliability
+    const info = await new Promise<SentMessageInfo>((resolve, reject) => {
+      transporter.sendMail(
+        {
+          from: `"ग्रामगुरुकुल प्रकाशन" <${gmailUser}>`,
+          to: contactEmail,
+          replyTo: email,
+          subject: subjectText,
+          html: htmlContent,
+          text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
         },
-        body: JSON.stringify({
-          name: naam,
-          email: email,
-          _subject: subjectText,
-          subject: VISHAY_LABELS[vishay] || vishay,
-          message: sandesh,
-          _template: 'table',
-          _captcha: 'false',
-        }),
-      });
+        (err, result) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(result);
+          }
+        }
+      );
+    });
 
-      if (fsRes.ok) {
-        console.log('[ContactForm] Delivered successfully via HTTPS fallback.');
-        sent = true;
-      }
-    } catch (httpErr) {
-      console.error('[ContactForm] HTTPS delivery error:', httpErr);
-    }
+    console.log('[ContactForm] Nodemailer sent successfully! Message ID:', info.messageId);
+
+    return NextResponse.json(
+      { success: true, message: 'आपका संदेश सफलतापूर्वक भेज दिया गया है। धन्यवाद!' },
+      { status: 200 }
+    );
+  } catch (err) {
+    console.error('[ContactForm] Nodemailer error:', err);
+    return NextResponse.json(
+      { message: 'संदेश भेजने में समस्या हुई। कृपया सीधे ईमेल करें: gramgurukulprkashan@gmail.com' },
+      { status: 500 }
+    );
   }
-
-  // Guaranteed 200 OK — visitor will never see a 500 error
-  return NextResponse.json(
-    { success: true, message: 'आपका संदेश सफलतापूर्वक भेज दिया गया है। धन्यवाद!' },
-    { status: 200 }
-  );
 }
