@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { checkRateLimit } from '@/lib/utils';
 import nodemailer, { SentMessageInfo } from 'nodemailer';
 
-// Force Node.js runtime for Nodemailer networking
 export const runtime = 'nodejs';
 export const dynamic = 'force-dynamic';
 
@@ -69,15 +68,10 @@ export async function POST(req: NextRequest) {
   console.log('[ContactForm] Dispatching email purely via Nodemailer to:', contactEmail);
 
   const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // Port 587 uses STARTTLS
+    service: 'gmail',
     auth: {
       user: gmailUser,
       pass: gmailPassword,
-    },
-    tls: {
-      rejectUnauthorized: false,
     },
   });
 
