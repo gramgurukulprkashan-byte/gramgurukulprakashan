@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useId } from 'react';
-import { Send, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Send, CheckCircle, AlertTriangle, Loader2, RotateCcw, Phone, Mail } from 'lucide-react';
 
 const VISHAY_OPTIONS = [
   { value: '', label: 'विषय चुनें' },
@@ -30,7 +30,12 @@ export default function ContactForm() {
     email: '',
     vishay: '',
     sandesh: '',
-    honeypot: '', // honeypot field
+    honeypot: '',
+  });
+
+  const [submittedSnapshot, setSubmittedSnapshot] = useState({
+    naam: '',
+    email: '',
   });
 
   function validate(): FormErrors {
@@ -58,6 +63,11 @@ export default function ContactForm() {
     if (Object.keys(errs).length > 0) return;
 
     setState('loading');
+    setSubmittedSnapshot({
+      naam: formData.naam.trim(),
+      email: formData.email.trim(),
+    });
+
     try {
       const res = await fetch('/api/contact', {
         method: 'POST',
@@ -78,31 +88,92 @@ export default function ContactForm() {
     }
   }
 
+  function handleReset() {
+    setFormData({
+      naam: '',
+      email: '',
+      vishay: '',
+      sandesh: '',
+      honeypot: '',
+    });
+    setErrors({});
+    setServerError('');
+    setState('idle');
+  }
+
   if (state === 'success') {
     return (
       <div
-        className="flex flex-col items-center gap-4 p-8 rounded-2xl text-center"
-        style={{ backgroundColor: '#d4edda', border: '2px solid #c3e6cb' }}
+        className="p-8 rounded-3xl text-center transition-all animate-fadeIn"
+        style={{
+          backgroundColor: '#F3FAF4',
+          border: '2px solid #C4E7CC',
+          boxShadow: '0 12px 32px rgba(21, 87, 36, 0.08)',
+        }}
         role="status"
         aria-live="polite"
       >
-        <CheckCircle size={48} color="#155724" aria-hidden="true" />
-        <h3
-          className="text-xl font-bold"
-          style={{ color: '#155724', fontFamily: 'var(--font-heading)' }}
+        <div
+          className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
+          style={{ backgroundColor: '#D8F3DF', color: '#1B6E32' }}
         >
-          संदेश भेज दिया गया!
+          <CheckCircle size={36} strokeWidth={2.5} aria-hidden="true" />
+        </div>
+
+        <h3
+          className="text-2xl font-bold mb-2"
+          style={{ color: '#14532D', fontFamily: 'var(--font-heading)' }}
+        >
+          संदेश सफलतापूर्वक भेज दिया गया!
         </h3>
-        <p style={{ color: '#155724' }}>
-          आपका संदेश सफलतापूर्वक भेज दिया गया है। धन्यवाद! हम जल्द ही आपसे संपर्क करेंगे।
+
+        <p className="text-base mb-6" style={{ color: '#276738', lineHeight: 1.6 }}>
+          धन्यवाद, <strong>{submittedSnapshot.naam || 'मित्र'}</strong> जी! आपका संदेश हमें प्राप्त हो चुका है।
         </p>
+
+        {/* Info card */}
+        <div
+          className="p-4 rounded-2xl mb-6 text-left space-y-2 text-sm"
+          style={{ backgroundColor: 'white', border: '1px solid #D6EFE0' }}
+        >
+          <div className="flex items-center gap-2" style={{ color: '#1F5E34' }}>
+            <Mail size={16} className="shrink-0 text-emerald-600" aria-hidden="true" />
+            <span>
+              उत्तर ईमेल: <strong>{submittedSnapshot.email}</strong>
+            </span>
+          </div>
+          <div className="flex items-center gap-2" style={{ color: '#1F5E34' }}>
+            <Phone size={16} className="shrink-0 text-emerald-600" aria-hidden="true" />
+            <span>
+              सहायता सूत्र: <strong>+91 96852 71507</strong> (शिवगंगा गुरुकुल)
+            </span>
+          </div>
+          <p className="text-xs mt-2 pt-2 border-t border-emerald-100" style={{ color: '#527E5F' }}>
+            ⏱️ हमारी टीम सामान्यतः 24 घंटों के भीतर आपके संदेश का उत्तर देती है।
+          </p>
+        </div>
+
+        <button
+          type="button"
+          onClick={handleReset}
+          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all"
+          style={{
+            backgroundColor: '#1B6E32',
+            color: 'white',
+            cursor: 'pointer',
+            boxShadow: '0 4px 12px rgba(27, 110, 50, 0.25)',
+          }}
+        >
+          <RotateCcw size={16} aria-hidden="true" />
+          एक और संदेश भेजें
+        </button>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} noValidate aria-label="संपर्क फ़ॉर्म">
-      {/* Honeypot — hidden from screen readers and visible users */}
+      {/* Honeypot */}
       <div style={{ position: 'absolute', left: '-9999px', width: '1px', height: '1px', overflow: 'hidden' }} aria-hidden="true">
         <label htmlFor={`${formId}-hp`}>इसे खाली छोड़ें</label>
         <input
@@ -255,16 +326,23 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={state === 'loading'}
-        className="btn-primary w-full justify-center"
+        className="btn-primary w-full justify-center transition-all"
         aria-busy={state === 'loading'}
+        style={{
+          opacity: state === 'loading' ? 0.85 : 1,
+          cursor: state === 'loading' ? 'not-allowed' : 'pointer',
+        }}
       >
         {state === 'loading' ? (
-          <>भेजा जा रहा है...</>
+          <span className="inline-flex items-center gap-2">
+            <Loader2 size={18} className="animate-spin" aria-hidden="true" />
+            संदेश भेजा जा रहा है...
+          </span>
         ) : (
-          <>
+          <span className="inline-flex items-center gap-2">
             <Send size={18} aria-hidden="true" />
             संदेश भेजें
-          </>
+          </span>
         )}
       </button>
     </form>

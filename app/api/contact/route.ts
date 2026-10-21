@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse, after } from 'next/server';
 import { z } from 'zod';
 import { checkRateLimit } from '@/lib/utils';
 import nodemailer, { SentMessageInfo } from 'nodemailer';
@@ -111,39 +111,30 @@ export async function POST(req: NextRequest) {
     </div>
   `;
 
-  try {
-    // Send email using Promise-wrapped sendMail for serverless reliability
-    const info = await new Promise<SentMessageInfo>((resolve, reject) => {
-      transporter.sendMail(
-        {
-          from: `"ग्रामगुरुकुल प्रकाशन" <${gmailUser}>`,
-          to: contactEmail,
-          replyTo: email,
-          subject: subjectText,
-          html: htmlContent,
-          text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
-        },
-        (err, result) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(result);
-          }
-        }
-      );
-    });
+  // Dispatch email in background via after() so user gets instant <50ms response
+  after(async () => {
+    try {
+      const info = await transporter.sendMail({
+        from: `"ग्रामगुरुकुल प्रकाशन" <${gmailUser}>`,
+        to: contactEmail,
+        replyTo: email,
+        subject: subjectText,
+        html: htmlContent,
+        text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
+      });
+      console.log('[ContactForm] Background Nodemailer sent successfully! Message ID:', info.messageId);
+    } catch (err) {
+      console.error('[ContactForm] Background Nodemailer send error:', err);
+    }
+  });
 
-    console.log('[ContactForm] Nodemailer sent successfully! Message ID:', info.messageId);
-
-    return NextResponse.json(
-      { success: true, message: 'आपका संदेश सफलतापूर्वक भेज दिया गया है। धन्यवाद!' },
-      { status: 200 }
-    );
-  } catch (err) {
-    console.error('[ContactForm] Nodemailer error:', err);
-    return NextResponse.json(
-      { message: 'संदेश भेजने में समस्या हुई। कृपया सीधे ईमेल करें: gramgurukulprkashan@gmail.com' },
-      { status: 500 }
-    );
-  }
+  // Return instant 200 OK — zero wait time for website visitors
+  return NextResponse.json(
+    {
+      success: true,
+      message: 'आपका संदेश सफलतापूर्वक भेज दिया गया है। धन्यवाद!',
+      details: { naam, email, vishay: VISHAY_LABELS[vishay] || vishay },
+    },
+    { status: 200 }
+  );
 }
