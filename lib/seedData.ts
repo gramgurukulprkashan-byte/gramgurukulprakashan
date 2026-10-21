@@ -90,14 +90,12 @@ export const REAL_BOOKS: BookItem[] = [
     _id: 'book-vachanalay-125',
     title: 'ग्राम वाचनालय संचयन (125 पुस्तकें)',
     slug: { current: 'vachanalay-125-pustakein' },
-    author: 'शिवगंगा एवं ग्रामगुरुकुल प्रकाशन',
     subject: 'सामुदायिक पुस्तकालय संचयन',
     status: 'प्रकाशित',
     coverImage: '/content-media/vachanalay-125-books.webp',
     description:
       'हर ग्राम वाचनालय की विशेष पेटी में रखी जाने वाली 125 चुनिंदा प्रेरणादायी पुस्तकें — सम्पूर्ण रामायण, चन्द्रशेखर आज़ाद, भगत सिंह, छत्रपति शिवाजी, महाराणा प्रताप, स्वामी विवेकानन्द, पंचतंत्र, बाल साहित्य एवं कृषि-स्वास्थ्य ज्ञान।',
     pages: '125 पुस्तकों का सेट',
-    publisher: 'शिवगंगा समग्र ग्रामविकास परिषद',
     allowDownload: false,
   },
 ];

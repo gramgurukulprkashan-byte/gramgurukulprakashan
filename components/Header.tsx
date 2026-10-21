@@ -78,7 +78,7 @@ export default function Header() {
                   className="text-xs md:text-sm font-medium tracking-wide"
                   style={{ color: '#8B5A2B', fontFamily: 'var(--font-body)' }}
                 >
-                  शिवगंगा समग्र ग्रामविकास परिषद | धर्मभूमि झाबुआ
+                  धर्मभूमि झाबुआ
                 </span>
               </div>
             </Link>
