@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Noto_Sans_Devanagari, Tiro_Devanagari_Hindi } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
@@ -22,6 +22,14 @@ const tiroDevanagari = Tiro_Devanagari_Hindi({
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.com';
+
+// ─── Viewport & Theme Color (Lighthouse 100) ──────────────
+export const viewport: Viewport = {
+  themeColor: '#5A2C10',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 // ─── Default Metadata (Top-Tier SEO) ──────────────────────
 export const metadata: Metadata = {
@@ -57,6 +65,8 @@ export const metadata: Metadata = {
   authors: [{ name: 'ग्रामगुरुकुल प्रकाशन', url: siteUrl }],
   creator: 'ग्रामगुरुकुल प्रकाशन',
   publisher: 'ग्रामगुरुकुल प्रकाशन',
+  applicationName: 'ग्रामगुरुकुल प्रकाशन',
+  manifest: '/manifest.webmanifest',
   formatDetection: {
     email: false,
     address: false,

@@ -106,12 +106,12 @@ export default async function BookPage({ params }: Props) {
                 )}
               </div>
 
-              <h1
+              <h2
                 className="text-2xl md:text-3xl font-bold mb-4"
                 style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
               >
                 {book.title}
-              </h1>
+              </h2>
 
               {book.author && (
                 <p className="text-sm mb-2 flex items-center gap-2" style={{ color: 'var(--color-clay)' }}>

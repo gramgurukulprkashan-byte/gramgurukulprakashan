@@ -173,6 +173,7 @@ export default async function HomePage() {
                 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-[1.15]"
                 style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
               >
+                <span className="sr-only">ग्रामगुरुकुल प्रकाशन (Gram Gurukul Prakashan — gramgurukulprakashan.com) — </span>
                 "जो बांचेगा
                 <br />
                 <span style={{ color: 'var(--color-orange)' }}>वही बचेगा"</span>

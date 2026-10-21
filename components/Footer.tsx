@@ -162,7 +162,7 @@ export default function Footer() {
           className="mt-8 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs"
           style={{ borderTop: '1px solid rgba(255,255,255,0.1)', color: 'rgba(240, 228, 200, 0.5)' }}
         >
-          <p>© {year} ग्रामगुरुकुल प्रकाशन। सभी अधिकार सुरक्षित।</p>
+          <p>© {year} ग्रामगुरुकुल प्रकाशन (Gram Gurukul Prakashan — <a href="https://gramgurukulprakashan.com" className="hover:underline" style={{ color: 'var(--color-sand)' }}>gramgurukulprakashan.com</a>)। सभी अधिकार सुरक्षित।</p>
           <p>
             आपकी जानकारी सुरक्षित है। हम आपका डेटा तीसरे पक्ष के साथ साझा नहीं करते।
           </p>

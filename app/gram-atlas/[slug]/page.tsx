@@ -93,12 +93,12 @@ export default async function VillagePage({ params }: Props) {
                   </span>
                 </div>
 
-                <h1
+                <h2
                   className="text-2xl md:text-3xl font-bold mb-3"
                   style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
                 >
                   ग्राम {village.name} का सामाजिक-सांस्कृतिक एटलस
-                </h1>
+                </h2>
 
                 <p className="text-sm leading-relaxed mb-4" style={{ color: 'var(--color-clay)' }}>
                   गाँव की पहचान, लोक इतिहास, प्रकृति, जल-संरचना और पारंपरिक भील सामाजिक व्यवस्था का संकलन।
