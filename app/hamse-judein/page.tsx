@@ -72,12 +72,12 @@ export default function HamseJudeinPage() {
         </div>
       </section>
 
-      {/* Submission form */}
-      <section className="py-16 section-sand" aria-label="जानकारी भेजें">
+      {/* Submission section */}
+      <section className="py-16 section-sand" aria-label="ज्ञान एवं संकलन में सहयोग">
         <div className="container-main max-w-3xl">
           <SectionTitle
-            title="अपनी जानकारी भेजें"
-            subtitle="गाँव की जानकारी, तस्वीरें, लोककथाएँ, परंपराएँ — सब कुछ हमें भेजें"
+            title="ज्ञान एवं संकलन में सहयोग"
+            subtitle="गाँव की परंपराएँ, लोककथाएँ और तस्वीरें हमारे साथ साझा करें"
           />
           <JoinForm />
         </div>
