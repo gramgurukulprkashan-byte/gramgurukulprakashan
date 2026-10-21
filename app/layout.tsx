@@ -86,6 +86,7 @@ const organizationSchema = {
     streetAddress: 'शिवगंगा गुरुकुल, धरमपुरी',
     addressLocality: 'झाबुआ',
     addressRegion: 'मध्य प्रदेश',
+    postalCode: '457661',
     addressCountry: 'IN',
   },
   contactPoint: {

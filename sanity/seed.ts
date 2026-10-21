@@ -51,7 +51,7 @@ async function seed() {
     },
     email: 'gramgurukulprakashan@gmail.com',
     phone: '+91 96852 71507',
-    address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश)',
+    address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश) - 457661',
   });
 
   // 2. Notices

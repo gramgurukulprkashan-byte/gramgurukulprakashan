@@ -182,7 +182,7 @@ export default function Footer() {
               <p className="text-xs leading-relaxed mb-2" style={{ color: 'rgba(240, 228, 200, 0.85)' }}>
                 शिवगंगा गुरुकुल, धरमपुरी
                 <br />
-                ज़िला — झाबुआ (मध्य प्रदेश)
+                ज़िला — झाबुआ (मध्य प्रदेश) - 457661
               </p>
               <p className="text-xs font-semibold mb-0.5" style={{ color: 'var(--color-mustard)' }}>
                 📞 फोन:

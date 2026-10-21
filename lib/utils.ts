@@ -65,8 +65,9 @@ export const SOCIAL_LINKS = {
   email: 'gramgurukulprakashan@gmail.com',
   phone: '+91 96852 71507',
   phoneRaw: '+919685271507',
-  address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश)',
+  address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश) - 457661',
   district: 'झाबुआ',
+  pincode: '457661',
 };
 
 export const CONTACT_INFO = SOCIAL_LINKS;

@@ -121,7 +121,7 @@ export default function SamparkPage() {
                       शिवगंगा गुरुकुल, धरमपुरी
                     </p>
                     <p className="text-sm mb-3" style={{ color: 'var(--color-clay)' }}>
-                      ज़िला — झाबुआ (मध्य प्रदेश)
+                      ज़िला — झाबुआ (मध्य प्रदेश) - 457661
                     </p>
                     <p className="text-xs font-semibold" style={{ color: 'var(--color-clay)' }}>
                       सीधा संपर्क सूत्र:
