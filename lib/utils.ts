@@ -59,7 +59,7 @@ export const NAV_ITEMS = [
 ];
 
 export const SOCIAL_LINKS = {
-  email: 'gramgurukulprakashan@gmail.com',
+  email: 'gramgurukulprkashan@gmail.com',
   phone: '+91 96852 71507',
   phoneRaw: '+919685271507',
   address: 'शिवगंगा गुरुकुल, धरमपुरी, ज़िला — झाबुआ (मध्य प्रदेश) - 457661',

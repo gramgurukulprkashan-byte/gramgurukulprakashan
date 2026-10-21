@@ -57,8 +57,8 @@ export async function POST(req: NextRequest) {
   }
 
   // ─── Send Email ────────────────────────────────────────
-  const contactEmail = process.env.CONTACT_EMAIL || 'gramgurukulprakashan@gmail.com';
-  const gmailUser = process.env.GMAIL_USER || 'gramgurukulprakashan@gmail.com';
+  const contactEmail = process.env.CONTACT_EMAIL || 'gramgurukulprkashan@gmail.com';
+  const gmailUser = process.env.GMAIL_USER || 'gramgurukulprkashan@gmail.com';
   const gmailPassword = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
   const subjectText = `नया संदेश [वेबसाइट संपर्क फ़ॉर्म]: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`;
 

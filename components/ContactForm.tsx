@@ -80,7 +80,7 @@ export default function ContactForm() {
 
       // If server returned non-200/non-400, trigger direct HTTPS FormSubmit fallback
       try {
-        const directRes = await fetch('https://formsubmit.co/ajax/gramgurukulprakashan@gmail.com', {
+        const directRes = await fetch('https://formsubmit.co/ajax/gramgurukulprkashan@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
@@ -104,7 +104,7 @@ export default function ContactForm() {
     } catch {
       // In case of network interruption, attempt direct client dispatch
       try {
-        await fetch('https://formsubmit.co/ajax/gramgurukulprakashan@gmail.com', {
+        await fetch('https://formsubmit.co/ajax/gramgurukulprkashan@gmail.com', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({
