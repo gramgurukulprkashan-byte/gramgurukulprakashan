@@ -68,56 +68,13 @@ export default function ContactForm() {
 
       if (res.ok) {
         setState('success');
-        return;
-      }
-
-      // If validation error (e.g. 400), inform the user about the field error
-      if (res.status === 400) {
-        setServerError(data.message || 'कृपया फ़ॉर्म में दी गई जानकारी जांचें।');
+      } else {
+        setServerError(data.message || 'संदेश भेजने में समस्या हुई। कृपया पुनः प्रयास करें।');
         setState('error');
-        return;
       }
-
-      // If server returned non-200/non-400, trigger direct HTTPS FormSubmit fallback
-      try {
-        const directRes = await fetch('https://formsubmit.co/ajax/gramgurukulprkashan@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            name: formData.naam,
-            email: formData.email,
-            message: formData.sandesh,
-            vishay: formData.vishay,
-            _captcha: 'false',
-          }),
-        });
-        if (directRes.ok) {
-          setState('success');
-          return;
-        }
-      } catch {
-        // Fallback error ignored
-      }
-
-      // Always treat as success on user interface to prevent frustrating visitor
-      setState('success');
     } catch {
-      // In case of network interruption, attempt direct client dispatch
-      try {
-        await fetch('https://formsubmit.co/ajax/gramgurukulprkashan@gmail.com', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-          body: JSON.stringify({
-            name: formData.naam,
-            email: formData.email,
-            message: formData.sandesh,
-            _captcha: 'false',
-          }),
-        });
-      } catch {
-        // Fallback error ignored
-      }
-      setState('success');
+      setServerError('नेटवर्क में समस्या है। कृपया बाद में प्रयास करें।');
+      setState('error');
     }
   }
 
