@@ -43,7 +43,7 @@ export default function Header() {
       </a>
 
       <header role="banner" className="w-full relative z-40 bg-[#FAF7F0]">
-        {/* ── TOP BANNER: Institutional Header (Logo + Title + Search + Indian Emblem) ── */}
+        {/* ── TOP BANNER: Institutional Header (Logo + Title + Search) ── */}
         <div className="border-b border-[#E8DFC8] py-2 md:py-3">
           <div className="container-main flex items-center justify-between gap-4">
             {/* Left: Organization Seal & Name */}
@@ -83,8 +83,8 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* Middle: Clean Search Bar */}
-            <div className="hidden lg:flex items-center flex-1 max-w-xs mx-4">
+            {/* Right: Clean Search Bar on Desktop */}
+            <div className="hidden lg:flex items-center max-w-xs w-full ml-auto">
               <form action="/pustakein" method="GET" role="search" className="w-full relative">
                 <label htmlFor="top-search-input" className="sr-only">
                   खोजें
@@ -107,27 +107,14 @@ export default function Header() {
               </form>
             </div>
 
-            {/* Right: National Emblem of India & Mobile Toggle */}
-            <div className="flex items-center gap-3 shrink-0">
-              {/* State Emblem of India (Ashoka Lion Capital with Satyameva Jayate) */}
-              <div className="flex items-center gap-2 pl-3 border-l border-[#E2D5BA]">
-                <Image
-                  src="/images/indian-emblem.webp"
-                  alt="भारत का राज्य चिह्न — सत्यमेव जयते"
-                  width={34}
-                  height={54}
-                  className="h-10 md:h-12 w-auto object-contain opacity-90"
-                  priority
-                />
-              </div>
-
-              {/* Mobile Hamburger Button */}
+            {/* Mobile Hamburger Button */}
+            <div className="lg:hidden flex items-center shrink-0">
               <button
                 aria-label={menuOpen ? 'मेनू बंद करें' : 'मेनू खोलें'}
                 aria-expanded={menuOpen}
                 aria-controls="mobile-menu"
                 onClick={() => setMenuOpen(!menuOpen)}
-                className="lg:hidden w-10 h-10 flex items-center justify-center rounded-md text-[#5A2C10] hover:bg-[#EFE8D6] transition-colors"
+                className="w-10 h-10 flex items-center justify-center rounded-md text-[#5A2C10] hover:bg-[#EFE8D6] transition-colors"
               >
                 {menuOpen ? <X size={26} /> : <Menu size={26} />}
               </button>
