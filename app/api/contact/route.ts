@@ -62,8 +62,34 @@ export async function POST(req: NextRequest) {
   const gmailPassword = (process.env.GMAIL_APP_PASSWORD || '').replace(/\s+/g, '');
 
   try {
-    if (gmailPassword) {
-      // Use Nodemailer with Gmail SMTP
+    if (process.env.RESEND_API_KEY) {
+
+      const { Resend } = await import('resend');
+      const resend = new Resend(process.env.RESEND_API_KEY);
+      const fromEmail = process.env.RESEND_FROM_EMAIL || 'ग्रामगुरुकुल प्रकाशन <onboarding@resend.dev>';
+
+      await resend.emails.send({
+        from: fromEmail,
+        to: contactEmail,
+        replyTo: email,
+        subject: `नया संदेश [वेबसाइट संपर्क फ़ॉर्म]: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`,
+        html: `
+          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #E2D5BA; border-radius: 12px; background-color: #FAF7F0;">
+            <div style="background-color: #5A2C10; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
+              <h1 style="color: #FAF7F0; margin: 0; font-size: 20px;">ग्रामगुरुकुल प्रकाशन — नया संपर्क संदेश</h1>
+              <p style="color: #E8DCBF; margin: 4px 0 0 0; font-size: 13px;">वेबसाइट (gramgurukulprakashan.com) से प्राप्त</p>
+            </div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+              <tr style="border-bottom: 1px solid #E8DFC8;"><td style="padding: 10px; font-weight: bold; color: #5A2C10;">प्रेषक:</td><td style="padding: 10px;">${naam}</td></tr>
+              <tr style="border-bottom: 1px solid #E8DFC8;"><td style="padding: 10px; font-weight: bold; color: #5A2C10;">ईमेल:</td><td style="padding: 10px;"><a href="mailto:${email}">${email}</a></td></tr>
+              <tr style="border-bottom: 1px solid #E8DFC8;"><td style="padding: 10px; font-weight: bold; color: #5A2C10;">विषय:</td><td style="padding: 10px;">${VISHAY_LABELS[vishay] || vishay}</td></tr>
+              <tr><td style="padding: 10px; font-weight: bold; color: #5A2C10; vertical-align: top;">संदेश:</td><td style="padding: 10px; line-height: 1.6; white-space: pre-wrap;">${sandesh}</td></tr>
+            </table>
+          </div>
+        `,
+      });
+    } else if (gmailPassword) {
+      // 2. Nodemailer with Gmail SMTP
       const nodemailer = await import('nodemailer');
       const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -121,27 +147,6 @@ export async function POST(req: NextRequest) {
         subject: mailSubject,
         html: htmlContent,
         text: `नया संपर्क संदेश:\n\nनाम: ${naam}\nईमेल: ${email}\nविषय: ${VISHAY_LABELS[vishay] || vishay}\nसंदेश:\n${sandesh}\n`,
-      });
-    } else if (process.env.RESEND_API_KEY) {
-      // Use Resend
-      const { Resend } = await import('resend');
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: 'ग्रामगुरुकुल प्रकाशन <noreply@gramgurukulprakashan.com>',
-        to: contactEmail,
-        replyTo: email,
-        subject: `नया संदेश: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`,
-        html: `
-          <h2>नया संपर्क संदेश</h2>
-          <table style="border-collapse:collapse;width:100%">
-            <tr><td style="padding:8px;font-weight:bold">नाम</td><td style="padding:8px">${naam}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold">ईमेल</td><td style="padding:8px">${email}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold">विषय</td><td style="padding:8px">${VISHAY_LABELS[vishay] || vishay}</td></tr>
-            <tr><td style="padding:8px;font-weight:bold">संदेश</td><td style="padding:8px">${sandesh.replace(/\n/g, '<br>')}</td></tr>
-          </table>
-          <hr>
-          <p style="color:#888;font-size:12px">यह संदेश gramgurukulprakashan.com के संपर्क फ़ॉर्म से भेजा गया है।</p>
-        `,
       });
     } else {
       console.log('[ContactForm] New message from:', naam, '|', email, '|', vishay);
