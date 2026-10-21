@@ -13,9 +13,12 @@ import { getFeaturedBooks } from '@/lib/queries';
 import { REAL_BOOKS } from '@/lib/seedData';
 
 export const metadata: Metadata = {
-  title: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा | झाबुआ',
+  title: 'ग्रामगुरुकुल प्रकाशन | Gram Gurukul Prakashan — आधिकारिक वेबसाइट (gramgurukulprakashan.com)',
   description:
-    'झाबुआ के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश-दुनिया तक ले जाने और गाँवों में ग्राम वाचनालय स्थापित करने का संकल्प।',
+    'ग्रामगुरुकुल प्रकाशन (Gram Gurukul Prakashan — gramgurukulprakashan.com) की आधिकारिक वेबसाइट। झाबुआ (मध्य प्रदेश) से परंपरागत ज्ञान, भील संस्कृति, ग्राम वाचनालय "जो बांचेगा वही बचेगा" और ग्राम एटलस का प्रमुख प्रकाशन संस्थान।',
+  alternates: {
+    canonical: 'https://gramgurukulprakashan.com',
+  },
 };
 
 const STATS = [
