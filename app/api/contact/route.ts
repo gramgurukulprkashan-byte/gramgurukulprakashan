@@ -60,12 +60,12 @@ export async function POST(req: NextRequest) {
   }
 
   // ─── Pure Nodemailer via Gmail SMTP (Port 587 STARTTLS) ─
-  const contactEmail = process.env.CONTACT_EMAIL || 'gramgurukulprkashan@gmail.com';
-  const gmailUser = process.env.GMAIL_USER || 'gramgurukulprkashan@gmail.com';
+  const contactEmail = (process.env.CONTACT_EMAIL || 'gramgurukulprkashan@gmail.com').replace('prakashan', 'prkashan');
+  const gmailUser = (process.env.GMAIL_USER || 'gramgurukulprkashan@gmail.com').replace('prakashan', 'prkashan');
   const gmailPassword = (process.env.GMAIL_APP_PASSWORD || 'tszsefucateoquoq').replace(/\s+/g, '');
   const subjectText = `नया संदेश [वेबसाइट संपर्क फ़ॉर्म]: ${VISHAY_LABELS[vishay] || vishay} — ${naam}`;
 
-  console.log('[ContactForm] Dispatching email purely via Nodemailer to:', contactEmail);
+  console.log('[ContactForm] Nodemailer authenticating as:', gmailUser);
 
   const transporter = nodemailer.createTransport({
     service: 'gmail',
