@@ -6,11 +6,9 @@ export interface BookItem {
   subject: string;
   status: 'प्रकाशित' | 'निर्माणाधीन';
   coverImage?: string;
-  pdfUrl?: string;
   description: string;
   pages?: string;
   publisher?: string;
-  allowDownload?: boolean;
 }
 
 export interface VillageItem {
@@ -20,7 +18,6 @@ export interface VillageItem {
   district: string;
   block: string;
   thumbnail?: string;
-  pdfUrl?: string;
   nameStory?: string;
   settlementHistory?: string;
   riversAndPonds?: string;
@@ -57,7 +54,6 @@ export const REAL_BOOKS: BookItem[] = [
       'पद्मश्री महेश शर्मा जी के मार्गदर्शन में शिवगंगा द्वारा झाबुआ की माटी में हलमा परंपरा के माध्यम से किए गए जल-संरक्षण, पर्यावरण-संरक्षण और सामाजिक समरसता की ऐतिहासिक गाथा।',
     pages: '220 पृष्ठ',
     publisher: 'ग्रामगुरुकुल प्रकाशन',
-    allowDownload: false,
   },
   {
     _id: 'book-mera-jila',
@@ -70,7 +66,6 @@ export const REAL_BOOKS: BookItem[] = [
       'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, बड़वा, तड़वी, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
     pages: 'सचित्र पाठ्यपुस्तक (कक्षा 6)',
     publisher: 'ग्रामगुरुकुल प्रकाशन',
-    allowDownload: false,
   },
   {
     _id: 'book-gram-atlas-chhagola',
@@ -84,7 +79,6 @@ export const REAL_BOOKS: BookItem[] = [
       'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
     pages: 'विस्तृत सर्वेक्षण ग्रंथ',
     publisher: 'ग्रामगुरुकुल प्रकाशन',
-    allowDownload: false,
   },
 ];
 
@@ -136,7 +130,6 @@ export const REAL_VILLAGES: VillageItem[] = [
     district: 'झाबुआ',
     block: 'झाबुआ',
     thumbnail: '/content-media/chhagola-atlas-cover.webp',
-    pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     nameStory:
       'छागोला गाँव का नामकरण यहाँ की ऐतिहासिक घाटी और छांवदार वनों के आधार पर माना जाता है। बुजुर्गों के अनुसार पुराने समय में यह क्षेत्र सघन पेड़ों और शीतल जलस्रोतों से समृद्ध था।',
     settlementHistory:

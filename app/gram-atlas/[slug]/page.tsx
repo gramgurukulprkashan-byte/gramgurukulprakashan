@@ -62,7 +62,7 @@ export default async function VillagePage({ params }: Props) {
 
       <article className="py-16 section-cream">
         <div className="container-main max-w-4xl">
-          {/* Header Card with Photo & PDF Download */}
+          {/* Header Card with Photo & Village Details */}
           <div
             className="card-base p-6 md:p-8 mb-10 overflow-hidden"
             style={{ border: '2px solid var(--color-sand-dark)' }}
