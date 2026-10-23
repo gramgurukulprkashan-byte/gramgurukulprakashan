@@ -90,19 +90,20 @@ export default function BhilItihasPage() {
             <div className="grid md:grid-cols-12 gap-8 items-center">
               <div className="md:col-span-5 flex justify-center">
                 <div
-                  className="relative rounded-2xl overflow-hidden shadow-2xl"
+                  className="relative rounded-2xl overflow-hidden shadow-2xl bg-white"
                   style={{
                     width: '320px',
-                    aspectRatio: '3/4',
+                    aspectRatio: '1/1',
                     border: '4px solid var(--color-mustard)',
                   }}
                 >
                   <Image
                     src="/content-media/veer-kotia-bhil.webp"
-                    alt="वीर कोटिया भील — सिर धड़ से अलग होने पर भी लड़ता रहा कोटिया भील"
+                    alt="वीर शिरोमणि कोटिया भील"
                     fill
                     className="object-cover"
                     sizes="320px"
+                    priority
                   />
                 </div>
               </div>
