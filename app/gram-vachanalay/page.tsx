@@ -243,8 +243,8 @@ export default async function GramVachanalaPage() {
                 पेटी लोहे की टिकाऊ धातु से बनाई जाती है जिस पर शिवगंगा का प्रतीक चक्र अंकित होता है, ताकि बारिश और धूप में भी ज्ञान सुरक्षित रहे।
               </p>
               <div className="flex flex-wrap gap-3">
-                <Link href="/pustakein/vachanalay-125-pustakein" className="btn-primary text-sm">
-                  125 पुस्तकों का विवरण देखें
+                <Link href="/sampark" className="btn-primary text-sm">
+                  वाचनालय पेटी हेतु संपर्क करें
                 </Link>
                 <Link href="/hamse-judein" className="btn-secondary text-sm">
                   अपने गाँव में वाचनालय शुरू करें

@@ -85,7 +85,7 @@ export const metadata: Metadata = {
       'गाँव के परंपरागत ज्ञान और भील समाज की सांस्कृतिक धरोहर को देश और दुनिया के समक्ष लाने का संकल्प। आधिकारिक वेबसाइट gramgurukulprakashan.com।',
     images: [
       {
-        url: '/content-media/vachanalay-125-books.webp',
+        url: '/content-media/nav-bhagirath-book.webp',
         width: 1200,
         height: 630,
         alt: 'ग्रामगुरुकुल प्रकाशन — जो बांचेगा वही बचेगा',
@@ -96,7 +96,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'ग्रामगुरुकुल प्रकाशन | Gram Gurukul Prakashan (gramgurukulprakashan.com)',
     description: 'झाबुआ के परंपरागत ज्ञान, भील संस्कृति और ग्राम वाचनालय की आधिकारिक वेबसाइट।',
-    images: ['/content-media/vachanalay-125-books.webp'],
+    images: ['/content-media/nav-bhagirath-book.webp'],
   },
   icons: {
     icon: [
