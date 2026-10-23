@@ -118,8 +118,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  category: 'Publishing',
-};
+    category: 'Publishing',
+    verification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION }
+      : undefined,
+  };
 
 // ─── JSON-LD Structured Data Schema (Organization + WebSite) ──
 const structuredData = {
