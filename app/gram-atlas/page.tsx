@@ -5,7 +5,6 @@ import PageHero from '@/components/PageHero';
 import SectionTitle from '@/components/SectionTitle';
 import VillageList from '@/components/VillageList';
 import { REAL_VILLAGES, ATLAS_PROJECT_VILLAGES } from '@/lib/seedData';
-import { Download } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'ग्राम एटलस — झाबुआ',
@@ -79,21 +78,17 @@ export default function GramAtlasPage() {
                   </p>
 
                   <div className="flex flex-wrap gap-3 pt-2">
-                    <a
-                      href="/content-media/छागोला गांव एटलस.pdf"
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                    >
-                      <Download size={18} aria-hidden="true" />
-                      छागोला एटलस डाउनलोड करें (PDF - 13 MB)
-                    </a>
                     <Link
                       href={`/gram-atlas/${chhagola.slug.current}`}
-                      className="btn-secondary"
+                      className="btn-primary"
                     >
                       गाँव का विवरण पढ़ें →
+                    </Link>
+                    <Link
+                      href="/sampark"
+                      className="btn-secondary"
+                    >
+                      एटलस प्रति हेतु संपर्क करें
                     </Link>
                   </div>
                 </div>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   BookOpen, MapPin, Music, History, Sprout, Library,
-  ChevronRight, Users, GraduationCap, Pen, Download
+  ChevronRight, Users, GraduationCap, Pen
 } from 'lucide-react';
 import StatsGrid from '@/components/StatsGrid';
 import BookCard from '@/components/BookCard';

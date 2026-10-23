@@ -5,7 +5,7 @@ import Image from 'next/image';
 import PageHero from '@/components/PageHero';
 import { getVillageBySlug } from '@/lib/queries';
 import { REAL_VILLAGES } from '@/lib/seedData';
-import { ArrowLeft, MapPin, Info, Download, BookOpen } from 'lucide-react';
+import { ArrowLeft, MapPin, Info, BookOpen } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -104,20 +104,14 @@ export default async function VillagePage({ params }: Props) {
                   गाँव की पहचान, लोक इतिहास, प्रकृति, जल-संरचना और पारंपरिक भील सामाजिक व्यवस्था का संकलन।
                 </p>
 
-                {village.pdfUrl && (
-                  <div className="pt-2">
-                    <a
-                      href={village.pdfUrl}
-                      download
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="btn-primary"
-                    >
-                      <Download size={18} aria-hidden="true" />
-                      संपूर्ण एटलस PDF डाउनलोड करें (13 MB)
-                    </a>
-                  </div>
-                )}
+                <div className="pt-2">
+                  <Link
+                    href="/sampark"
+                    className="btn-primary"
+                  >
+                    एटलस प्रति हेतु संपर्क करें
+                  </Link>
+                </div>
               </div>
             </div>
           </div>

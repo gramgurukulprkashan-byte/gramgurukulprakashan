@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import PageHero from '@/components/PageHero';
 import SectionTitle from '@/components/SectionTitle';
-import { GraduationCap, BookOpen, Users, Lightbulb, Download } from 'lucide-react';
+import { GraduationCap, BookOpen, Users, Lightbulb } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'गाँव से शिक्षा',
@@ -113,18 +113,11 @@ export default function GaonSeShikshaPage() {
               </p>
 
               <div className="flex flex-wrap gap-4 pt-4">
-                <a
-                  href="/content-media/Front - Back.pdf"
-                  download
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  <Download size={18} aria-hidden="true" />
-                  कवर प्रारूप देखें (PDF)
-                </a>
-                <Link href="/pustakein/mera-jila-bhag-1" className="btn-secondary">
+                <Link href="/pustakein/mera-jila-bhag-1" className="btn-primary">
                   पुस्तक विवरण पढ़ें →
+                </Link>
+                <Link href="/sampark" className="btn-secondary">
+                  पुस्तक प्रति हेतु संपर्क करें
                 </Link>
               </div>
             </div>
