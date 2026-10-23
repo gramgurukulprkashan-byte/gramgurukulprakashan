@@ -3,40 +3,59 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import PageHero from '@/components/PageHero';
 import { getKnowledgeTopicBySlug } from '@/lib/queries';
-import { ArrowLeft } from 'lucide-react';
+import { REAL_KNOWLEDGE_TOPICS, KnowledgeTopicItem } from '@/lib/seedData';
+import { ArrowLeft, BookOpen, Lightbulb, Scale, Users, Mail } from 'lucide-react';
 
-interface Props { params: Promise<{ slug: string }>; }
+interface Props {
+  params: Promise<{ slug: string }>;
+}
 
-const SEED: Record<string, any> = {
-  kheti: {
-    title: 'पारंपरिक खेती और आधुनिक कृषि-विज्ञान',
-    slug: { current: 'kheti' },
-    traditionalKnowledge: 'भील समाज में खेती का ज्ञान पीढ़ियों से चला आ रहा है। बारिश देखकर बीज बोना, मिट्टी को जानना, देसी खाद का उपयोग — ये सब गाँव के किसान की विरासत है।\n\nTODO: ग्राम बुज़ुर्गों से विस्तृत जानकारी दर्ज करें।',
-    modernScience: 'आधुनिक कृषि-विज्ञान मिट्टी परीक्षण, उन्नत बीज, सिंचाई प्रबंधन और कीट नियंत्रण पर ज़ोर देता है।\n\nTODO: कृषि विशेषज्ञों से जानकारी दर्ज करें।',
-    similarities: 'दोनों मिट्टी की नमी और मौसम के महत्व को मानते हैं।',
-    differences: 'परंपरागत खेती अनुभव पर निर्भर है; आधुनिक विज्ञान डेटा पर।',
-    uses: 'दोनों को मिलाकर टिकाऊ खेती संभव है।',
-  },
-};
+const TOPIC_LOOKUP: Record<string, KnowledgeTopicItem> = Object.fromEntries(
+  REAL_KNOWLEDGE_TOPICS.map((t) => [t.slug.current, t])
+);
+
+export async function generateStaticParams() {
+  return REAL_KNOWLEDGE_TOPICS.map((t) => ({
+    slug: t.slug.current,
+  }));
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const t = await getKnowledgeTopicBySlug(slug).catch(() => SEED[slug]);
-  if (!t) return { title: 'विषय नहीं मिला' };
-  return { title: t.title };
+  let topic: any = null;
+  try {
+    topic = await getKnowledgeTopicBySlug(slug);
+  } catch {
+    /* empty */
+  }
+  if (!topic) topic = TOPIC_LOOKUP[slug];
+  if (!topic) return { title: 'विषय नहीं मिला | ग्रामगुरुकुल प्रकाशन' };
+
+  return {
+    title: `${topic.title} | परंपरागत ज्ञान एवं आधुनिक विज्ञान`,
+    description: topic.summary || `${topic.title} पर पारंपरिक ज्ञान और आधुनिक विज्ञान का तुलनात्मक अध्ययन।`,
+  };
 }
 
 export default async function KnowledgeTopicPage({ params }: Props) {
   const { slug } = await params;
   let topic: any = null;
-  try { topic = await getKnowledgeTopicBySlug(slug); } catch { /* empty */ }
-  if (!topic && SEED[slug]) topic = SEED[slug];
+  try {
+    topic = await getKnowledgeTopicBySlug(slug);
+  } catch {
+    /* empty */
+  }
+  if (!topic && TOPIC_LOOKUP[slug]) {
+    topic = TOPIC_LOOKUP[slug];
+  }
+
   if (!topic) notFound();
 
   return (
     <>
       <PageHero
         title={topic.title}
+        description="परंपरागत अनुभव-सिद्ध ज्ञान और आधुनिक वैज्ञानिक शोध का प्रामाणिक संवाद"
         breadcrumb={[
           { label: 'परंपरागत ज्ञान', href: '/parampragat-gyan' },
           { label: topic.title },
@@ -46,80 +65,188 @@ export default async function KnowledgeTopicPage({ params }: Props) {
 
       <article className="py-16 section-cream">
         <div className="container-main max-w-4xl">
+          {/* Summary Callout if available */}
+          {topic.summary && (
+            <div
+              className="p-5 md:p-6 rounded-2xl mb-10"
+              style={{
+                backgroundColor: 'white',
+                border: '2px solid var(--color-sand-dark)',
+              }}
+            >
+              <p
+                className="text-base md:text-lg font-medium leading-relaxed text-center"
+                style={{ color: 'var(--color-charcoal)' }}
+              >
+                {topic.summary}
+              </p>
+            </div>
+          )}
+
           {/* Two-column comparison */}
           <div className="grid md:grid-cols-2 gap-6 mb-10">
-            {/* Traditional */}
+            {/* Traditional Knowledge */}
             <div
-              className="rounded-2xl p-6"
-              style={{ backgroundColor: 'rgba(122, 74, 43, 0.06)', border: '2px solid rgba(122, 74, 43, 0.2)' }}
+              className="rounded-2xl p-6 md:p-8 flex flex-col justify-between"
+              style={{
+                backgroundColor: 'rgba(122, 74, 43, 0.06)',
+                border: '2px solid rgba(122, 74, 43, 0.25)',
+              }}
             >
-              <h2
-                className="text-xl font-bold mb-4 flex items-center gap-2"
-                style={{ color: 'var(--color-clay)', fontFamily: 'var(--font-heading)' }}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-2xl" aria-hidden="true">🌾</span>
+                  <h2
+                    className="text-xl font-bold"
+                    style={{ color: 'var(--color-clay)', fontFamily: 'var(--font-heading)' }}
+                  >
+                    परंपरागत लोक-ज्ञान
+                  </h2>
+                </div>
+                <p
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: 'var(--color-clay)', whiteSpace: 'pre-line' }}
+                >
+                  {topic.traditionalKnowledge}
+                </p>
+              </div>
+              <div
+                className="mt-6 pt-3 border-t text-xs font-semibold"
+                style={{ borderColor: 'rgba(122, 74, 43, 0.2)', color: 'var(--color-clay)' }}
               >
-                <span aria-hidden="true">🌾</span>
-                परंपरागत ज्ञान
-              </h2>
-              {topic.traditionalKnowledge ? (
-                <p style={{ color: 'var(--color-clay)', whiteSpace: 'pre-line' }}>{topic.traditionalKnowledge}</p>
-              ) : (
-                <p className="italic opacity-60" style={{ color: 'var(--color-clay)' }}>TODO: जानकारी दर्ज करें</p>
-              )}
+                स्रोत: भील अंचल की वाचिक परंपरा एवं ग्राम बुजुर्ग
+              </div>
             </div>
 
-            {/* Modern */}
+            {/* Modern Science */}
             <div
-              className="rounded-2xl p-6"
-              style={{ backgroundColor: 'rgba(63, 91, 46, 0.06)', border: '2px solid rgba(63, 91, 46, 0.2)' }}
+              className="rounded-2xl p-6 md:p-8 flex flex-col justify-between"
+              style={{
+                backgroundColor: 'rgba(63, 91, 46, 0.06)',
+                border: '2px solid rgba(63, 91, 46, 0.25)',
+              }}
             >
-              <h2
-                className="text-xl font-bold mb-4 flex items-center gap-2"
-                style={{ color: 'var(--color-green)', fontFamily: 'var(--font-heading)' }}
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="text-2xl" aria-hidden="true">🔬</span>
+                  <h2
+                    className="text-xl font-bold"
+                    style={{ color: 'var(--color-green)', fontFamily: 'var(--font-heading)' }}
+                  >
+                    आधुनिक विज्ञान
+                  </h2>
+                </div>
+                <p
+                  className="text-sm md:text-base leading-relaxed"
+                  style={{ color: 'var(--color-green)', whiteSpace: 'pre-line' }}
+                >
+                  {topic.modernScience}
+                </p>
+              </div>
+              <div
+                className="mt-6 pt-3 border-t text-xs font-semibold"
+                style={{ borderColor: 'rgba(63, 91, 46, 0.2)', color: 'var(--color-green)' }}
               >
-                <span aria-hidden="true">🔬</span>
-                आधुनिक विज्ञान
-              </h2>
-              {topic.modernScience ? (
-                <p style={{ color: 'var(--color-green)', whiteSpace: 'pre-line' }}>{topic.modernScience}</p>
-              ) : (
-                <p className="italic opacity-60" style={{ color: 'var(--color-green)' }}>TODO: जानकारी दर्ज करें</p>
-              )}
+                स्रोत: समकालीन वैज्ञानिक शोध एवं कृषि-पर्यावरण विज्ञान
+              </div>
             </div>
           </div>
 
-          {/* Similarities, Differences, Uses */}
-          {[
-            { title: '🤝 समानताएँ', content: topic.similarities },
-            { title: '⚖️ अंतर', content: topic.differences },
-            { title: '💡 उपयोग', content: topic.uses },
-          ].map((sec) => (
-            <section key={sec.title} className="mb-6 card-base p-6" aria-label={sec.title}>
-              <h3
-                className="text-lg font-bold mb-3"
-                style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+          {/* Deep Analysis Cards: Similarities, Differences, Uses */}
+          <div className="space-y-6 mb-12">
+            {topic.similarities && (
+              <section
+                className="card-base p-6 md:p-7"
+                style={{ backgroundColor: 'white' }}
+                aria-label="समानताएँ"
               >
-                {sec.title}
-              </h3>
-              <p style={{ color: 'var(--color-clay)' }}>
-                {sec.content || <span className="italic opacity-60">TODO: जानकारी दर्ज करें</span>}
-              </p>
-            </section>
-          ))}
+                <h3
+                  className="text-lg md:text-xl font-bold mb-3 flex items-center gap-2"
+                  style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+                >
+                  <Users size={20} style={{ color: 'var(--color-orange)' }} />
+                  <span>समानताएँ एवं साझा ध्येय</span>
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: 'var(--color-clay)' }}>
+                  {topic.similarities}
+                </p>
+              </section>
+            )}
 
-          {/* Closing */}
+            {topic.differences && (
+              <section
+                className="card-base p-6 md:p-7"
+                style={{ backgroundColor: 'white' }}
+                aria-label="अंतर"
+              >
+                <h3
+                  className="text-lg md:text-xl font-bold mb-3 flex items-center gap-2"
+                  style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+                >
+                  <Scale size={20} style={{ color: 'var(--color-orange)' }} />
+                  <span>दृष्टिकोण और पद्धति में अंतर</span>
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed" style={{ color: 'var(--color-clay)' }}>
+                  {topic.differences}
+                </p>
+              </section>
+            )}
+
+            {topic.uses && (
+              <section
+                className="card-base p-6 md:p-7"
+                style={{
+                  backgroundColor: 'white',
+                  border: '2px solid var(--color-orange)',
+                }}
+                aria-label="समन्वय व उपयोग"
+              >
+                <h3
+                  className="text-lg md:text-xl font-bold mb-3 flex items-center gap-2"
+                  style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}
+                >
+                  <Lightbulb size={20} style={{ color: 'var(--color-orange)' }} />
+                  <span>व्यावहारिक समन्वय एवं भविष्य का मार्ग</span>
+                </h3>
+                <p className="text-sm md:text-base leading-relaxed font-medium" style={{ color: 'var(--color-charcoal)' }}>
+                  {topic.uses}
+                </p>
+              </section>
+            )}
+          </div>
+
+          {/* Mission Quote */}
           <div
-            className="mt-8 p-6 rounded-2xl text-center"
-            style={{ backgroundColor: 'var(--color-mustard)' }}
+            className="p-6 md:p-8 rounded-2xl text-center mb-10"
+            style={{
+              backgroundColor: 'var(--color-mustard)',
+              color: 'var(--color-charcoal)',
+            }}
           >
-            <p className="font-semibold text-lg" style={{ color: 'var(--color-charcoal)', fontFamily: 'var(--font-heading)' }}>
-              आधुनिक विज्ञान गाँव तक पहुँचे और गाँव का ज्ञान देश तक — यही हमारा लक्ष्य है।
+            <p
+              className="font-bold text-lg md:text-xl"
+              style={{ fontFamily: 'var(--font-heading)' }}
+            >
+              "आधुनिक विज्ञान गाँव तक पहुँचे और गाँव का ज्ञान देश तक — यही ग्रामगुरुकुल का संकल्प है।"
             </p>
           </div>
 
-          <div className="mt-8">
-            <Link href="/parampragat-gyan" className="btn-secondary flex items-center gap-2 w-fit">
+          {/* Action Links */}
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--color-sand-dark)]">
+            <Link
+              href="/parampragat-gyan"
+              className="btn-secondary inline-flex items-center gap-2"
+            >
               <ArrowLeft size={16} aria-hidden="true" />
-              सभी विषय
+              सभी विषय देखें
+            </Link>
+
+            <Link
+              href="/sampark"
+              className="btn-primary inline-flex items-center gap-2 text-sm"
+            >
+              <Mail size={16} aria-hidden="true" />
+              शोध एवं सहयोग हेतु संपर्क करें
             </Link>
           </div>
         </div>

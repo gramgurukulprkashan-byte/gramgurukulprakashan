@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { REAL_BOOKS, REAL_VILLAGES } from '@/lib/seedData';
+import { REAL_BOOKS, REAL_VILLAGES, REAL_KNOWLEDGE_TOPICS } from '@/lib/seedData';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://gramgurukulprakashan.com';
@@ -103,14 +103,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  // Knowledge topics & traditions
-  const knowledgeRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${siteUrl}/parampragat-gyan/kheti`,
-      lastModified: now,
-      changeFrequency: 'monthly',
-      priority: 0.75,
-    },
+  // Dynamic knowledge topics
+  const knowledgeRoutes: MetadataRoute.Sitemap = REAL_KNOWLEDGE_TOPICS.map((topic) => ({
+    url: `${siteUrl}/parampragat-gyan/${topic.slug.current}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  // Traditions
+  const traditionRoutes: MetadataRoute.Sitemap = [
     {
       url: `${siteUrl}/sanskriti-parampara/halma`,
       lastModified: now,
@@ -119,5 +121,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...staticRoutes, ...bookRoutes, ...villageRoutes, ...knowledgeRoutes];
+  return [...staticRoutes, ...bookRoutes, ...villageRoutes, ...knowledgeRoutes, ...traditionRoutes];
 }
