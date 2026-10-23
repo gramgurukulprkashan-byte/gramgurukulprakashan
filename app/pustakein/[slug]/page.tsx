@@ -5,7 +5,7 @@ import Image from 'next/image';
 import PageHero from '@/components/PageHero';
 import { getBookBySlug } from '@/lib/queries';
 import { REAL_BOOKS } from '@/lib/seedData';
-import { ArrowLeft, Download, BookOpen, User, Building2 } from 'lucide-react';
+import { ArrowLeft, BookOpen, User, Building2, Mail } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -39,7 +39,6 @@ export default async function BookPage({ params }: Props) {
   if (!book) notFound();
 
   const coverUrl = book.coverImage || book.cover?.asset?.url || null;
-  const pdfDownloadUrl = book.pdfUrl || book.samplePdf?.asset?.url || null;
 
   return (
     <>
@@ -143,27 +142,11 @@ export default async function BookPage({ params }: Props) {
                 </p>
               )}
 
-              {/* Download or Order Action */}
+              {/* Action Button */}
               <div className="flex flex-wrap gap-4 items-center mb-6">
-                {pdfDownloadUrl ? (
-                  <a
-                    href={pdfDownloadUrl}
-                    download
-                    className="btn-primary"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Download size={18} aria-hidden="true" />
-                    PDF डाउनलोड करें
-                  </a>
-                ) : (
-                  <button className="btn-disabled" disabled aria-disabled="true" title="जल्द उपलब्ध होगा">
-                    पुस्तकालय प्रति उपलब्ध
-                  </button>
-                )}
-
-                <Link href="/hamse-judein" className="btn-secondary">
-                  प्रति प्राप्त करने हेतु संपर्क
+                <Link href="/sampark" className="btn-primary inline-flex items-center gap-2">
+                  <Mail size={18} aria-hidden="true" />
+                  पुस्तक प्राप्त करने हेतु संपर्क करें
                 </Link>
               </div>
 

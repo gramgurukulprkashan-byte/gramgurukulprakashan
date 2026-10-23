@@ -36,7 +36,7 @@ export default async function PustakeinPage() {
             subtitle="गाँव के अनुभव, स्थानीय इतिहास, जल-संरक्षण और लोक-संस्कृति पर आधारित मौलिक प्रकाशन"
           />
           {books.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {books.map((book) => (
                 <BookCard key={book._id} book={book} />
               ))}

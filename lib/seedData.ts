@@ -46,7 +46,7 @@ export interface NoticeItem {
 
 export const REAL_BOOKS: BookItem[] = [
   {
-    _id: 'book-nav-bhagirath',
+    _id: 'book-navbhagirath',
     title: 'नवभगीरथ — झाबुआ में गंगावतरण',
     slug: { current: 'nav-bhagirath' },
     author: 'गिरीश प्रभुणे (अनुवाद: डॉ. मोहन ब. बांडे)',
@@ -66,10 +66,11 @@ export const REAL_BOOKS: BookItem[] = [
     subject: 'सामाजिक विज्ञान (कक्षा 6)',
     status: 'निर्माणाधीन',
     coverImage: '/content-media/mera-jila-cover.webp',
-    pdfUrl: '/content-media/Front - Back.pdf',
     description:
       'कक्षा 6 के लिए झाबुआ ज़िले पर आधारित सामाजिक विज्ञान की पाठ्यपुस्तक। इस पुस्तक में बच्चे अपने परिवार, बड़वा, तड़वी, समाज, खेत, नदी-तालाब और परंपराओं के माध्यम से सीखते हैं।',
-    allowDownload: true,
+    pages: 'सचित्र पाठ्यपुस्तक (कक्षा 6)',
+    publisher: 'ग्रामगुरुकुल प्रकाशन',
+    allowDownload: false,
   },
   {
     _id: 'book-gram-atlas-chhagola',
@@ -79,23 +80,10 @@ export const REAL_BOOKS: BookItem[] = [
     subject: 'इतिहास, भूगोल एवं सर्वेक्षण',
     status: 'प्रकाशित',
     coverImage: '/content-media/chhagola-atlas-cover.webp',
-    pdfUrl: '/content-media/छागोला गांव एटलस.pdf',
     description:
-      'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। 13.4 MB के इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
-    pages: '13.4 MB पूर्ण एटलस',
+      'ग्राम छागोला (विकासखंड झाबुआ) का संपूर्ण एटलस और सर्वेक्षण ग्रंथ। इस विस्तृत दस्तावेज़ में गाँव का इतिहास, फलियों की स्थिति, नदी-नाले, जलस्रोत, परंपरागत वनस्पति, कुलदेवता और लोक-जीवन का प्रामाणिक संकलन है।',
+    pages: 'विस्तृत सर्वेक्षण ग्रंथ',
     publisher: 'ग्रामगुरुकुल प्रकाशन',
-    allowDownload: true,
-  },
-  {
-    _id: 'book-vachanalay-125',
-    title: 'ग्राम वाचनालय संचयन (125 पुस्तकें)',
-    slug: { current: 'vachanalay-125-pustakein' },
-    subject: 'सामुदायिक पुस्तकालय संचयन',
-    status: 'प्रकाशित',
-    coverImage: '/content-media/vachanalay-125-books.webp',
-    description:
-      'हर ग्राम वाचनालय की विशेष पेटी में रखी जाने वाली 125 चुनिंदा प्रेरणादायी पुस्तकें — सम्पूर्ण रामायण, चन्द्रशेखर आज़ाद, भगत सिंह, छत्रपति शिवाजी, महाराणा प्रताप, स्वामी विवेकानन्द, पंचतंत्र, बाल साहित्य एवं कृषि-स्वास्थ्य ज्ञान।',
-    pages: '125 पुस्तकों का सेट',
     allowDownload: false,
   },
 ];
